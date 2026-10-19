@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 207,
+  "remaining_blocks": 206,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -190,7 +190,7 @@
       "method": "RpcServerQuantize127",
       "status": "pending",
       "asm_lines": [
-        25
+        26
       ]
     },
     {
@@ -198,7 +198,7 @@
       "method": "RpcServerExpand127",
       "status": "pending",
       "asm_lines": [
-        42
+        43
       ]
     },
     {
@@ -206,7 +206,7 @@
       "method": "RpcServerQuantize255",
       "status": "pending",
       "asm_lines": [
-        68
+        69
       ]
     },
     {
@@ -214,7 +214,7 @@
       "method": "RpcServerExpand255",
       "status": "pending",
       "asm_lines": [
-        87
+        88
       ]
     },
     {
@@ -222,8 +222,8 @@
       "method": "RpcServerQuantizeHull",
       "status": "pending",
       "asm_lines": [
-        101,
-        109
+        102,
+        110
       ]
     },
     {
@@ -231,15 +231,7 @@
       "method": "RpcServerExpandHull",
       "status": "pending",
       "asm_lines": [
-        132
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
-      "method": "FRpcServerCharSelectVerifiedPacket::Encode",
-      "status": "pending",
-      "asm_lines": [
-        1122
+        133
       ]
     },
     {
@@ -247,7 +239,7 @@
       "method": "RpcServerSendCommQuantize",
       "status": "pending",
       "asm_lines": [
-        3308
+        3304
       ]
     },
     {
@@ -255,7 +247,7 @@
       "method": "RpcServerSendCommExpand",
       "status": "pending",
       "asm_lines": [
-        3326
+        3322
       ]
     },
     {
@@ -1393,6 +1385,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "FRpcServerCharSelectVerifiedPacket::Encode",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test double_load_copy: MSVC and Clang Release; 104,448 exact whole-buffer/x87-status/MXCSR comparisons per compiler, all precision/rounding modes, byte overlaps and special values.",
+      "notes": "Retains original reservation, cached destination and cursor commit order. Numerical binary64 load/store replaced by PortableDoubleLoad::Copy. No tolerance accepted. Unmasked exception delivery untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",

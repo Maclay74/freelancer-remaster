@@ -102,3 +102,8 @@ are not compared.
 `lua_nonzero_double` checks the shared binary64 nonzero kernel used by fog
 and IK Lua values: 24,576 exact return/exception-flag comparisons per Release
 compiler and no MXCSR changes. Condition codes and unmasked traps are untested.
+
+`double_load_copy` compares the portable binary64 copy against FLD/FSTP:
+104,448 exact full-buffer/x87-status/MXCSR cases per Release compiler, including
+unaligned overlaps, signaling NaNs, subnormals and all precision/rounding modes.
+Unmasked exception delivery is untested.
