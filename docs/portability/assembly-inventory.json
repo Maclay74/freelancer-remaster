@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 153,
+  "remaining_blocks": 152,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -779,7 +779,7 @@
       "method": "MulVecByMatrix",
       "status": "pending",
       "asm_lines": [
-        37
+        38
       ]
     },
     {
@@ -787,7 +787,7 @@
       "method": "MulVecByTranspose",
       "status": "pending",
       "asm_lines": [
-        80
+        81
       ]
     },
     {
@@ -795,7 +795,7 @@
       "method": "RecipSqrtFsqrt",
       "status": "pending",
       "asm_lines": [
-        149
+        150
       ]
     },
     {
@@ -803,7 +803,7 @@
       "method": "FastDotZZG",
       "status": "pending",
       "asm_lines": [
-        240
+        241
       ]
     },
     {
@@ -811,7 +811,7 @@
       "method": "FastDotZOO",
       "status": "pending",
       "asm_lines": [
-        254
+        255
       ]
     },
     {
@@ -819,7 +819,7 @@
       "method": "FastDotZOG",
       "status": "pending",
       "asm_lines": [
-        264
+        265
       ]
     },
     {
@@ -827,7 +827,7 @@
       "method": "FastDotZGZ",
       "status": "pending",
       "asm_lines": [
-        275
+        276
       ]
     },
     {
@@ -835,7 +835,7 @@
       "method": "FastDotZGO",
       "status": "pending",
       "asm_lines": [
-        285
+        286
       ]
     },
     {
@@ -843,7 +843,7 @@
       "method": "FastDotZGG",
       "status": "pending",
       "asm_lines": [
-        296
+        297
       ]
     },
     {
@@ -851,7 +851,7 @@
       "method": "FastDotOZO",
       "status": "pending",
       "asm_lines": [
-        313
+        314
       ]
     },
     {
@@ -859,7 +859,7 @@
       "method": "FastDotOZG",
       "status": "pending",
       "asm_lines": [
-        323
+        324
       ]
     },
     {
@@ -867,7 +867,7 @@
       "method": "FastDotOOZ",
       "status": "pending",
       "asm_lines": [
-        334
+        335
       ]
     },
     {
@@ -875,7 +875,7 @@
       "method": "FastDotOOO",
       "status": "pending",
       "asm_lines": [
-        344
+        345
       ]
     },
     {
@@ -883,7 +883,7 @@
       "method": "FastDotOOG",
       "status": "pending",
       "asm_lines": [
-        355
+        356
       ]
     },
     {
@@ -891,7 +891,7 @@
       "method": "FastDotOGZ",
       "status": "pending",
       "asm_lines": [
-        367
+        368
       ]
     },
     {
@@ -899,7 +899,7 @@
       "method": "FastDotOGO",
       "status": "pending",
       "asm_lines": [
-        378
+        379
       ]
     },
     {
@@ -907,7 +907,7 @@
       "method": "FastDotOGG",
       "status": "pending",
       "asm_lines": [
-        390
+        391
       ]
     },
     {
@@ -915,7 +915,7 @@
       "method": "FastDotGZZ",
       "status": "pending",
       "asm_lines": [
-        404
+        405
       ]
     },
     {
@@ -923,7 +923,7 @@
       "method": "FastDotGZO",
       "status": "pending",
       "asm_lines": [
-        414
+        415
       ]
     },
     {
@@ -931,7 +931,7 @@
       "method": "FastDotGZG",
       "status": "pending",
       "asm_lines": [
-        425
+        426
       ]
     },
     {
@@ -939,7 +939,7 @@
       "method": "FastDotGOZ",
       "status": "pending",
       "asm_lines": [
-        438
+        439
       ]
     },
     {
@@ -947,7 +947,7 @@
       "method": "FastDotGOO",
       "status": "pending",
       "asm_lines": [
-        449
+        450
       ]
     },
     {
@@ -955,7 +955,7 @@
       "method": "FastDotGOG",
       "status": "pending",
       "asm_lines": [
-        461
+        462
       ]
     },
     {
@@ -963,7 +963,7 @@
       "method": "FastDotGGZ",
       "status": "pending",
       "asm_lines": [
-        475
+        476
       ]
     },
     {
@@ -971,7 +971,7 @@
       "method": "FastDotGGO",
       "status": "pending",
       "asm_lines": [
-        488
+        489
       ]
     },
     {
@@ -979,7 +979,7 @@
       "method": "FastDotGGG",
       "status": "pending",
       "asm_lines": [
-        502
+        503
       ]
     },
     {
@@ -987,7 +987,7 @@
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        748
+        749
       ]
     },
     {
@@ -995,7 +995,7 @@
       "method": "MulMatrix",
       "status": "pending",
       "asm_lines": [
-        876
+        877
       ]
     },
     {
@@ -1003,7 +1003,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        942
+        943
       ]
     },
     {
@@ -1011,7 +1011,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        1063
+        1064
       ]
     },
     {
@@ -1019,16 +1019,16 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        1172
+        1173
       ]
     },
     {
       "file": "src/x86math/x86math.cpp",
-      "method": "QuatSlerpValue",
-      "status": "pending",
-      "asm_lines": [
-        1274
-      ]
+      "method": "QuatNlerpValue",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test quat_nlerp: MSVC/Clang Release, 172,032 cases each, all precision/rounding settings. Endpoints, extrapolation, identical/antipodal/orthogonal/near-orthogonal pairs, zero/tiny/large/nonfinite values, dst aliasing either input and t aliasing each output lane. Absolute component and squared-length error limits 2e-6. Observed maximum component difference 1.78813934e-7 and squared-length error 4.99358116e-7. x86math DLL builds; math/spline/scene component contracts pass.",
+      "notes": "Renamed QuatSlerp/QuatSlerpValue to QuatNlerp/QuatNlerpValue with unchanged virtual slots. Same sign-adjusted linear blend and normalization algorithm, W/X/Y/Z publication and per-component t reads; no zero-length fallback. Portable double intermediates replace x87 extended arithmetic. Numerical tolerance is explicit for this algorithm-preserving rewrite; NaNs compared by classification, not payload or sign; signed-zero bit equality and exception flags not required. Controls and stack balance checked. Debug, other architectures and unmasked exception timing untested."
     },
     {
       "file": "src/alchemy/alchemy_common.cpp",

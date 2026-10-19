@@ -245,3 +245,29 @@ contract. Largest sampled inverse relative change for normal inputs is below
 to the new result. These samples do not establish an exhaustive error bound.
 The component contract also checks both public API wrappers and `GR_OK` results
 for four and zero. No game build or gameplay test is performed by this fixture.
+
+## Quaternion normalized linear interpolation
+
+```powershell
+.\scripts\test-portable-kernel.ps1 -Test quat_nlerp
+```
+
+`quat_nlerp` exercises the production template from `QuaternionMath.h` against
+retained original assembly: 172,032 cases per MSVC/Clang Release compiler, all
+three precision settings and four rounding modes. Cases include random unit
+quaternion pairs; endpoints and extrapolation; identical, antipodal, orthogonal
+and near-orthogonal pairs; zero/tiny/large inputs; NaNs/infinity; both full input
+aliases and a blend factor aliasing each output lane. Output remains normalized
+when finite; the original zero-length behavior is retained, without a fallback.
+
+This is an algorithm-preserving numerical rewrite, not an x87 emulator. Absolute
+component difference and squared-length error must each be <= 2e-6. Observed
+component maximum: zero for Clang finite outputs, 1.78813934e-7 for MSVC;
+squared-length error maximum: 4.99358116e-7. NaNs are compared by classification;
+payload, sign, signed-zero bit equality and old exception flags are not required.
+The test logs buffer/flag differences as diagnostics and verifies unchanged
+floating-point control settings, stack balance and untouched input objects.
+Debug, unmasked exception timing and non-x86 builds remain untested.
+
+The public methods and direct wrappers/callers are now `QuatNlerp` and
+`QuatNlerpValue`; virtual slot order and calling conventions are unchanged.

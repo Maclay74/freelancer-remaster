@@ -39,11 +39,12 @@ int main()
     FQuaternion antipodal = {-1, 0, 0, 0};
     FQuaternion output{};
     float fraction = 0.5f;
-    engine.QuatSlerpValue(output, identity, antipodal, &fraction);
+    if (engine.QuatNlerp(output, identity, antipodal, fraction) != GR_OK || output.W != 1) return 10;
+    engine.QuatNlerpValue(output, identity, antipodal, &fraction);
     if (output.W != 1 || output.X != 0 || output.Y != 0 || output.Z != 0) return 2;
-    engine.QuatSlerpValue(identity, identity, antipodal, &fraction);
+    engine.QuatNlerpValue(identity, identity, antipodal, &fraction);
     if (identity.W != 1) return 3;
-    engine.QuatSlerpValue(antipodal, identity, antipodal, &fraction);
+    engine.QuatNlerpValue(antipodal, identity, antipodal, &fraction);
     if (antipodal.W != 1) return 4;
     return 0;
 }

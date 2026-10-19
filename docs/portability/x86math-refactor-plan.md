@@ -21,7 +21,7 @@ in `src/include/x86math.h`.
 | `MathComponent.cpp` | DACOM integration, lifetime, registration, interface forwarding | `DllMain`, singleton, `QueryInterface`, `AddRef`, `Release`, `CreateInstance`, component identity and priority, `CallDacomStricmp` integration |
 | `MatrixMath.cpp` | Operations on 3x3 matrices | `Scale`, `Det`, `Inverse`, `MulMatrix`, `TransposeMatrix`, `WriteAdjugate`, singularity threshold |
 | `TransformMath.cpp` | Single-vector transforms and affine composition/inversion | `MulTransform`, `TransformXform`, `TransformMatrix`, `Rotate`, `InverseRotate`, `TransposeTransform`, `InverseTransform`, `GeneralInverse`, `MulVecByMatrix`, `MulVecByTranspose` |
-| `QuaternionMath.cpp` | Quaternion operations and matrix conversion | `MulQuat`, `TransformQuat`, `MatrixToQuaternion`, `QuaternionToMatrix`, `QuatSlerp`, `QuatSlerpValue` |
+| `QuaternionMath.cpp` | Quaternion operations and matrix conversion | `MulQuat`, `TransformQuat`, `MatrixToQuaternion`, `QuaternionToMatrix`, `QuatNlerp`, `QuatNlerpValue` |
 | `TransformBatch.cpp` | Applying a matrix or transform to arrays of vectors | `TransformListXform`, `TransformListMatrix`, `TransposeTransformList`, `InverseTransformList`, `TransformListFast`; initially also all FastDot machinery |
 | `ScalarMath.cpp` | Square-root algorithms and their initialization | `BuildInvSqrtTable`, `TableInvSqrt`, `InvSqrt`, `Sqrt`, inverse-square-root table |
 
@@ -69,13 +69,15 @@ moving code out of line can itself change compiler rounding/inlining behavior.
    one helper; transpose transform and inverse rotation share another. Refactor
    around those existing responsibilities before adding abstractions. Preserve
    source/destination alias behavior until deliberately changed.
-4. **Quaternion naming.** `QuatSlerp` performs sign-adjusted linear interpolation
-   followed by normalization, rather than trigonometric slerp. Keep the public
-   name for compatibility; a future internal `Nlerp` name would explain what it
-   actually computes. Replacing it with true slerp changes animation behavior.
+4. **Quaternion naming and implementation (done).** The former `QuatSlerp` and
+   `QuatSlerpValue` operations are now `QuatNlerp` and `QuatNlerpValue`, including
+   callers and direct wrappers. They retain their virtual slots. The portable
+   implementation in `QuaternionMath.h` preserves sign-adjusted linear blending
+   and normalization, with explicit numerical tolerances in isolated tests.
+   Replacing it with true slerp would change animation behavior.
 5. **Unused production helper.** `RecipSqrtFsqrt` has no production caller in
    this file; only the contract test calls it. Its assembly does not provide the
-   normalization performed inside `QuatSlerpValue`. Remove or relocate it once
+   normalization performed inside `QuatNlerpValue`. Remove or relocate it once
    tests directly exercise the relevant production operations.
 
 ## Behavioral decisions to keep explicit

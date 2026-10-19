@@ -10,7 +10,7 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 
 ## Types
 
-`Vector` — 12 bytes `{X,Y,Z}`; `Matrix` — 36 bytes, row-major `d[row][col]`, `out = M * v` gives `out.x = row0·v`; `Transform` — 48 bytes, `Matrix` + translation at `+0x24`; `Quaternion` — 16 bytes `{W,X,Y,Z}` (scalar first). The slot order of `I3DMathEngine` does not match the Liberty `3dMath.h` reconstruction; the source of truth is the retail vtable. The port added a `QuatSlerpValue` slot with `const float* T` at the end of the interface — a contract between our modules, not retail compatibility (the former `QuatSlerp(float)` delegates to it).
+`Vector` — 12 bytes `{X,Y,Z}`; `Matrix` — 36 bytes, row-major `d[row][col]`, `out = M * v` gives `out.x = row0·v`; `Transform` — 48 bytes, `Matrix` + translation at `+0x24`; `Quaternion` — 16 bytes `{W,X,Y,Z}` (scalar first). The slot order of `I3DMathEngine` does not match the Liberty `3dMath.h` reconstruction; the source of truth is the retail vtable. The port added a `QuatNlerpValue` slot with `const float* T` at the end of the interface — a contract between our modules, not retail compatibility (the former `QuatNlerp(float)` delegates to it).
 
 ## Numeric peculiarities that must not be "simplified"
 
@@ -28,3 +28,12 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 3. The object is created with `::operator new(8, nothrow)` + placement new (MSVC writes the vfptr itself, retail does it manually; `sizeof == 8`).
 4. The port's `QueryInterface` and `CreateInstance` check the output pointer for NULL; retail writes without a check.
 5. The status of individual methods (some remain incompletely verified with respect to FP-stack argument preparation) is in the tracker, not here.
+
+6. The former `QuatSlerp`/`QuatSlerpValue` methods and their callers are named
+   `QuatNlerp`/`QuatNlerpValue` in the port, with virtual slots and calling
+   conventions unchanged. `src/x86math/QuaternionMath.h` implements the same
+   sign-adjusted linear blend and normalization in C++, using double
+   intermediates and standard square root. Component stores and live per-lane
+   blend-factor reads retain alias behavior. There is still no zero-length
+   fallback. Low-order rounding, NaN payload/sign and exception flags may differ
+   from the original assembly; isolated tests record a 2e-6 component tolerance.
