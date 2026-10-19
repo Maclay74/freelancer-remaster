@@ -9,6 +9,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test scene_read_column
 .\scripts\test-portable-kernel.ps1 -Test scene_transpose
 .\scripts\test-portable-kernel.ps1 -Test param_strict_less
+.\scripts\test-portable-kernel.ps1 -Test scene_interpolation_complete
 .\scripts\test-portable-kernel.ps1 -Test scene_nonzero_float
 .\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
@@ -91,5 +92,9 @@ It passes the same matrix with zero return/exception-flag differences and no
 MXCSR changes. x87 condition codes and unmasked trap timing are not compared.
 
 `scene_nonzero_float` also passes 24,576 return/exception-flag comparisons per Release
+compiler with no MXCSR changes. Unmasked trap timing and x87 condition codes
+are not compared.
+
+`scene_interpolation_complete` also passes 24,576 return/exception-flag comparisons per Release
 compiler with no MXCSR changes. Unmasked trap timing and x87 condition codes
 are not compared.

@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 210,
+  "remaining_blocks": 209,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -936,18 +936,10 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "IsLightInterpolationComplete",
-      "status": "pending",
-      "asm_lines": [
-        1390
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "InterpolateLightDirection",
       "status": "pending",
       "asm_lines": [
-        1410
+        1400
       ]
     },
     {
@@ -955,7 +947,7 @@
       "method": "LerpSpatialPosition",
       "status": "pending",
       "asm_lines": [
-        1586
+        1576
       ]
     },
     {
@@ -963,7 +955,7 @@
       "method": "AccumulateAxisDelta",
       "status": "pending",
       "asm_lines": [
-        1614
+        1604
       ]
     },
     {
@@ -971,7 +963,7 @@
       "method": "ApplyAxisRotFpu",
       "status": "pending",
       "asm_lines": [
-        1643
+        1633
       ]
     },
     {
@@ -979,7 +971,7 @@
       "method": "BuildAttachLookDirection",
       "status": "pending",
       "asm_lines": [
-        2121
+        2111
       ]
     },
     {
@@ -987,7 +979,7 @@
       "method": "ApplyPsysSparam",
       "status": "pending",
       "asm_lines": [
-        2324
+        2314
       ]
     },
     {
@@ -995,7 +987,7 @@
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        2350
+        2340
       ]
     },
     {
@@ -1003,7 +995,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        2414
+        2404
       ]
     },
     {
@@ -1011,7 +1003,7 @@
       "method": "InterpolateFloorHeight",
       "status": "pending",
       "asm_lines": [
-        2467
+        2457
       ]
     },
     {
@@ -1019,7 +1011,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        2502
+        2492
       ]
     },
     {
@@ -1027,7 +1019,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2555
+        2545
       ]
     },
     {
@@ -1035,11 +1027,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        4076,
-        4087,
-        4099,
-        4108,
-        4118
+        4066,
+        4077,
+        4089,
+        4098,
+        4108
       ]
     },
     {
@@ -1047,9 +1039,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        4387,
-        4405,
-        4415
+        4377,
+        4395,
+        4405
       ]
     },
     {
@@ -1057,9 +1049,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        4438,
-        4447,
-        4459
+        4428,
+        4437,
+        4449
       ]
     },
     {
@@ -1067,10 +1059,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        4475,
-        4499,
-        4511,
-        4524
+        4465,
+        4489,
+        4501,
+        4514
       ]
     },
     {
@@ -1078,7 +1070,7 @@
       "method": "FThornEvent::StartAttachEntity",
       "status": "pending",
       "asm_lines": [
-        4718
+        4708
       ]
     },
     {
@@ -1086,8 +1078,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4939,
-        4973
+        4929,
+        4963
       ]
     },
     {
@@ -1095,7 +1087,7 @@
       "method": "FThornEvent::TickPsysPropAnim",
       "status": "pending",
       "asm_lines": [
-        5416
+        5406
       ]
     },
     {
@@ -1417,6 +1409,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "IsLightInterpolationComplete",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test scene_interpolation_complete: MSVC and Clang Release; 24,576 exact return/exception-flag comparisons per compiler and no MXCSR changes; all precision/rounding settings and special-value samples.",
+      "notes": "Explicit NaN handling retains signaling comparison flags. No numeric tolerance. x87 condition codes and unmasked trap timing not compared."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",

@@ -9,6 +9,8 @@ __declspec(noinline) bool Reference(const float* left, const float* right)
     unsigned char less;
 #if defined(TEST_NONZERO)
     const float zero = 0.0f;
+#elif defined(TEST_AT_LEAST_ONE)
+    const float one = 1.0f;
 #endif
     __asm {
         mov ecx, left
@@ -18,6 +20,11 @@ __declspec(noinline) bool Reference(const float* left, const float* right)
         fnstsw ax
         test ah, 44h
         setp less
+#elif defined(TEST_AT_LEAST_ONE)
+        fcomp dword ptr one
+        fnstsw ax
+        test ah, 01h
+        setz less
 #else
         mov ecx, right
         fcomp dword ptr [ecx]
@@ -33,6 +40,8 @@ __declspec(noinline) bool Candidate(const float* left, const float* right)
 {
 #if defined(TEST_NONZERO)
     return ThornPortableComparison::Nonzero(left);
+#elif defined(TEST_AT_LEAST_ONE)
+    return ThornPortableComparison::AtLeastOne(left);
 #else
     return ThornPortableComparison::StrictLess(left, right);
 #endif
@@ -42,7 +51,9 @@ int main()
 {
     const std::uint32_t patterns[] = {0, 0x80000000u, 0x3f800000u, 0xbf800000u,
         0x7f800000u, 0xff800000u, 0x7fc12345u, 0xffc54321u, 0x7f812345u,
-        0xff854321u, 1, 0x80000001u, 0x007fffffu, 0x00800000u, 0x7f7fffffu};
+        0xff854321u, 1, 0x80000001u, 0x007fffffu, 0x00800000u, 0x7f7fffffu,
+        0x3f7fffffu, 0x3f800001u};
+    constexpr unsigned patternCount = sizeof(patterns) / sizeof(patterns[0]);
     unsigned short original;
     __asm { fnstcw original }
     unsigned cases = 0, results = 0, flags = 0, mxcsrDifferences = 0;
@@ -57,9 +68,9 @@ int main()
         {
             std::uint32_t a, b;
             random ^= random << 13; random ^= random >> 17; random ^= random << 5;
-            a = sample < 225 ? patterns[sample / 15] : random;
+            a = sample < patternCount * patternCount ? patterns[sample / patternCount] : random;
             random ^= random << 13; random ^= random >> 17; random ^= random << 5;
-            b = sample < 225 ? patterns[sample % 15] : random;
+            b = sample < patternCount * patternCount ? patterns[sample % patternCount] : random;
             float left, right;
             std::memcpy(&left, &a, 4); std::memcpy(&right, &b, 4);
             unsigned short expectedStatus, actualStatus;
