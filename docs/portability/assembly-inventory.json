@@ -1,15 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 29,
+  "remaining_blocks": 28,
   "methods": [
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
-      "method": "HermiteEvaluate",
-      "status": "pending",
-      "asm_lines": [
-        236
-      ]
-    },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "AudioLerpFloat",
@@ -149,6 +141,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "HermiteEvaluate",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "curve_polynomial: 98,304 cases across four kernels per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes; nullable endpoints, normalized time, Hermite sentinel/endpoints/seed-dependent finite sorted walks and duplicate times. Thorn DLL, actual parameter-curve/scene source contracts and targeted CTests build/pass. Debug, non-x86 execution, complete event flows and gameplay untested.",
+      "notes": "Portable double polynomial arithmetic encoded into unchanged 10-byte binary80 transport. Scaled tolerance 5e-6; NaNs by classification, not payload. Float normalized-S boundary and step sentinel retained. Empty/singleton and malformed/unordered Hermite paths use bounded C++ indices; invalid old out-of-bounds results are not reproduced. Flags, signed-zero bits and unmasked timing are not contracts."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
