@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 226,
+  "remaining_blocks": 225,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -507,18 +507,10 @@
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
-      "method": "StoreParamFloat",
-      "status": "pending",
-      "asm_lines": [
-        61
-      ]
-    },
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
       "method": "ParamStrictLess",
       "status": "pending",
       "asm_lines": [
-        76
+        71
       ]
     },
     {
@@ -526,7 +518,7 @@
       "method": "CatmullRom1D",
       "status": "pending",
       "asm_lines": [
-        188
+        183
       ]
     },
     {
@@ -534,7 +526,7 @@
       "method": "ParamLerp",
       "status": "pending",
       "asm_lines": [
-        246
+        241
       ]
     },
     {
@@ -542,7 +534,7 @@
       "method": "ConstructHermiteRecord",
       "status": "pending",
       "asm_lines": [
-        290
+        285
       ]
     },
     {
@@ -550,7 +542,7 @@
       "method": "Hermite1D",
       "status": "pending",
       "asm_lines": [
-        312
+        307
       ]
     },
     {
@@ -558,7 +550,7 @@
       "method": "HermiteEvaluate",
       "status": "pending",
       "asm_lines": [
-        415
+        410
       ]
     },
     {
@@ -566,12 +558,12 @@
       "method": "ApplyHermiteTangents",
       "status": "pending",
       "asm_lines": [
-        541,
-        562,
-        569,
-        580,
-        591,
-        617
+        536,
+        557,
+        564,
+        575,
+        586,
+        612
       ]
     },
     {
@@ -579,7 +571,7 @@
       "method": "Evaluate",
       "status": "pending",
       "asm_lines": [
-        779
+        774
       ]
     },
     {
@@ -587,7 +579,7 @@
       "method": "WrapEvaluateToExtended",
       "status": "pending",
       "asm_lines": [
-        796
+        791
       ]
     },
     {
@@ -595,7 +587,7 @@
       "method": "Slot4Replace",
       "status": "pending",
       "asm_lines": [
-        825
+        820
       ]
     },
     {
@@ -603,7 +595,7 @@
       "method": "AddKey",
       "status": "pending",
       "asm_lines": [
-        910
+        905
       ]
     },
     {
@@ -611,7 +603,7 @@
       "method": "Slot12WrapEvaluate",
       "status": "pending",
       "asm_lines": [
-        1037
+        1032
       ]
     },
     {
@@ -619,7 +611,7 @@
       "method": "InsertDerivedRecord",
       "status": "pending",
       "asm_lines": [
-        1115
+        1110
       ]
     },
     {
@@ -627,8 +619,8 @@
       "method": "EvaluateExtended",
       "status": "pending",
       "asm_lines": [
-        1245,
-        1262
+        1240,
+        1257
       ]
     },
     {
@@ -636,7 +628,7 @@
       "method": "EvaluateLerp",
       "status": "pending",
       "asm_lines": [
-        1294
+        1289
       ]
     },
     {
@@ -644,7 +636,7 @@
       "method": "EvaluateCatmull",
       "status": "pending",
       "asm_lines": [
-        1328
+        1323
       ]
     },
     {
@@ -1545,6 +1537,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "StoreParamFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test float_extended_storage: MSVC/Clang Debug/Release; 2,520,000 exact binary80/buffer/x87-status comparisons per configuration; special values, every byte overlap offset, all PC/RC modes; 504 unmasked invalid/denormal cases match exception/status/output.",
+      "notes": "Production kernel in ExtendedFloatStorage.h. Widen to materialized binary64 to retain load exceptions, then encode canonical little-endian binary80 bytes. No host long double dependency. No tolerance."
     },
     {
       "file": "src/Thorn/SplineMath.h",
