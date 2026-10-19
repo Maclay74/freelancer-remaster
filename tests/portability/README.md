@@ -107,3 +107,7 @@ compiler and no MXCSR changes. Condition codes and unmasked traps are untested.
 104,448 exact full-buffer/x87-status/MXCSR cases per Release compiler, including
 unaligned overlaps, signaling NaNs, subnormals and all precision/rounding modes.
 Unmasked exception delivery is untested.
+
+`texture_frame_copy` checks four UV floats loaded backwards before forward
+stores: 55,296 exact buffer/status comparisons per Release compiler, overlapping
+buffers and special values. Unmasked exception delivery is untested.

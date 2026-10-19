@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 205,
+  "remaining_blocks": 204,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -287,7 +287,7 @@
       "method": "PlaybackDuration",
       "status": "pending",
       "asm_lines": [
-        453
+        454
       ]
     },
     {
@@ -295,7 +295,7 @@
       "method": "TruncatePlaybackFrame",
       "status": "pending",
       "asm_lines": [
-        502
+        503
       ]
     },
     {
@@ -303,21 +303,13 @@
       "method": "AdvancePlayback",
       "status": "pending",
       "asm_lines": [
-        538,
-        551,
-        580,
-        595,
-        639,
-        648,
-        656
-      ]
-    },
-    {
-      "file": "src/Shading/TextureLibrary.cpp",
-      "method": "FTextureLibrary::LoadLegacyTextureRecord",
-      "status": "pending",
-      "asm_lines": [
-        996
+        539,
+        552,
+        581,
+        596,
+        640,
+        649,
+        657
       ]
     },
     {
@@ -1377,6 +1369,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "FTextureLibrary::LoadLegacyTextureRecord",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test texture_frame_copy: MSVC and Clang Release; 55,296 exact whole-buffer/x87-status/MXCSR comparisons per compiler, special values, overlaps and all precision/rounding settings.",
+      "notes": "CopyFour snapshots four numerical UV inputs in reverse order before publishing forwards. ChildIndex copy and file loading unchanged. No tolerance accepted. Unmasked exception delivery untested."
     },
     {
       "file": "src/rpclocal/rpc_wire_fields.cpp",
