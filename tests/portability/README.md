@@ -149,3 +149,8 @@ and tier, with unchanged x87 control/MXCSR. Boundary samples cover the tier
 limits, fractional and int64 overflow boundaries, exceptional and random floats.
 Power-of-two prescaling is exact and the product fits within 39 significand
 bits. Condition codes and unmasked timing remain untested.
+
+`rpc_fire_pick_tier` covers both tier modes: 98,304 exact tier/exception-flag/
+stack-balance comparisons per Release compiler, including adjacent values at
+64 and 8192, signed zeros, NaNs, infinities and random encodings. Control and
+MXCSR remain unchanged; condition codes and unmasked timing are untested.

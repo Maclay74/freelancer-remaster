@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 193,
+  "remaining_blocks": 191,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -142,15 +142,6 @@
       "status": "pending",
       "asm_lines": [
         46
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
-      "method": "RpcFirePickTier",
-      "status": "pending",
-      "asm_lines": [
-        1364,
-        1386
       ]
     },
     {
@@ -1281,6 +1272,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFirePickTier",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_fire_pick_tier: MSVC/Clang Release; 98,304 exact tier/exception-flag/stack-balance comparisons per compiler across all precision/rounding settings and both tier modes; unchanged control/MXCSR.",
+      "notes": "Preserves strict thresholds 64 and 8192, absolute value, unordered-to-zero tier and signaling comparison FE_INVALID for quiet NaN. Covers adjacent threshold values and exceptional/random encodings. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",
