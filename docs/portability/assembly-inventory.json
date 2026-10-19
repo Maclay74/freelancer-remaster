@@ -196,10 +196,12 @@
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerExpand127",
-      "status": "pending",
+      "status": "investigating",
       "asm_lines": [
         43
-      ]
+      ],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand127 -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 746 Clang status mismatches.",
+      "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
@@ -212,10 +214,12 @@
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerExpand255",
-      "status": "pending",
+      "status": "investigating",
       "asm_lines": [
         88
-      ]
+      ],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand255 -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 1018 Clang status mismatches.",
+      "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
@@ -245,10 +249,12 @@
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerSendCommExpand",
-      "status": "pending",
+      "status": "investigating",
       "asm_lines": [
         3322
-      ]
+      ],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand_comm -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 810 Clang status mismatches.",
+      "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",

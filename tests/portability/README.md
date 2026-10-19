@@ -108,6 +108,17 @@ compiler and no MXCSR changes. Condition codes and unmasked traps are untested.
 unaligned overlaps, signaling NaNs, subnormals and all precision/rounding modes.
 Unmasked exception delivery is untested.
 
+## Open investigation: RPC byte expansion
+
+`rpc_expand127`, `rpc_expand255` and `rpc_expand_comm` compare every possible
+input byte at all three precision settings and four rounding directions
+(3,072 comparisons per Release compiler and scale). All output bits agree.
+MSVC also matches x87 status; Clang has 746, 1,018 and 810 status differences
+respectively, caused by an extra float reload clearing C1. Publishing via an
+integer temporary did not eliminate that reload. Candidates remain test-only,
+outside the passing CTest suite; production assembly is unchanged. No tolerance
+has been accepted. Use `-ContinueOnFailure` to collect both compiler results.
+
 `texture_frame_copy` checks four UV floats loaded backwards before forward
 stores: 55,296 exact buffer/status comparisons per Release compiler, overlapping
 buffers and special values. Unmasked exception delivery is untested.
