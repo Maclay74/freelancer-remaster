@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 38,
+  "remaining_blocks": 32,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -32,19 +32,6 @@
       "status": "pending",
       "asm_lines": [
         382
-      ]
-    },
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
-      "method": "ApplyHermiteTangents",
-      "status": "pending",
-      "asm_lines": [
-        508,
-        529,
-        536,
-        547,
-        558,
-        584
       ]
     },
     {
@@ -186,6 +173,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ApplyHermiteTangents",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "param_curve_control: 24,578 combined key/normalization/tangent/fault cases per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Endpoint IDs/NaN classes, predicate decisions, tangent modes 0..6/default, signed wrapped ratios and both Windows IDIV fault codes covered. Thorn DLL, actual parameter-curve/scene source contracts and targeted CTests build/pass. Debug, non-x86 execution, complete event flows and gameplay untested.",
+      "notes": "Portable C++ preserves reserved-ID endpoint overrides, ordered comparisons/NaN branches, step sentinel raw bits, slope half-denominator, float boundaries and caller map/list flow. Float tolerance 3e-6; decisions/endpoint IDs/sentinel bits exact. Invalid remainder inputs raise corresponding Windows arithmetic exceptions, SIGFPE elsewhere; handler-resume timing and non-Windows signal delivery untested. FP flags, NaN payloads, signed-zero bits and unmasked waits not contracts."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
