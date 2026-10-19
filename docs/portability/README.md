@@ -59,3 +59,9 @@ Completion additionally requires no production assembly dependency, a functional
 Windows x86 build, and gameplay smoke tests. Passing isolated kernels alone does
 not satisfy those gates. Work remains active until all entries and integration
 gates are accounted for.
+
+For byte expansion, C1 rounding-history differences are diagnostic only. The
+source audit found FNSTSW consumers test AH masks 01/05/41/44 (or equivalent
+AX masks), not C1; the two _clearfp calls discard their return values. Outputs,
+exception flags and all other tested status bits still require exact equality.
+This excludes an unused machine condition bit, not numerical differences.

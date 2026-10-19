@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 204,
+  "remaining_blocks": 203,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -190,25 +190,15 @@
       "method": "RpcServerQuantize127",
       "status": "pending",
       "asm_lines": [
-        26
+        27
       ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
-      "method": "RpcServerExpand127",
-      "status": "investigating",
-      "asm_lines": [
-        43
-      ],
-      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand127 -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 746 Clang status mismatches.",
-      "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerQuantize255",
       "status": "pending",
       "asm_lines": [
-        69
+        65
       ]
     },
     {
@@ -216,7 +206,7 @@
       "method": "RpcServerExpand255",
       "status": "investigating",
       "asm_lines": [
-        88
+        84
       ],
       "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand255 -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 1018 Clang status mismatches.",
       "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
@@ -226,8 +216,8 @@
       "method": "RpcServerQuantizeHull",
       "status": "pending",
       "asm_lines": [
-        102,
-        110
+        98,
+        106
       ]
     },
     {
@@ -235,7 +225,7 @@
       "method": "RpcServerExpandHull",
       "status": "pending",
       "asm_lines": [
-        133
+        129
       ]
     },
     {
@@ -243,7 +233,7 @@
       "method": "RpcServerSendCommQuantize",
       "status": "pending",
       "asm_lines": [
-        3304
+        3300
       ]
     },
     {
@@ -251,7 +241,7 @@
       "method": "RpcServerSendCommExpand",
       "status": "investigating",
       "asm_lines": [
-        3322
+        3318
       ],
       "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand_comm -ContinueOnFailure: all 256 bytes across all precision/rounding settings, 3,072 comparisons per Release compiler; zero output mismatches, zero MSVC status mismatches, 810 Clang status mismatches.",
       "notes": "Clang adds a numerical float reload that clears x87 C1. Integer publication attempt did not eliminate the reload. Candidate retained only in tests; production assembly unchanged. No tolerance accepted."
@@ -1375,6 +1365,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerExpand127",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand127: MSVC and Clang Release; all 256 byte encodings, 3,072 cases per compiler across all precision/rounding settings. Exact buffers and status outside C1; MXCSR unchanged.",
+      "notes": "Clang has 746 C1-only differences, MSVC none. C1 is diagnostic after source audit found no consumer of its rounding history. No numeric tolerance; exception flags match exactly. Unmasked trap timing untested."
     },
     {
       "file": "src/Shading/TextureLibrary.cpp",

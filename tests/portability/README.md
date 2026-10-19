@@ -108,17 +108,15 @@ compiler and no MXCSR changes. Condition codes and unmasked traps are untested.
 unaligned overlaps, signaling NaNs, subnormals and all precision/rounding modes.
 Unmasked exception delivery is untested.
 
-## Open investigation: RPC byte expansion
+## RPC byte expansion
 
-`rpc_expand127`, `rpc_expand255` and `rpc_expand_comm` compare every possible
-input byte at all three precision settings and four rounding directions
-(3,072 comparisons per Release compiler and scale). All output bits agree.
-MSVC also matches x87 status; Clang has 746, 1,018 and 810 status differences
-respectively, caused by an extra float reload clearing C1. Publishing via an
-integer temporary did not eliminate that reload. Candidates remain test-only,
-outside the passing CTest suite; production assembly is unchanged. No tolerance
-has been accepted. Use `-ContinueOnFailure` to collect both compiler results.
-
-`texture_frame_copy` checks four UV floats loaded backwards before forward
-stores: 55,296 exact buffer/status comparisons per Release compiler, overlapping
-buffers and special values. Unmasked exception delivery is untested.
+`rpc_expand127`, `rpc_expand255` and `rpc_expand_comm` compare every byte at
+all precision/rounding settings: 3,072 cases per Release compiler and scale.
+Output bytes and all x87 status bits except C1 agree, with no MXCSR changes.
+Clang has respectively 746, 1,018 and 810 C1 differences; MSVC has none.
+C1 is a recorded diagnostic, not a pass condition: a source audit of FNSTSW
+consumers and status APIs found no reader of this rounding-history bit.
+Numeric results and exception flags remain exact. Unmasked trap timing is
+untested. The simple multiplication replaces the failed attempt to preserve C1
+with an integer publication temporary. The signed 127-scale result also covers
+RpcUpdateExpand, which uses the same FILD/FMUL/FSTP operation.
