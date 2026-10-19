@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 27,
+  "remaining_blocks": 26,
   "methods": [
     {
       "file": "src/Thorn/ThornScene.cpp",
@@ -112,18 +112,10 @@
     },
     {
       "file": "src/Thorn/X87Return.h",
-      "method": "ThornReturnExtendedFloat",
-      "status": "pending",
-      "asm_lines": [
-        11
-      ]
-    },
-    {
-      "file": "src/Thorn/X87Return.h",
       "method": "ThornReturnSt0Float",
       "status": "pending",
       "asm_lines": [
-        21
+        10
       ]
     },
     {
@@ -131,8 +123,16 @@
       "method": "ThornReturnSt0Double",
       "status": "pending",
       "asm_lines": [
-        25
+        14
       ]
+    },
+    {
+      "file": "src/Thorn/X87Return.h",
+      "method": "ThornReturnExtendedFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "extended_progress_codec: 147,456 exact transport conversion cases per MSVC/Clang x86 Release compiler, all precision/rounding modes. Thorn DLL, actual parameter-curve/scene source contracts and targeted CTests build/pass. Debug, non-x86 execution, complete event flows and gameplay untested.",
+      "notes": "Direct portable binary80-to-binary32 conversion or deletion of its now-unused naked return adapter. Bytes layout and output/scalar signatures retained; numeric conversions tested independently of exception flags/timing. No host long-double or instruction-set dependency."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
