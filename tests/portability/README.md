@@ -98,3 +98,7 @@ are not compared.
 `scene_interpolation_complete` also passes 24,576 return/exception-flag comparisons per Release
 compiler with no MXCSR changes. Unmasked trap timing and x87 condition codes
 are not compared.
+
+`lua_nonzero_double` checks the shared binary64 nonzero kernel used by fog
+and IK Lua values: 24,576 exact return/exception-flag comparisons per Release
+compiler and no MXCSR changes. Condition codes and unmasked traps are untested.

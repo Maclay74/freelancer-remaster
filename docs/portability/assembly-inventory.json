@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 209,
+  "remaining_blocks": 208,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -770,7 +770,7 @@
       "method": "LuaMillisecondsToRetailInt",
       "status": "pending",
       "asm_lines": [
-        103
+        104
       ]
     },
     {
@@ -778,7 +778,7 @@
       "method": "LuaNumberToRetailInt",
       "status": "pending",
       "asm_lines": [
-        134
+        135
       ]
     },
     {
@@ -786,15 +786,7 @@
       "method": "StoreLightColorIntegers",
       "status": "pending",
       "asm_lines": [
-        161
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "ReadFogByte",
-      "status": "pending",
-      "asm_lines": [
-        683
+        162
       ]
     },
     {
@@ -802,7 +794,7 @@
       "method": "ReadVec3Complete",
       "status": "pending",
       "asm_lines": [
-        806
+        792
       ]
     },
     {
@@ -810,8 +802,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1101,
-        1147
+        1087,
+        1133
       ]
     },
     {
@@ -819,7 +811,7 @@
       "method": "IsIkLuaNumberNonzero",
       "status": "pending",
       "asm_lines": [
-        1208
+        1194
       ]
     },
     {
@@ -827,7 +819,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1321
+        1307
       ]
     },
     {
@@ -835,7 +827,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1344
+        1330
       ]
     },
     {
@@ -1409,6 +1401,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ReadFogByte",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_nonzero_double: MSVC and Clang Release; 24,576 exact return/exception-flag comparisons per compiler and no MXCSR changes, all precision/rounding settings.",
+      "notes": "Shared binary64 Nonzero preserves NaN-as-true behavior and FE_INVALID for quiet NaN. Lua call remains in its original location. No numeric tolerance. Condition codes and unmasked trap timing untested."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
