@@ -118,6 +118,25 @@ actual source and position-path construction. Exact x87 flags, NaN payloads,
 signed-zero bits, unmasked exception timing and every extended boundary are not
 contracts. Gameplay, Debug and non-x86 execution remain untested.
 
+`scene_interpolation` compares eleven methods/spans: 270,336 cases per MSVC/Clang
+Release compiler across all 12 precision/rounding modes. Scalar fog/floor/particle
+and vector spatial/light interpolation retain their float boundaries and source
+rereads; axis accumulation rereads Applied after Delta publication. Attach
+direction preserves its rounded-X zero test. Axis rotation retains float cosine,
+double sine, degree conversion, local/world axis selection and invalid-ID early
+return; tests include cardinal angles, +/-720 degrees, infinities and NaNs.
+Compact-light conversion checks raw selective writes, branches and overlapping/
+unaligned source/target buffers. Particle tests check exact runtime/argument
+publication before a stub callback and an untouched descriptor. Attach-position
+negation checks exact whole buffers, including partial overlaps; an initial use
+of snapshot `NegateVector` failed these cases, so it uses the sequential Z/Y/X
+`NegateStored` helper instead. Other float outputs use scaled tolerance 3e-6;
+attach decisions and untouched bytes are exact. Event methods are compared at
+their replaced spans; this does not exercise their complete dispatch/callback
+flows. Thorn builds and the actual `scene_math_contract` passes. Signed-zero
+bits, NaN payloads, exception flags/timing, huge finite x87 C2 behavior, Debug,
+non-x86 execution and gameplay are outside this batch's guarantees.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are

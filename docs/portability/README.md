@@ -107,6 +107,16 @@ length publication before the global offset is reread, including supported
 aliases. Both isolated suites and the actual spline source contract pass; the
 remaining assembly is in ParamCurve, ThornScene and the x87 return adapters.
 
+`SceneInterpolationMath.h` now handles explicit-progress float interpolation,
+axis accumulation/rotation, attach direction and particle publication;
+`CompactLightMath.h` handles compact light layout conversion. Caller dispatch
+and callbacks remain in ThornScene. Eleven more blocks are removed, including
+the particle-event interpolation and attach-position negation spans. The latter
+uses the existing sequential negation helper, preserving supported partial
+overlaps. Numerical/coverage limits are recorded in the test README. The
+remaining work is the extended-progress/curve pipeline and integer/audio helpers
+that still communicate through the x87 stack.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.
