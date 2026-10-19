@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 180,
+  "remaining_blocks": 179,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -163,18 +163,10 @@
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",
-      "method": "IServerImpl::ReqModifyItem",
-      "status": "pending",
-      "asm_lines": [
-        462
-      ]
-    },
-    {
-      "file": "src/RemoteServer/IServerImpl.cpp",
       "method": "IServerImpl::SPObjUpdate",
       "status": "pending",
       "asm_lines": [
-        673
+        662
       ]
     },
     {
@@ -1184,6 +1176,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqModifyItem",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_modify_item_fields: MSVC/Clang Release; 12,288 exact field-buffer/exception-flag/stack-balance comparisons per compiler, all precision/rounding modes and mounted-byte encodings; unchanged control/MXCSR.",
+      "notes": "Preserves numeric health load before integer/local-mounted stores and final health publication. Modify ID is zero-extended from unsigned short. Allocation, hardpoint copy and send paths unchanged. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",
