@@ -7,6 +7,7 @@
 #include "Thorn.h"
 #include "SplineMath.h"
 #include "X87Return.h"
+#include "HermiteRecord.h"
 
 #include <cmath>
 #include <cstring>
@@ -151,13 +152,8 @@ namespace
         }
     }
 
-    struct FHermiteKnot
-    {
-        float Value;
-        float T;
-        float MIn;
-        float MOut;
-    };
+    using ThornCurveDetail::FHermiteKnot;
+    using ThornCurveDetail::AssignHermiteRecord;
 
     struct FCurveSpec
     {
@@ -307,24 +303,6 @@ namespace
             fstp dword ptr [eax + 0ch]
         ConstructionDone:
             ret
-        }
-    }
-
-    // 33160/331b0 assign four DWORDs, without loading tangent floats.
-    void AssignHermiteRecord(FHermiteKnot* Destination, const FHermiteKnot* Source)
-    {
-        __asm
-        {
-            mov eax, Destination
-            mov ecx, Source
-            mov edx, dword ptr [ecx]
-            mov dword ptr [eax], edx
-            mov edx, dword ptr [ecx + 4]
-            mov dword ptr [eax + 4], edx
-            mov edx, dword ptr [ecx + 8]
-            mov dword ptr [eax + 8], edx
-            mov edx, dword ptr [ecx + 0ch]
-            mov dword ptr [eax + 0ch], edx
         }
     }
 
