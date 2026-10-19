@@ -11,6 +11,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test float_extended_storage
 .\scripts\test-portable-kernel.ps1 -Test float_load_copy
 .\scripts\test-portable-kernel.ps1 -Test wire_put_float
+.\scripts\test-portable-kernel.ps1 -Test rpc_server_float_copy
 ```
 
 Each command compiles only that standalone test with MSVC and clang-cl, x86
@@ -30,6 +31,7 @@ that does not require the proprietary SDK secret or game DATA.
 | Stored spline doubling | Same 840,000-case masked matrix; 756 unmasked invalid/denormal/overflow cases |
 | Float-to-extended storage | 2,520,000 exact binary80/buffer/status cases, special values and byte overlaps; 504 unmasked invalid/denormal cases |
 | Numeric float load/store | Same 2,520,000-case encoding/state and overlap matrix; 504 unmasked cases |
+| Server float copy | Same numeric load/store matrix, exercising the actual server wrapper; MSVC and Clang Release |
 | Wire PutFloat | 720,000 exact return/cursor/error/pointer/buffer/state comparisons; 14,400 unmasked cases including failed preflight, sticky errors, unsigned cursor wrap, aliases and unaligned outputs |
 
 Each matrix exercises all three x87 precision settings and all four rounding

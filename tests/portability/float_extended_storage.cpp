@@ -2,6 +2,9 @@
 #if defined(TEST_FLOAT_COPY)
 #include "../../src/include/portable_float_load.h"
 #endif
+#if defined(TEST_SERVER_FLOAT_COPY)
+#include "../../src/include/rpc_server_channel_codec.h"
+#endif
 #include <windows.h>
 #include <xmmintrin.h>
 #include <cstdio>
@@ -22,7 +25,9 @@ __declspec(noinline) void Reference(unsigned char* output, const float* value)
 }
 __declspec(noinline) void Candidate(unsigned char* output, const float* value)
 {
-#if defined(TEST_FLOAT_COPY)
+#if defined(TEST_SERVER_FLOAT_COPY)
+    RpcServerX87CopyFloat(reinterpret_cast<float*>(output), value);
+#elif defined(TEST_FLOAT_COPY)
     PortableFloatLoad::Copy(output, value);
 #else
     ThornPortableMath::StoreFloatToExtended80(output, value);

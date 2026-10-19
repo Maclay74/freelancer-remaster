@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 224,
+  "remaining_blocks": 223,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -44,14 +44,6 @@
       "status": "pending",
       "asm_lines": [
         630
-      ]
-    },
-    {
-      "file": "src/include/rpc_server_channel_codec.h",
-      "method": "RpcServerX87CopyFloat",
-      "status": "pending",
-      "asm_lines": [
-        30
       ]
     },
     {
@@ -1529,6 +1521,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/include/rpc_server_channel_codec.h",
+      "method": "RpcServerX87CopyFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_server_float_copy: MSVC and Clang Release; 2,520,000 exact encoding/buffer/status comparisons and 504 unmasked cases per compiler.",
+      "notes": "Actual server wrapper delegates to the verified PortableFloatLoad::Copy helper. No tolerance accepted."
     },
     {
       "file": "src/include/rpc_packet_codec.h",
