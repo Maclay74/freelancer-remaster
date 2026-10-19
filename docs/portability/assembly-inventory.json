@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 183,
+  "remaining_blocks": 182,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -474,18 +474,10 @@
     },
     {
       "file": "src/Thorn/SplineMath.h",
-      "method": "Negate",
-      "status": "pending",
-      "asm_lines": [
-        116
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
       "method": "ScaleStored",
       "status": "pending",
       "asm_lines": [
-        134
+        121
       ]
     },
     {
@@ -493,8 +485,8 @@
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        160,
-        193
+        147,
+        180
       ]
     },
     {
@@ -502,7 +494,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        221
+        208
       ]
     },
     {
@@ -510,7 +502,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        238
+        225
       ]
     },
     {
@@ -518,9 +510,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        290,
-        314,
-        335
+        277,
+        301,
+        322
       ]
     },
     {
@@ -1208,6 +1200,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Negate",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "Reuses scripts/test-portable-kernel.ps1 -Test scene_negate_vector: MSVC/Clang Release; 43,008 exact whole-buffer/status comparisons per compiler, overlaps, special encodings and all precision/rounding modes.",
+      "notes": "Original Z/Y/X loads and sign changes followed by X/Y/Z stores match the retained scene-negation oracle. Delegates to the same verified NegateVector helper. No duplicate tests or tolerance. Unmasked timing untested."
     },
     {
       "file": "src/x86math/x86math.cpp",
