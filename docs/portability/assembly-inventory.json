@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 199,
+  "remaining_blocks": 198,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -247,15 +247,7 @@
       "method": "PlaybackDuration",
       "status": "pending",
       "asm_lines": [
-        454
-      ]
-    },
-    {
-      "file": "src/Shading/TextureLibrary.cpp",
-      "method": "TruncatePlaybackFrame",
-      "status": "pending",
-      "asm_lines": [
-        503
+        455
       ]
     },
     {
@@ -263,13 +255,13 @@
       "method": "AdvancePlayback",
       "status": "pending",
       "asm_lines": [
-        539,
-        552,
+        524,
+        537,
+        566,
         581,
-        596,
-        640,
-        649,
-        657
+        625,
+        634,
+        642
       ]
     },
     {
@@ -1329,6 +1321,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "TruncatePlaybackFrame",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test truncate_double: MSVC/Clang Release; 49,152 exact int64-result and exception-flag comparisons per compiler, all precision/rounding modes; x87 control and MXCSR unchanged.",
+      "notes": "Bit-decomposed truncation avoids undefined casts; invalid yields integer-indefinite. Existing low-dword result and Lua call position retained. No numeric tolerance. Condition codes and unmasked trap timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",

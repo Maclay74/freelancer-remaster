@@ -126,3 +126,8 @@ short encodings for weapon decoding: 3,072 and 786,432 cases per Release
 compiler, with exact outputs/status outside diagnostic C1 and unchanged MXCSR.
 Unmasked trap timing remains untested. The shared helper is named ExpandInteger
 to cover both byte and short inputs.
+
+`truncate_double` covers legacy truncating binary64-to-int64 conversion,
+including NaN/overflow integer-indefinite results and fractional inexact flags.
+49,152 exact result/exception-flag comparisons per Release compiler pass with
+unchanged x87 control and MXCSR. Condition codes and unmasked timing are untested.
