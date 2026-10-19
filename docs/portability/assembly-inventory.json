@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 212,
+  "remaining_blocks": 211,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -435,20 +435,10 @@
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
-      "method": "ParamStrictLess",
-      "status": "investigating",
-      "asm_lines": [
-        71
-      ],
-      "evidence": "scripts/test-portable-kernel.ps1 -Test param_strict_less -ContinueOnFailure: 24,576 comparisons per Release compiler; zero return mismatches; 752 Clang and 145 MSVC exception-flag mismatches.",
-      "notes": "Ordinary C++ less-than candidate remains test-only. Original assembly unchanged; no tolerance accepted."
-    },
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
       "method": "CatmullRom1D",
       "status": "pending",
       "asm_lines": [
-        183
+        172
       ]
     },
     {
@@ -456,7 +446,7 @@
       "method": "ParamLerp",
       "status": "pending",
       "asm_lines": [
-        241
+        230
       ]
     },
     {
@@ -464,7 +454,7 @@
       "method": "Hermite1D",
       "status": "pending",
       "asm_lines": [
-        288
+        277
       ]
     },
     {
@@ -472,7 +462,7 @@
       "method": "HermiteEvaluate",
       "status": "pending",
       "asm_lines": [
-        391
+        380
       ]
     },
     {
@@ -480,12 +470,12 @@
       "method": "ApplyHermiteTangents",
       "status": "pending",
       "asm_lines": [
-        517,
-        538,
+        506,
+        527,
+        534,
         545,
         556,
-        567,
-        593
+        582
       ]
     },
     {
@@ -493,7 +483,7 @@
       "method": "Evaluate",
       "status": "pending",
       "asm_lines": [
-        755
+        744
       ]
     },
     {
@@ -501,7 +491,7 @@
       "method": "WrapEvaluateToExtended",
       "status": "pending",
       "asm_lines": [
-        772
+        761
       ]
     },
     {
@@ -509,7 +499,7 @@
       "method": "Slot4Replace",
       "status": "pending",
       "asm_lines": [
-        801
+        790
       ]
     },
     {
@@ -517,7 +507,7 @@
       "method": "AddKey",
       "status": "pending",
       "asm_lines": [
-        886
+        875
       ]
     },
     {
@@ -525,7 +515,7 @@
       "method": "Slot12WrapEvaluate",
       "status": "pending",
       "asm_lines": [
-        1013
+        1002
       ]
     },
     {
@@ -533,7 +523,7 @@
       "method": "InsertDerivedRecord",
       "status": "pending",
       "asm_lines": [
-        1091
+        1080
       ]
     },
     {
@@ -541,8 +531,8 @@
       "method": "EvaluateExtended",
       "status": "pending",
       "asm_lines": [
-        1221,
-        1238
+        1210,
+        1227
       ]
     },
     {
@@ -550,7 +540,7 @@
       "method": "EvaluateLerp",
       "status": "pending",
       "asm_lines": [
-        1270
+        1259
       ]
     },
     {
@@ -558,7 +548,7 @@
       "method": "EvaluateCatmull",
       "status": "pending",
       "asm_lines": [
-        1304
+        1293
       ]
     },
     {
@@ -1435,6 +1425,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ParamStrictLess",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test param_strict_less: MSVC and Clang Release; 24,576 exact return/exception-flag comparisons per compiler, zero MXCSR changes; all precision/rounding settings, explicit special pairs and deterministic random samples.",
+      "notes": "Promotes left before testing raw NaN encodings; feraiseexcept(FE_INVALID) preserves signaling comparison of quiet NaNs. No numerical tolerance. x87 condition codes and unmasked trap timing are not compared. Initial ordinary C++ candidate had 752 Clang and 145 MSVC exception-flag mismatches."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",

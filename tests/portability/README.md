@@ -8,6 +8,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test server_vector_copy
 .\scripts\test-portable-kernel.ps1 -Test scene_read_column
 .\scripts\test-portable-kernel.ps1 -Test scene_transpose
+.\scripts\test-portable-kernel.ps1 -Test param_strict_less
 .\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
 .\scripts\test-portable-kernel.ps1 -Test lua_float_probe
@@ -79,11 +80,11 @@ both operands before FADDP, whereas the original uses an FADD memory operand.
 Production assembly is retained; no tolerance has been accepted. The candidate
 is test-only and excluded from the normal CTest/CI pass gate.
 
-## Open investigation: strict parameter comparison
+## Strict parameter comparison
 
-`test-portable-kernel.ps1 -Test param_strict_less -ContinueOnFailure` compares
-the original FLD/FCOMP kernel against ordinary C++ `<`. Each Release compiler
-ran 24,576 comparisons over special-value pairs and deterministic random inputs,
-with all x87 precision/rounding settings. Return values agreed, but exception
-flags differed in 752 Clang cases and 145 MSVC cases. Production assembly remains;
-the candidate is test-only and excluded from CTest. No tolerance was accepted.
+Ordinary C++ `<` matched return values but had 752 Clang and 145 MSVC
+exception-flag mismatches over 24,576 Release comparisons per compiler.
+The production replacement promotes the left operand before inspecting NaN
+encodings and explicitly raises FE_INVALID for any NaN, including quiet NaNs.
+It passes the same matrix with zero return/exception-flag differences and no
+MXCSR changes. x87 condition codes and unmasked trap timing are not compared.

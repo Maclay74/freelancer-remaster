@@ -1,7 +1,8 @@
-#include "candidates/param_strict_less.h"
+#include "../../src/Thorn/PortableComparison.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstring>
+#include <xmmintrin.h>
 
 __declspec(noinline) bool Reference(const float* left, const float* right)
 {
@@ -20,7 +21,7 @@ __declspec(noinline) bool Reference(const float* left, const float* right)
 
 __declspec(noinline) bool Candidate(const float* left, const float* right)
 {
-    return ThornComparisonCandidate::StrictLess(left, right);
+    return ThornPortableComparison::StrictLess(left, right);
 }
 
 int main()
@@ -30,7 +31,7 @@ int main()
         0xff854321u, 1, 0x80000001u, 0x007fffffu, 0x00800000u, 0x7f7fffffu};
     unsigned short original;
     __asm { fnstcw original }
-    unsigned cases = 0, results = 0, flags = 0;
+    unsigned cases = 0, results = 0, flags = 0, mxcsrDifferences = 0;
     std::uint32_t random = 0x42143u;
     const unsigned short precisions[] = {0, 0x200, 0x300};
     for (unsigned short pc : precisions)
@@ -52,8 +53,10 @@ int main()
             const bool expected = Reference(&left, &right);
             __asm { fnstsw expectedStatus }
             __asm { fnclex }
+            const unsigned beforeMxcsr = _mm_getcsr();
             const bool actual = Candidate(&left, &right);
             __asm { fnstsw actualStatus }
+            mxcsrDifferences += beforeMxcsr != _mm_getcsr();
             results += expected != actual;
             // Compare C/C++ observable exception flags, not x87 condition codes.
             flags += (expectedStatus & 0x3f) != (actualStatus & 0x3f);
@@ -62,6 +65,6 @@ int main()
     }
     __asm { fnclex }
     __asm { fldcw original }
-    std::printf("%u comparisons: %u return mismatches, %u exception-flag mismatches\n", cases, results, flags);
-    return results || flags ? 1 : 0;
+    std::printf("%u comparisons: %u return mismatches, %u exception-flag mismatches, %u MXCSR changes\n", cases, results, flags, mxcsrDifferences);
+    return results || flags || mxcsrDifferences ? 1 : 0;
 }

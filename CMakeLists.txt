@@ -145,7 +145,7 @@ endif()
 # Only verified replacements belong in the normal regression suite. Candidates
 # with documented mismatches remain standalone investigations.
 if(BUILD_TESTING)
-  foreach(kernel scene_transpose scene_read_column server_vector_copy scene_negate_vector hermite_assignment hermite_construction lua_double_probe lua_float_probe spline_negate_stored spline_double_stored float_extended_storage float_load_copy wire_put_float rpc_server_float_copy)
+  foreach(kernel param_strict_less scene_transpose scene_read_column server_vector_copy scene_negate_vector hermite_assignment hermite_construction lua_double_probe lua_float_probe spline_negate_stored spline_double_stored float_extended_storage float_load_copy wire_put_float rpc_server_float_copy)
     add_executable(portability_${kernel} tests/portability/${kernel}.cpp)
     target_link_libraries(portability_${kernel} PRIVATE fl_build_options)
     add_test(NAME portability_${kernel} COMMAND portability_${kernel})
