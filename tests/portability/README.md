@@ -200,3 +200,10 @@ helper returns. Condition codes and unmasked timing are untested.
 compiler, special pairs and random equal/adjacent/unrelated doubles. MXCSR is
 unchanged. The helper remains C-compatible for the existing parser build.
 Condition codes and unmasked timing are untested.
+
+`lua_number_classify` checks opcode classification before constant lookup:
+49,152 exact emission-decision/argument/sign and exception-flag/stack-balance
+cases per Release compiler. Covers integer limits, fractions, zeros, infinities,
+NaNs and random doubles; control/MXCSR unchanged. NaNs retain the recovered
+negative opcode with zero argument; rejected fractions retain FE_INEXACT.
+Condition codes and unmasked timing remain untested.

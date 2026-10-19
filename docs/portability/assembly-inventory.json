@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 178,
+  "remaining_blocks": 175,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -108,16 +108,6 @@
       "status": "pending",
       "asm_lines": [
         168
-      ]
-    },
-    {
-      "file": "src/luaprofile/lua32/src/lparser.c",
-      "method": "code_number",
-      "status": "pending",
-      "asm_lines": [
-        301,
-        334,
-        342
       ]
     },
     {
@@ -1168,6 +1158,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/luaprofile/lua32/src/lparser.c",
+      "method": "code_number",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_number_classify: MSVC/Clang Release; 49,152 exact emission-decision/argument/sign and exception-flag/stack-balance comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR.",
+      "notes": "Preserves finite-integer range, negative-zero nonnegative opcode, NaN negative-opcode/zero-argument rule, and fractional FE_INEXACT before constant lookup. Calls and constant-table insertion unchanged. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/luaprofile/lua32/src/lparser.c",
