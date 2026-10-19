@@ -9,6 +9,7 @@
 #include "ThornModernAdapters.h"
 #include "ThornControlCalls.h"
 #include "X87Return.h"
+#include "PortableSplineMath.h"
 
 #include <cmath>
 #include <cstdarg>
@@ -449,20 +450,7 @@ namespace
     // FUN_06f23090: separate input/output, all FLD/FCHS before stores.
     void NegateVector3(float* Result, const float* Source)
     {
-        __asm
-        {
-            mov ecx, Source
-            fld dword ptr [ecx+8]
-            mov eax, Result
-            fchs
-            fld dword ptr [ecx+4]
-            fchs
-            fld dword ptr [ecx]
-            fchs
-            fstp dword ptr [eax]
-            fstp dword ptr [eax+4]
-            fstp dword ptr [eax+8]
-        }
+        ThornPortableSplineMath::NegateVector(Result, Source);
     }
 
     char* DupHeapString(const char* Src)
