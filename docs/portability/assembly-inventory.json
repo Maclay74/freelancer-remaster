@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 129,
+  "remaining_blocks": 128,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -792,18 +792,10 @@
     },
     {
       "file": "src/x86math/x86math.cpp",
-      "method": "RecipSqrtFsqrt",
-      "status": "pending",
-      "asm_lines": [
-        149
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        245
+        227
       ]
     },
     {
@@ -811,7 +803,7 @@
       "method": "MulMatrix",
       "status": "pending",
       "asm_lines": [
-        373
+        355
       ]
     },
     {
@@ -819,7 +811,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        439
+        421
       ]
     },
     {
@@ -827,7 +819,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        557
+        539
       ]
     },
     {
@@ -835,8 +827,16 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        666
+        648
       ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "RecipSqrtFsqrt",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "Source call-site audit: no production calls; only two constant checks in x86_math_contract. Removed unused helper and those checks. Real scalar and quaternion normalization kernels have their own tests.",
+      "notes": "Dead implementation removed rather than translated; no public method or production execution path depends on it."
     },
     {
       "file": "src/x86math/x86math.cpp",
