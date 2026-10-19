@@ -45,6 +45,20 @@ actual C library and checks its registration, degree units, argument-check order
 atan2 order, and single result publication using API stubs. This is not a Lua VM
 or gameplay test. Thorn builds; Debug and non-x86 execution remain untested.
 
+`scene_geometry` checks nine scene/spline helpers against their original
+instruction sequences: 135,168 cases per MSVC/Clang Release compiler across all
+12 precision/rounding modes. It covers snapshot cross products, sequential axis
+crosses, both normalization sum orders, the dot threshold, both look-at cross
+signs, and the complete spline look-at frame. Float-array aliases/partial
+overlaps and vector aliases are included, along with zero, subnormal, huge,
+infinite and NaN inputs. Normalized/frame components use absolute tolerance
+2e-6; other components use scaled tolerance 2e-6. Dot decisions and untouched
+storage must match exactly. NaNs compare by classification; signed-zero bits,
+NaN payloads, exception flags/timing and every extended-precision boundary are
+not contracts. Zero-length vectors retain NaNs without a fallback. This tests
+production math helpers; the actual Thorn integration builds and targeted CTest
+passes. Gameplay, Debug and non-x86 execution are untested.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are

@@ -74,6 +74,14 @@ and domain behavior rather than emulating x87 exceptional intermediates. The
 isolated comparison and actual C callback contract are described in the test
 README; they do not prove full Lua VM, cutscene or gameplay equivalence.
 
+`SceneGeometryMath.h` now owns the scene/spline cross products, normalization,
+near-parallel dot test and spline look-at construction. The migration preserves
+sum order, the look-at branches' differing signs, input snapshots versus source
+rereads, and sequential publication needed by supported aliases. Binary64
+expressions replace retained binary80 arithmetic with the documented float
+tolerances. Nine more production blocks are removed; the remaining scene/curve
+and Lua runtime work is still tracked in the inventory.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.
