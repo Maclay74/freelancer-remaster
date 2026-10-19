@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 190,
+  "remaining_blocks": 189,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -654,18 +654,10 @@
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
-      "method": "StoreLightColorIntegers",
-      "status": "pending",
-      "asm_lines": [
-        148
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
       "method": "ReadVec3Complete",
       "status": "pending",
       "asm_lines": [
-        778
+        736
       ]
     },
     {
@@ -673,8 +665,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1073,
-        1119
+        1031,
+        1077
       ]
     },
     {
@@ -682,7 +674,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1280
+        1238
       ]
     },
     {
@@ -690,7 +682,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1303
+        1261
       ]
     },
     {
@@ -1264,6 +1256,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "StoreLightColorIntegers",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test light_color_store: MSVC/Clang Release; 43,008 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlapping buffers and all precision/rounding settings; unchanged MXCSR.",
+      "notes": "Retains one-input-ahead LIGHT order or initial-Z ambient snapshot as appropriate. Uses verified truncating conversion and publishes raw low dwords. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/flmaterials/MaterialImpl.cpp",

@@ -160,3 +160,9 @@ MXCSR remain unchanged; condition codes and unmasked timing are untested.
 subnormals, NaNs and overflow; caller x87 control/MXCSR unchanged. The portable
 environment restore replays the input load to retain denormal flags omitted by
 MSVC FE_ALL_EXCEPT. Condition codes and unmasked timing remain untested.
+
+`light_color_store` and `scene_ambient_store` compare their distinct float-to-int
+triplet publication orders: 43,008 exact buffer/exception-flag/stack-balance
+cases per Release compiler and method, including overlapping buffers, special
+values and all precision/rounding settings; MXCSR unchanged. Condition codes
+and unmasked timing are untested.
