@@ -66,6 +66,14 @@ from retained x87 arithmetic; numerical tolerances are explicit in the test
 README. This does not claim bit-identical timing at every possible boundary,
 identical exception flags, or cross-platform deterministic animation.
 
+Lua's nine remaining math-library instruction sequences now use C-compatible
+standard math in `src/Thorn/lua32/src/lib/PortableMath.h`. The script API keeps
+degree units, original conversion constants, and argument-check order. Like the
+shared trigonometry migration, this deliberately adopts standard range reduction
+and domain behavior rather than emulating x87 exceptional intermediates. The
+isolated comparison and actual C callback contract are described in the test
+README; they do not prove full Lua VM, cutscene or gameplay equivalence.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.

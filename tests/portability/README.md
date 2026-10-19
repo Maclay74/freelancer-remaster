@@ -30,6 +30,21 @@ retained assembly oracle. Results go to `out/tests/portability/<test>/results.tx
 The verified tests also run through CTest. GitHub Actions is currently disabled;
 the saved workflow is in `.github/disabled-workflows/windows-clang.yml`.
 
+`lua_standard_math` compares the production C-compatible math kernels with the
+nine original Lua assembly functions: 221,015 comparisons per MSVC/Clang Release
+compiler, across all 12 x87 precision/rounding combinations. Degree scale
+constants retain their original binary64 encodings. Inputs cover +/-720 degrees
+(tan excludes |cos| < 0.01), positive sqrt/log inputs, and exp inputs +/-30.
+Scaled tolerance is 1e-11, except PC24 sqrt (2e-7) and exp (4e-6); observed maxima
+are 1.12e-7 for MSVC sqrt and 2.74e-6 for exp, with other kernels below 8.53e-14.
+Standard huge-input reduction, signed-zero sine, and domain classifications are
+checked separately. Standard exp(-infinity)=0 and exp(+infinity)=infinity replace
+the old sequence's invalid intermediate. Last bits, NaN payloads and exception
+flags are not legacy contracts. The Clang CMake `lua_math_contract` compiles the
+actual C library and checks its registration, degree units, argument-check order,
+atan2 order, and single result publication using API stubs. This is not a Lua VM
+or gameplay test. Thorn builds; Debug and non-x86 execution remain untested.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are
