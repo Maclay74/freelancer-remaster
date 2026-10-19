@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 121,
+  "remaining_blocks": 120,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -105,14 +105,6 @@
       "status": "pending",
       "asm_lines": [
         3265
-      ]
-    },
-    {
-      "file": "src/RemoteServer/IServerImpl.cpp",
-      "method": "IServerImpl::SPObjUpdate",
-      "status": "pending",
-      "asm_lines": [
-        662
       ]
     },
     {
@@ -773,6 +765,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::SPObjUpdate",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "rpc_update_narrow: MSVC/Clang Release, 43,008 exact whole-buffer/exception-flag/stack comparisons per compiler; all precision/rounding settings, overlap/unaligned destination, signed zeros, NaNs, infinities, denormals and narrowing underflow/overflow boundaries; unchanged control/MXCSR.",
+      "notes": "Narrow timestamp before packet payload writes, after allocation success. feupdateenv plus original-input replay filters a Clang-only denormal flag from narrowed-result reloads. No numerical tolerance. Condition codes and unmasked exception timing are untested; Debug and non-x86 not tested."
     },
     {
       "file": "src/x86math/x86math.cpp",

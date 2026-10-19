@@ -339,3 +339,29 @@ NaN payload/sign, flags, signed-zero bits, Debug, malformed/nonfinite matrices,
 cross-type overlapping storage, other architectures and gameplay are untested.
 The quaternion-to-matrix factor remains 2 / squared norm; it does not assume
 unit input. Trace/largest-diagonal selection and W/X/Y/Z convention are retained.
+
+## RemoteServer object-update fields
+
+```powershell
+.\scripts\test-portable-kernel.ps1 -Test rpc_update_narrow
+.\scripts\test-portable-kernel.ps1 -Test rpc_update_receive
+```
+
+`rpc_update_narrow` checks double-to-float timestamp narrowing: 43,008 exact
+whole-buffer/exception-flag/stack comparisons per MSVC/Clang Release compiler,
+all precision/rounding settings, signed zeros, NaNs/infinities, subnormals,
+underflow/overflow boundaries, unaligned destinations and overlapping bytes.
+A plain Clang conversion added a denormal-input flag when reloading a narrowed
+subnormal result. The helper follows the existing environment-restore/input-
+replay pattern to filter that compiler artifact while preserving original flags.
+This relies on the current MSVC CRT's standard exception merge; non-x86 and
+other C runtimes still need verification. Narrowing remains after successful
+allocation and before any packet payload stores.
+
+`rpc_update_receive` checks numerical loads of both incoming float fields before
+either output write: 36,864 exact whole-buffer/exception-flag/stack comparisons
+per Release compiler, all special-pattern pairs, random encodings, all precision/
+rounding settings, swapped/overlapping/unaligned destinations and output aliases
+of either input. Both helpers preserve control/MXCSR and use no numerical
+tolerance. x87 condition codes and unmasked trap timing are not checked; Debug,
+other architectures and gameplay/multiplayer checks are not performed here.
