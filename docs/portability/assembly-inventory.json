@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 230,
+  "remaining_blocks": 229,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -880,7 +880,7 @@
       "method": "LuaMillisecondsToRetailInt",
       "status": "pending",
       "asm_lines": [
-        102
+        103
       ]
     },
     {
@@ -888,7 +888,7 @@
       "method": "LuaNumberToRetailInt",
       "status": "pending",
       "asm_lines": [
-        133
+        134
       ]
     },
     {
@@ -896,7 +896,7 @@
       "method": "StoreLightColorIntegers",
       "status": "pending",
       "asm_lines": [
-        160
+        161
       ]
     },
     {
@@ -904,15 +904,7 @@
       "method": "ReadFogByte",
       "status": "pending",
       "asm_lines": [
-        682
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "GetLightDoubleProbe",
-      "status": "pending",
-      "asm_lines": [
-        776
+        683
       ]
     },
     {
@@ -920,7 +912,7 @@
       "method": "GetLightFloatProbe",
       "status": "pending",
       "asm_lines": [
-        803
+        794
       ]
     },
     {
@@ -928,7 +920,7 @@
       "method": "ReadVec3Complete",
       "status": "pending",
       "asm_lines": [
-        827
+        818
       ]
     },
     {
@@ -936,8 +928,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1122,
-        1168
+        1113,
+        1159
       ]
     },
     {
@@ -945,7 +937,7 @@
       "method": "IsIkLuaNumberNonzero",
       "status": "pending",
       "asm_lines": [
-        1229
+        1220
       ]
     },
     {
@@ -953,7 +945,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1342
+        1333
       ]
     },
     {
@@ -961,7 +953,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1365
+        1356
       ]
     },
     {
@@ -1575,6 +1567,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "GetLightDoubleProbe",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_double_probe: MSVC/Clang Debug/Release; 2,400,000 comparisons per configuration including callback order, failure return, full uint32 indices, all precision/rounding modes, unchanged x87 status/MXCSR.",
+      "notes": "Production kernel in LuaTableProbe.h. Direct uint32-to-double and nonvolatile widening failed MSVC Release at PC24 (4294967294 -> 4294967296, precision flag set). Materialized volatile signed widening passes exactly. No tolerance."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
