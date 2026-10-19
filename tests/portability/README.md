@@ -166,3 +166,10 @@ triplet publication orders: 43,008 exact buffer/exception-flag/stack-balance
 cases per Release compiler and method, including overlapping buffers, special
 values and all precision/rounding settings; MXCSR unchanged. Condition codes
 and unmasked timing are untested.
+
+`lua_vector_copy` checks numerical X/Z and raw Y with X/Z/Y publication:
+61,440 exact buffer/exception-flag/stack-balance cases per Release compiler,
+overlapping buffers and explicit narrowing underflow/overflow boundaries.
+Control/MXCSR are unchanged. Environment restoration plus original-input
+reloads remove a Clang-only denormal flag from reloading a narrowed result.
+Condition codes and unmasked timing remain untested.

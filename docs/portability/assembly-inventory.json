@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 188,
+  "remaining_blocks": 187,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -649,15 +649,7 @@
       "method": "LuaMillisecondsToRetailInt",
       "status": "pending",
       "asm_lines": [
-        105
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "ReadVec3Complete",
-      "status": "pending",
-      "asm_lines": [
-        736
+        106
       ]
     },
     {
@@ -665,8 +657,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1031,
-        1077
+        1024,
+        1070
       ]
     },
     {
@@ -674,7 +666,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1238
+        1231
       ]
     },
     {
@@ -1248,6 +1240,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ReadVec3Complete",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_vector_copy: MSVC/Clang Release; 61,440 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlaps, all precision/rounding modes, explicit float underflow/overflow boundaries; control/MXCSR unchanged.",
+      "notes": "Retains numerical Z-double then X-float loads, raw Y snapshot and X/Z/Y publication. Environment restore and original-input reloads remove Clang-only denormal flags from narrowed-result reloads. Lua callback/nil paths unchanged. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
