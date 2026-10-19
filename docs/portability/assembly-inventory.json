@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 75,
+  "remaining_blocks": 73,
   "methods": [
     {
       "file": "src/Thorn/lua32/src/lobject.c",
@@ -8,15 +8,6 @@
       "status": "pending",
       "asm_lines": [
         159
-      ]
-    },
-    {
-      "file": "src/Thorn/lua32/src/lvm.c",
-      "method": "luaV_execute",
-      "status": "pending",
-      "asm_lines": [
-        512,
-        546
       ]
     },
     {
@@ -461,6 +452,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lvm.c",
+      "method": "luaV_execute",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "lua_binary_number: 196,608 exact whole-buffer/control-word cases per MSVC/clang-cl x86 Release compiler, subtraction/division, all 12 precision/rounding modes, aliases, zero/subnormal/extreme/infinite/quiet and signaling NaN pairs and random binary64 inputs. Thorn DLL and targeted CTest build/pass.",
+      "notes": "C-compatible portable helper retains right-load-first NaN quieting/payload selection and indefinite results for invalid infinity/zero arithmetic. Numeric output bytes match without tolerance in sampled cases. VM stack/tag/conversion flow unchanged. Exception flags and unmasked trap timing are not contracts; Debug, other architectures and full VM/gameplay execution untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
