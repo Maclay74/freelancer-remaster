@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 200,
+  "remaining_blocks": 199,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -167,14 +167,6 @@
       "status": "pending",
       "asm_lines": [
         1433
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
-      "method": "RpcFireGetComponent",
-      "status": "pending",
-      "asm_lines": [
-        1491
       ]
     },
     {
@@ -1337,6 +1329,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFireGetComponent",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "rpc_fire_expand_small and rpc_fire_expand_medium: MSVC/Clang Release; 3,072 byte and 786,432 short cases per compiler across all precision/rounding modes. Exact buffers and status outside C1; MXCSR unchanged.",
+      "notes": "All compressed encodings covered. Pointer commit before/after numeric conversion, error handling and raw uncompressed path unchanged. Clang C1-only differences: 746 small and 195,578 medium; recorded as diagnostic after consumer audit. No numerical tolerance. Unmasked trap timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",

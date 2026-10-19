@@ -3,7 +3,11 @@
 #include <cstring>
 #include <xmmintrin.h>
 
-#if defined(TEST_EXPAND255)
+#if defined(TEST_FIRE_MEDIUM)
+static const double Scale = 8192.0 / 32767.0;
+#elif defined(TEST_FIRE_SMALL)
+static const double Scale = 64.0 / 127.0;
+#elif defined(TEST_EXPAND255)
 static const double Scale = 1.0 / 255.0;
 #elif defined(TEST_EXPAND_COMM)
 static const double Scale = 2.0 / 51.0;
@@ -23,7 +27,7 @@ __declspec(noinline) void Reference(int value, float* output)
 
 __declspec(noinline) void Candidate(int value, float* output)
 {
-    PortableRpcQuantization::ExpandByte(value, Scale, output);
+    PortableRpcQuantization::ExpandInteger(value, Scale, output);
 }
 
 int main()
@@ -37,9 +41,16 @@ int main()
     {
         const unsigned short control = static_cast<unsigned short>((original & ~0xf00) | pc | rc | 0x3f);
         __asm { fldcw control }
-        for (int byte = 0; byte < 256; ++byte)
+#if defined(TEST_FIRE_MEDIUM)
+        const int count = 65536;
+#else
+        const int count = 256;
+#endif
+        for (int byte = 0; byte < count; ++byte)
         {
-#if defined(TEST_EXPAND255) || defined(TEST_EXPAND_COMM)
+#if defined(TEST_FIRE_MEDIUM)
+            const int value = byte < 32768 ? byte : byte - 65536;
+#elif defined(TEST_EXPAND255) || defined(TEST_EXPAND_COMM)
             const int value = byte;
 #else
             const int value = byte < 128 ? byte : byte - 256;

@@ -120,3 +120,9 @@ Numeric results and exception flags remain exact. Unmasked trap timing is
 untested. The simple multiplication replaces the failed attempt to preserve C1
 with an integer publication temporary. The signed 127-scale result also covers
 RpcUpdateExpand, which uses the same FILD/FMUL/FSTP operation.
+
+`rpc_fire_expand_small` and `rpc_fire_expand_medium` exhaust signed byte and
+short encodings for weapon decoding: 3,072 and 786,432 cases per Release
+compiler, with exact outputs/status outside diagnostic C1 and unchanged MXCSR.
+Unmasked trap timing remains untested. The shared helper is named ExpandInteger
+to cover both byte and short inputs.
