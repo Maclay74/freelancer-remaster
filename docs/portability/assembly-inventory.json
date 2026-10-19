@@ -1,27 +1,19 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 105,
+  "remaining_blocks": 104,
   "methods": [
-    {
-      "file": "src/Shading/TextureLibrary.cpp",
-      "method": "PlaybackDuration",
-      "status": "pending",
-      "asm_lines": [
-        455
-      ]
-    },
     {
       "file": "src/Shading/TextureLibrary.cpp",
       "method": "AdvancePlayback",
       "status": "pending",
       "asm_lines": [
-        524,
-        537,
-        566,
-        581,
+        515,
+        528,
+        557,
+        572,
+        616,
         625,
-        634,
-        642
+        633
       ]
     },
     {
@@ -652,6 +644,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "PlaybackDuration",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "texture_playback_duration: MSVC/clang-cl x86 Release, 24,576 cases per compiler; all 12 precision/rounding combinations, unsigned count boundaries and special rates; scaled error <=2e-7. Shading DLL and targeted CTest build/pass.",
+      "notes": "Standard double division and subtraction preserve the 1e-6 adjustment. Observed max scaled error 2.22e-16 Clang / 1.64e-7 MSVC; NaNs by classification. Exact flags, NaN payloads, signed-zero bits and every extended-precision boundary are not preserved. Debug, non-x86 execution, unmasked traps and gameplay untested."
     },
     {
       "file": "src/include/x87_trig.h",
