@@ -1,87 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 115,
+  "remaining_blocks": 105,
   "methods": [
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Sin",
-      "status": "pending",
-      "asm_lines": [
-        45
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87SinF",
-      "status": "pending",
-      "asm_lines": [
-        58
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Cos",
-      "status": "pending",
-      "asm_lines": [
-        71
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87CosF",
-      "status": "pending",
-      "asm_lines": [
-        84
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Tan",
-      "status": "pending",
-      "asm_lines": [
-        97
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87TanF",
-      "status": "pending",
-      "asm_lines": [
-        111
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Atan",
-      "status": "pending",
-      "asm_lines": [
-        125
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87AtanF",
-      "status": "pending",
-      "asm_lines": [
-        139
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Atan2",
-      "status": "pending",
-      "asm_lines": [
-        154
-      ]
-    },
-    {
-      "file": "src/include/x87_trig.h",
-      "method": "X87Atan2F",
-      "status": "pending",
-      "asm_lines": [
-        168
-      ]
-    },
     {
       "file": "src/Shading/TextureLibrary.cpp",
       "method": "PlaybackDuration",
@@ -732,6 +652,86 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Sin",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87SinF",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Cos",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87CosF",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Tan",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87TanF",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87AtanF",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan2",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan2F",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "standard_trig: MSVC/clang-cl x86 Release, 245,748 comparisons per compiler across ten expressions, 24/53/64-bit precision, round-to-nearest; Common DLL builds; targeted compiler/resource and trig CTests pass.",
+      "notes": "All game callers now use cmath directly with double arguments and explicit float conversions. Scaled tolerances: double sin/cos/atan/atan2 1e-12, tan 1e-10, float results 2e-6. Samples in [-4096,4096], excluding tangent poles where abs(cos)<1e-5. Standard range reduction/rounding deliberately replace legacy x87 behavior. Exact bits, flags, NaN payloads and extreme-angle/pole behavior are not preserved. Debug, directed rounding, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",

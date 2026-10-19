@@ -30,6 +30,22 @@ retained assembly oracle. Results go to `out/tests/portability/<test>/results.tx
 The verified tests also run through CTest. GitHub Actions is currently disabled;
 the saved workflow is in `.github/disabled-workflows/windows-clang.yml`.
 
+`standard_trig` covers the standard expressions now called directly by Common
+and IVP, against the removed wrappers in `candidates/legacy_x87_trig.h`. It makes
+245,748 comparisons per Release compiler with 24/53/64-bit x87 precision,
+round-to-nearest, angles in [-4096, 4096], quadrant/zero boundaries, and tangent
+samples near poles (excluding |cos(angle)| < 1e-5). Scaled error is
+`abs(new-old)/(1+abs(old))`: tolerance 1e-12 for double sin/cos/atan/atan2, 1e-10
+for double tan, and 2e-6 for float results. Observed maxima are 1.63e-13 for
+double tan, 1.11e-16 for the other double operations, and 4.05e-21 for float
+results. These are sampled bounds, not global accuracy guarantees. Separate
+checks exercise standard huge-angle range reduction, negative zero, infinity,
+and NaN handling. No legacy equality is required for these exceptional cases.
+The fixture tests the direct expressions, not every game caller; Common's
+integration build checks those callers compile. Bit equality, legacy exception
+flags/NaN payloads, directed rounding, Debug, non-x86 execution, and gameplay
+trajectories are outside this test's contract.
+
 | Replacement | Comparisons per compiler/configuration |
 | --- | --- |
 | Hermite record assignment | 1,080,000 exact whole-buffer comparisons, special bit patterns and overlaps; unchanged x87 status/MXCSR |

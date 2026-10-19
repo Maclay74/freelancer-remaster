@@ -40,6 +40,20 @@ initializer are gone. See `tests/portability/scalar_math.cpp` for retained legac
 comparisons and the new mathematical contract. Legacy NaN payloads, exception
 flags, and edge-case results are not preserved for these two operations.
 
+Trigonometry now uses `<cmath>` directly at all 140 former wrapper call sites
+across 26 Common/IVP files. The production `x87_trig.h` has been deleted; its
+instruction implementations survive only as a test oracle. Double arguments
+and explicit float-result conversions are retained, but standard range reduction
+and rounding replace the original CPU instructions. This is a numerical
+modernization: exact bits, x87 flags, NaN payloads, and behavior at tangent poles
+or extreme angles are not legacy contracts. AI and physics trajectories may
+therefore differ slightly. Cross-platform deterministic simulation is not proved.
+`standard_trig` compares all ten former wrapper expressions with the original
+instructions in MSVC/clang-cl Release, using 24/53/64-bit x87 precision with
+round-to-nearest. See the test README for domains and tolerances. The Common DLL
+and compiler/resource contract also build and pass their targeted checks; no
+gameplay run, staging, Debug pass, or non-x86 validation was performed.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.
