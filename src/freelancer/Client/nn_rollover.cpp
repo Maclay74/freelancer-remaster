@@ -22,6 +22,9 @@
 #include "perf_options.h"
 #include "space_letterbox.h"
 #include "win3d_immediate.h"
+#include "hud_widescreen.h"
+#include "widescreen.h"
+#include "globals.h"
 
 #include <math.h>
 #include <string.h>
@@ -419,6 +422,24 @@ void NnRolloverControl::Draw()
     if (IsLetterboxVisible()) // FUN_0041a3e0
         return;
 
+#ifdef FREELANCER_WIDESCREEN_SUPPORT
+    // Move the space rollover to the left edge of
+    // the widescreen viewport, preserving its
+    // original 4:3 position and vertical alignment.
+    const float SpareWidth =
+        static_cast<float>(G_RenderSurfaceWidth) -
+        static_cast<float>(WidescreenEquivalentSurfaceWidth());
+
+    const float ShiftPx =
+        IsClientIntroEnvironment()
+            ? 0.0f
+            : -floorf(SpareWidth * 0.5f);
+
+    FWidescreenHudShiftScope const RolloverScope(
+        ShiftPx, true
+    );
+#endif
+    
     Win3DSetDepthWrite(0);           // FUN_00422190(0)
     Win3DDisable(kWin3DDepthTest);   // FUN_00421ed0(0xb71)
     Win3DDisable(kWin3DCullFace);    // FUN_00421ed0(0xb44)
