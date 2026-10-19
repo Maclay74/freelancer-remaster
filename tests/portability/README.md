@@ -9,12 +9,14 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test spline_negate_stored
 .\scripts\test-portable-kernel.ps1 -Test spline_double_stored
 .\scripts\test-portable-kernel.ps1 -Test float_extended_storage
+.\scripts\test-portable-kernel.ps1 -Test float_load_copy
+.\scripts\test-portable-kernel.ps1 -Test wire_put_float
 ```
 
 Each command compiles only that standalone test with MSVC and clang-cl, x86
 Debug and Release. The test includes the actual production C++ kernel and a
 retained assembly oracle. Results go to `out/tests/portability/<test>/results.txt`.
-The six verified tests also run through CTest and a separate Windows CI job
+The verified tests also run through CTest and a separate Windows CI job
 that does not require the proprietary SDK secret or game DATA.
 
 | Replacement | Comparisons per compiler/configuration |
@@ -25,6 +27,8 @@ that does not require the proprietary SDK secret or game DATA.
 | Stored spline negation | 840,000 exact output/status comparisons with NaNs, subnormals, signed zero, infinities, and overlaps; 504 unmasked invalid/denormal cases comparing exception code, status, and partial output |
 | Stored spline doubling | Same 840,000-case masked matrix; 756 unmasked invalid/denormal/overflow cases |
 | Float-to-extended storage | 2,520,000 exact binary80/buffer/status cases, special values and byte overlaps; 504 unmasked invalid/denormal cases |
+| Numeric float load/store | Same 2,520,000-case encoding/state and overlap matrix; 504 unmasked cases |
+| Wire PutFloat | 720,000 exact return/cursor/error/pointer/buffer/state comparisons; 14,400 unmasked cases including failed preflight, sticky errors, unsigned cursor wrap, aliases and unaligned outputs |
 
 Each matrix exercises all three x87 precision settings and all four rounding
 directions. Tests are deterministic finite samples plus explicit boundary cases;
