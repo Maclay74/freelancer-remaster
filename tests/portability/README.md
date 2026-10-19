@@ -7,6 +7,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test scene_negate_vector
 .\scripts\test-portable-kernel.ps1 -Test server_vector_copy
 .\scripts\test-portable-kernel.ps1 -Test scene_read_column
+.\scripts\test-portable-kernel.ps1 -Test scene_transpose
 .\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
 .\scripts\test-portable-kernel.ps1 -Test lua_float_probe
@@ -32,6 +33,7 @@ that does not require the proprietary SDK secret or game DATA.
 | Scene vector negation | 43,008 exact whole-buffer/status comparisons per Release compiler, overlapping vectors and all precision/rounding modes; unmasked exception delivery untested |
 | Server position copy | Same 43,008-case matrix with the original numerical load/store order; unmasked exception delivery untested |
 | Scene matrix-column read | Same matrix with stride-three source loads and overlapping output; unmasked exception delivery untested |
+| Scene 3x3 transpose | 116,736 exact whole-buffer/status comparisons per Release compiler, raw versus numerical NaN copies, overlapping matrices and all precision/rounding modes; unmasked exception delivery untested |
 | Hermite record construction | 1,080,000 exact whole-buffer/status comparisons and null destination per Release compiler; overlaps, NaNs, subnormals and all precision/rounding modes. Unmasked exception delivery is untested. |
 | Lua double-index probe | 2,400,000 exact return/index/callback-order and x87-status comparisons, full uint32 range samples, table failure/success, unchanged MXCSR |
 | Lua float-index probe | Same matrix, including conversion status at each callback |
