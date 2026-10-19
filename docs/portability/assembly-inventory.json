@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 227,
+  "remaining_blocks": 226,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -673,18 +673,10 @@
     },
     {
       "file": "src/Thorn/SplineMath.h",
-      "method": "DoubleStored",
-      "status": "pending",
-      "asm_lines": [
-        72
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
       "method": "Subtract",
       "status": "pending",
       "asm_lines": [
-        91
+        78
       ]
     },
     {
@@ -692,7 +684,7 @@
       "method": "AddStored",
       "status": "pending",
       "asm_lines": [
-        110
+        97
       ]
     },
     {
@@ -700,7 +692,7 @@
       "method": "Negate",
       "status": "pending",
       "asm_lines": [
-        129
+        116
       ]
     },
     {
@@ -708,7 +700,7 @@
       "method": "ScaleStored",
       "status": "pending",
       "asm_lines": [
-        147
+        134
       ]
     },
     {
@@ -716,8 +708,8 @@
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        173,
-        206
+        160,
+        193
       ]
     },
     {
@@ -725,7 +717,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        234
+        221
       ]
     },
     {
@@ -733,7 +725,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        251
+        238
       ]
     },
     {
@@ -741,9 +733,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        303,
-        327,
-        348
+        290,
+        314,
+        335
       ]
     },
     {
@@ -1551,6 +1543,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "DoubleStored",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_double_stored: MSVC/Clang Debug/Release; 840,000 exact output/status comparisons per configuration (all PC/RC modes, special values, overlaps), 756 unmasked invalid/denormal/overflow cases matching exception codes/status/partial output.",
+      "notes": "Production kernel in PortableSplineMath.h uses direct float additions in Z/Y/X order. Rejected double-widening candidate matched output bytes but had 1,704 status mismatches and 60 early-overflow-trap cases on Clang; direct additions remove the extra narrowing temporary. No tolerance."
     },
     {
       "file": "src/Thorn/SplineMath.h",
