@@ -14,7 +14,9 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 ```
 
 Each command compiles only that standalone test with MSVC and clang-cl, x86
-Debug and Release. The test includes the actual production C++ kernel and a
+Release. Debug is available for investigating failures with
+`-Configuration debug`, or both with `-Configuration release,debug`.
+The test includes the actual production C++ kernel and a
 retained assembly oracle. Results go to `out/tests/portability/<test>/results.txt`.
 The verified tests also run through CTest and a separate Windows CI job
 that does not require the proprietary SDK secret or game DATA.
@@ -55,7 +57,8 @@ doubling test selects its original operation with a test-only macro.
 .\scripts\test-portable-kernel.ps1 -Test spline_add_stored -ContinueOnFailure
 ```
 
-This comparison intentionally fails on the current Clang Debug toolchain.
+To reproduce the known Debug failure, add `-Configuration debug`.
+This comparison fails on the current Clang Debug toolchain.
 Out of 1,680,000 masked cases it has 956 output mismatches (all NaN payload
 differences, no mismatches involving a non-NaN value) and 2,390 x87 status
 differences. It also has 468 mismatches in 3,024 unmasked cases. The other

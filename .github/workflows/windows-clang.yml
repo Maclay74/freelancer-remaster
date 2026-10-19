@@ -14,7 +14,7 @@ jobs:
       - name: Install LLVM if unavailable
         shell: pwsh
         run: ./scripts/ci/ensure-llvm.ps1
-      - name: Validate inventory and compare verified kernels
+      - name: Validate inventory and compare verified kernels in Release
         shell: pwsh
         run: |
           python scripts/assembly_inventory.py

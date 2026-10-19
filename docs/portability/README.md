@@ -30,11 +30,19 @@ For each method:
 2. Implement the actual production C++ kernel so the test exercises it directly.
 3. Compare returned values, output bytes, supported aliasing, and relevant
    floating-point state over normal inputs, boundaries, and exceptional values.
-4. Run MSVC and clang-cl in x86 Debug and Release, with relevant rounding and
-   precision settings. Record compiler/configuration limits explicitly.
+4. Run the isolated test with MSVC and clang-cl in x86 Release. Use Debug only
+   to investigate a specific failure. Record compiler/configuration limits
+   explicitly; passing Release does not establish Debug equivalence.
 5. Investigate mismatches before switching production callers. Exact equality is
    required unless a specific tolerance and its implications are accepted.
 6. Update the inventory and commit that method separately.
+
+Keep routine work narrow: run the changed kernel once per compiler, retain
+deterministic boundary and representative input checks, and reuse evidence for
+unchanged shared helpers. Do not rerun the entire suite or rebuild the game for
+each method. Build affected targets only when integration changes justify it;
+reserve full builds and gameplay checks for integration milestones. Broader
+floating-point or dependency experiments require a concrete failure to resolve.
 
 The light-color experiment in `tests/experiments/` is evidence, not a production
 replacement: normal color samples agreed, but Clang Debug at 64-bit x87 precision

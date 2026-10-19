@@ -1,5 +1,6 @@
 [CmdletBinding()]
 param([Parameter(Mandatory)][ValidatePattern('^[a-z0-9_-]+$')][string]$Test,
+      [ValidateSet('release', 'debug')][string[]]$Configuration = @('release'),
       [switch]$ContinueOnFailure)
 $ErrorActionPreference = 'Stop'
 $originalEnvironment = @{}
@@ -24,12 +25,12 @@ try {
     $comparisonFailures = 0
     foreach ($compilerName in 'clang', 'msvc') {
         $compiler = if ($compilerName -eq 'clang') { Join-Path $env:ProgramFiles 'LLVM\bin\clang-cl.exe' } else { (Get-Command cl.exe).Source }
-        foreach ($configuration in 'debug', 'release') {
-            $name = "$compilerName-$configuration"
+        foreach ($buildConfiguration in $Configuration) {
+            $name = "$compilerName-$buildConfiguration"
             $exe = Join-Path $output "$name.exe"
             $object = Join-Path $output "$name.obj"
             $options = @('/nologo', '/std:c++17', '/EHsc', '/MD', '/W4', '/arch:IA32', '/fp:precise', "/Fo$object", "/Fe$exe")
-            $options += if ($configuration -eq 'debug') { '/Od' } else { '/O2' }
+            $options += if ($buildConfiguration -eq 'debug') { '/Od' } else { '/O2' }
             if ($compilerName -eq 'clang') { $options += @('--target=i686-pc-windows-msvc', '/clang:-ffp-model=precise') }
             Write-Host "Compiling only $Test.cpp: $name"
             & $compiler @options $source '/link' '/INCREMENTAL:NO'
