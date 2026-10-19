@@ -173,3 +173,10 @@ overlapping buffers and explicit narrowing underflow/overflow boundaries.
 Control/MXCSR are unchanged. Environment restoration plus original-input
 reloads remove a Clang-only denormal flag from reloading a narrowed result.
 Condition codes and unmasked timing remain untested.
+
+`fast_dot_zero` and `fast_dot_x/y/z` check the zero/single-component kernels:
+12,288 exact binary80 return and complete x87-status comparisons per Release
+compiler and variant, all precision/rounding settings, special/random float
+encodings, unchanged control/MXCSR and fastcall stack cleanup. Zero is tested
+with a null vector. The other dot kernels retain unrounded arithmetic and are
+not covered by these four replacements. Unmasked timing remains untested.

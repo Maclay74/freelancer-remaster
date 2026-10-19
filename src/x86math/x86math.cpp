@@ -5,6 +5,7 @@
 // Author: Giperion.
 
 #include "x86math.h"
+#include "PortableFastDot.h"
 
 // DACOM-wide result codes (see the note in x86math.h); kept local until dacom.h owns them.
 
@@ -263,11 +264,11 @@ namespace
 
 #if defined(__clang__) && defined(_M_IX86)
     typedef float (__fastcall *FFastDotKernel)(FFastDot*, void*, const FVector*);
-#define FAST_DOT_ENTRY(Name) __fastcall Name(FFastDot*, void*, const FVector*)
+#define FAST_DOT_ENTRY(Name) __fastcall Name(FFastDot*, void*, const FVector* Vec)
 #define FAST_DOT_ADDRESS(Name) &Name
 #else
     typedef float (FFastDot::*FFastDotKernel)(const FVector* Vec);
-#define FAST_DOT_ENTRY(Name) FFastDot::Name(const FVector* /*Vec*/)
+#define FAST_DOT_ENTRY(Name) FFastDot::Name(const FVector* Vec)
 #define FAST_DOT_ADDRESS(Name) &FFastDot::Name
 #endif
 
@@ -282,13 +283,9 @@ namespace
 
 #if defined(_M_IX86)
     // DAT_06f730fc — FLD of +0.0; FLDZ is the same value (ZZZ only).
-    __declspec(naked) float FAST_DOT_ENTRY(FastDotZZZ)
+    float FAST_DOT_ENTRY(FastDotZZZ)
     {
-        __asm
-        {
-            fldz
-            ret 4
-        }
+        return PortableFastDot::Zero();
     }
     __declspec(naked) float FAST_DOT_ENTRY(FastDotZZO)
     {

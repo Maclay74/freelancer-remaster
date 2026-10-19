@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 187,
+  "remaining_blocks": 186,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -950,7 +950,7 @@
       "method": "BuildInvSqrtTable",
       "status": "pending",
       "asm_lines": [
-        42
+        43
       ]
     },
     {
@@ -958,7 +958,7 @@
       "method": "MulVecByMatrix",
       "status": "pending",
       "asm_lines": [
-        92
+        93
       ]
     },
     {
@@ -966,7 +966,7 @@
       "method": "MulVecByTranspose",
       "status": "pending",
       "asm_lines": [
-        135
+        136
       ]
     },
     {
@@ -974,15 +974,7 @@
       "method": "RecipSqrtFsqrt",
       "status": "pending",
       "asm_lines": [
-        204
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZZZ",
-      "status": "pending",
-      "asm_lines": [
-        287
+        205
       ]
     },
     {
@@ -990,7 +982,7 @@
       "method": "FastDotZZO",
       "status": "pending",
       "asm_lines": [
-        295
+        292
       ]
     },
     {
@@ -998,7 +990,7 @@
       "method": "FastDotZZG",
       "status": "pending",
       "asm_lines": [
-        304
+        301
       ]
     },
     {
@@ -1006,7 +998,7 @@
       "method": "FastDotZOZ",
       "status": "pending",
       "asm_lines": [
-        314
+        311
       ]
     },
     {
@@ -1014,7 +1006,7 @@
       "method": "FastDotZOO",
       "status": "pending",
       "asm_lines": [
-        323
+        320
       ]
     },
     {
@@ -1022,7 +1014,7 @@
       "method": "FastDotZOG",
       "status": "pending",
       "asm_lines": [
-        333
+        330
       ]
     },
     {
@@ -1030,7 +1022,7 @@
       "method": "FastDotZGZ",
       "status": "pending",
       "asm_lines": [
-        344
+        341
       ]
     },
     {
@@ -1038,7 +1030,7 @@
       "method": "FastDotZGO",
       "status": "pending",
       "asm_lines": [
-        354
+        351
       ]
     },
     {
@@ -1046,7 +1038,7 @@
       "method": "FastDotZGG",
       "status": "pending",
       "asm_lines": [
-        365
+        362
       ]
     },
     {
@@ -1054,7 +1046,7 @@
       "method": "FastDotOZZ",
       "status": "pending",
       "asm_lines": [
-        378
+        375
       ]
     },
     {
@@ -1062,7 +1054,7 @@
       "method": "FastDotOZO",
       "status": "pending",
       "asm_lines": [
-        387
+        384
       ]
     },
     {
@@ -1070,7 +1062,7 @@
       "method": "FastDotOZG",
       "status": "pending",
       "asm_lines": [
-        397
+        394
       ]
     },
     {
@@ -1078,7 +1070,7 @@
       "method": "FastDotOOZ",
       "status": "pending",
       "asm_lines": [
-        408
+        405
       ]
     },
     {
@@ -1086,7 +1078,7 @@
       "method": "FastDotOOO",
       "status": "pending",
       "asm_lines": [
-        418
+        415
       ]
     },
     {
@@ -1094,7 +1086,7 @@
       "method": "FastDotOOG",
       "status": "pending",
       "asm_lines": [
-        429
+        426
       ]
     },
     {
@@ -1102,7 +1094,7 @@
       "method": "FastDotOGZ",
       "status": "pending",
       "asm_lines": [
-        441
+        438
       ]
     },
     {
@@ -1110,7 +1102,7 @@
       "method": "FastDotOGO",
       "status": "pending",
       "asm_lines": [
-        452
+        449
       ]
     },
     {
@@ -1118,7 +1110,7 @@
       "method": "FastDotOGG",
       "status": "pending",
       "asm_lines": [
-        464
+        461
       ]
     },
     {
@@ -1126,7 +1118,7 @@
       "method": "FastDotGZZ",
       "status": "pending",
       "asm_lines": [
-        478
+        475
       ]
     },
     {
@@ -1134,7 +1126,7 @@
       "method": "FastDotGZO",
       "status": "pending",
       "asm_lines": [
-        488
+        485
       ]
     },
     {
@@ -1142,7 +1134,7 @@
       "method": "FastDotGZG",
       "status": "pending",
       "asm_lines": [
-        499
+        496
       ]
     },
     {
@@ -1150,7 +1142,7 @@
       "method": "FastDotGOZ",
       "status": "pending",
       "asm_lines": [
-        512
+        509
       ]
     },
     {
@@ -1158,7 +1150,7 @@
       "method": "FastDotGOO",
       "status": "pending",
       "asm_lines": [
-        523
+        520
       ]
     },
     {
@@ -1166,7 +1158,7 @@
       "method": "FastDotGOG",
       "status": "pending",
       "asm_lines": [
-        535
+        532
       ]
     },
     {
@@ -1174,7 +1166,7 @@
       "method": "FastDotGGZ",
       "status": "pending",
       "asm_lines": [
-        549
+        546
       ]
     },
     {
@@ -1182,7 +1174,7 @@
       "method": "FastDotGGO",
       "status": "pending",
       "asm_lines": [
-        562
+        559
       ]
     },
     {
@@ -1190,7 +1182,7 @@
       "method": "FastDotGGG",
       "status": "pending",
       "asm_lines": [
-        576
+        573
       ]
     },
     {
@@ -1198,7 +1190,7 @@
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        822
+        819
       ]
     },
     {
@@ -1206,7 +1198,7 @@
       "method": "MulMatrix",
       "status": "pending",
       "asm_lines": [
-        950
+        947
       ]
     },
     {
@@ -1214,7 +1206,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        1016
+        1013
       ]
     },
     {
@@ -1222,7 +1214,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        1137
+        1134
       ]
     },
     {
@@ -1230,7 +1222,7 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        1246
+        1243
       ]
     },
     {
@@ -1238,8 +1230,16 @@
       "method": "QuatSlerpValue",
       "status": "pending",
       "asm_lines": [
-        1348
+        1345
       ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZZZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test fast_dot_zero: MSVC/Clang Release; 12,288 exact binary80-return/full-x87-status comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR and fastcall stack cleanup.",
+      "notes": "Portable zero/component helper replaces naked assembly; existing thiscall/Clang fastcall wrapper ABI retained. Zero accepts null input. Component return contains no arithmetic or intermediate narrowing. No tolerance accepted. Unmasked timing untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
