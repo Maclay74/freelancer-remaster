@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 208,
+  "remaining_blocks": 207,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -808,18 +808,10 @@
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
-      "method": "IsIkLuaNumberNonzero",
-      "status": "pending",
-      "asm_lines": [
-        1194
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1307
+        1294
       ]
     },
     {
@@ -827,7 +819,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1330
+        1317
       ]
     },
     {
@@ -1401,6 +1393,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "IsIkLuaNumberNonzero",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_nonzero_double: MSVC and Clang Release; 24,576 exact return/exception-flag comparisons per compiler and no MXCSR changes, all precision/rounding settings.",
+      "notes": "Shared binary64 Nonzero preserves NaN-as-true behavior and FE_INVALID for quiet NaN. Lua call remains in its original location. No numeric tolerance. Condition codes and unmasked trap timing untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
