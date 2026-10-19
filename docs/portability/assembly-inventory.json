@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 194,
+  "remaining_blocks": 193,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -151,14 +151,6 @@
       "asm_lines": [
         1364,
         1386
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
-      "method": "RpcFireQuantize",
-      "status": "pending",
-      "asm_lines": [
-        1412
       ]
     },
     {
@@ -1289,6 +1281,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFireQuantize",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "rpc_fire_quantize_small and rpc_fire_quantize_medium: MSVC/Clang Release; 49,152 exact int64-result/exception-flag comparisons per tier and compiler, all precision/rounding modes; x87 control/MXCSR unchanged.",
+      "notes": "Power-of-two prescaling followed by integer scaling needs at most 39 product significand bits, so binary64 staging is exact. Covers tier boundaries, truncation/overflow boundaries, NaNs, infinities and random encodings. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",

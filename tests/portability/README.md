@@ -142,3 +142,10 @@ are untested. These integer scales need at most 32 product significand bits.
 fixture: 49,152 exact result/commit/exception-flag comparisons per Release
 compiler, null/non-null targets and unchanged x87 control/MXCSR. Unmasked trap
 timing and condition codes remain untested.
+
+`rpc_fire_quantize_small` and `rpc_fire_quantize_medium` compare the two weapon
+compression tiers: 49,152 exact result/exception-flag cases per Release compiler
+and tier, with unchanged x87 control/MXCSR. Boundary samples cover the tier
+limits, fractional and int64 overflow boundaries, exceptional and random floats.
+Power-of-two prescaling is exact and the product fits within 39 significand
+bits. Condition codes and unmasked timing remain untested.
