@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 179,
+  "remaining_blocks": 178,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -112,20 +112,12 @@
     },
     {
       "file": "src/luaprofile/lua32/src/lparser.c",
-      "method": "real_constant",
-      "status": "pending",
-      "asm_lines": [
-        280
-      ]
-    },
-    {
-      "file": "src/luaprofile/lua32/src/lparser.c",
       "method": "code_number",
       "status": "pending",
       "asm_lines": [
-        309,
-        342,
-        350
+        301,
+        334,
+        342
       ]
     },
     {
@@ -1176,6 +1168,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/luaprofile/lua32/src/lparser.c",
+      "method": "real_constant",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_constant_compare: MSVC/Clang Release; 24,576 exact return/exception-flag/stack-balance comparisons per compiler, special pairs, random equal/adjacent/unrelated doubles and all precision/rounding settings; unchanged MXCSR.",
+      "notes": "C-compatible helper retains left numerical load, equality-or-unordered match and FE_INVALID for any NaN. Parser search/allocation unchanged. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",

@@ -194,3 +194,9 @@ flag/stack-balance cases per Release compiler and variant, all mounted bytes,
 modify-ID zero extension and special/random health encodings; control/MXCSR
 unchanged. The production mounted packet field remains written after this
 helper returns. Condition codes and unmasked timing are untested.
+
+`lua_constant_compare` checks Lua constant equality-or-unordered lookup:
+24,576 exact boolean/exception-flag/stack-balance comparisons per Release
+compiler, special pairs and random equal/adjacent/unrelated doubles. MXCSR is
+unchanged. The helper remains C-compatible for the existing parser build.
+Condition codes and unmasked timing are untested.
