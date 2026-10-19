@@ -1,15 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 89,
+  "remaining_blocks": 88,
   "methods": [
-    {
-      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
-      "method": "math_exp",
-      "status": "pending",
-      "asm_lines": [
-        128
-      ]
-    },
     {
       "file": "src/Thorn/lua32/src/lobject.c",
       "method": "LuaParseSignedNumberObject",
@@ -566,6 +558,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_exp",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "lua_standard_math: 221,015 total comparisons across nine kernels per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Actual C Lua registration/callback contract and Thorn DLL build/pass with Clang.",
+      "notes": "Standard C math with original binary64 degree scale constants; argument-check order retained. Scaled tolerance 1e-11 except PC24 sqrt 2e-7 and exp 4e-6. Sampled trigonometry domain +/-720 degrees (tan excludes abs(cos)<0.01), sqrt/log inputs positive, exp inputs +/-30. Standard exceptional/huge-argument policy deliberately replaces x87 instructions. Exact flags, NaN payloads, unmasked trap timing, Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/lua32/src/lib/lmathlib.c",
