@@ -779,7 +779,7 @@
       "method": "MatrixToQuaternion",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "quat_conversion: MSVC/Clang Release, 6,144 conversion pairs per compiler, all precision/rounding settings, all trace/diagonal branches, non-unit quaternions, tiny/large scales, identity and half-turn fixtures; absolute component and round-trip limits 2e-6. Maximum ToMatrix error 2.98023224e-7, FromMatrix 1.1920929e-7, round-trip 8.34465027e-7.",
+      "evidence": "quat_conversion: MSVC/Clang Release, 6,144 conversion pairs per compiler, all precision/rounding settings, all trace/diagonal branches, non-unit quaternions, tiny/large scales, identity and half-turn fixtures; absolute component and round-trip limits 2e-6. Maximum ToMatrix error 2.98023224e-7, FromMatrix 1.1920929e-7, round-trip 8.34465027e-7. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -787,7 +787,7 @@
       "method": "QuaternionToMatrix",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "quat_conversion: MSVC/Clang Release, 6,144 conversion pairs per compiler, all precision/rounding settings, all trace/diagonal branches, non-unit quaternions, tiny/large scales, identity and half-turn fixtures; absolute component and round-trip limits 2e-6. Maximum ToMatrix error 2.98023224e-7, FromMatrix 1.1920929e-7, round-trip 8.34465027e-7.",
+      "evidence": "quat_conversion: MSVC/Clang Release, 6,144 conversion pairs per compiler, all precision/rounding settings, all trace/diagonal branches, non-unit quaternions, tiny/large scales, identity and half-turn fixtures; absolute component and round-trip limits 2e-6. Maximum ToMatrix error 2.98023224e-7, FromMatrix 1.1920929e-7, round-trip 8.34465027e-7. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -795,7 +795,7 @@
       "method": "MulTransform",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -803,7 +803,7 @@
       "method": "TransformXform",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -811,7 +811,7 @@
       "method": "MulVecByTranspose",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -819,7 +819,7 @@
       "method": "MulVecByMatrix",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
@@ -827,7 +827,7 @@
       "method": "MulMatrix",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked. Integration: x86math DLL builds; public math contract and both new kernel CTests pass.",
       "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {

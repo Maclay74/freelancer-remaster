@@ -12,9 +12,9 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 
 `Vector` — 12 bytes `{X,Y,Z}`; `Matrix` — 36 bytes, row-major `d[row][col]`, `out = M * v` gives `out.x = row0·v`; `Transform` — 48 bytes, `Matrix` + translation at `+0x24`; `Quaternion` — 16 bytes `{W,X,Y,Z}` (scalar first). The slot order of `I3DMathEngine` does not match the Liberty `3dMath.h` reconstruction; the source of truth is the retail vtable. The port added a `QuatNlerpValue` slot with `const float* T` at the end of the interface — a contract between our modules, not retail compatibility (the former `QuatNlerp(float)` delegates to it).
 
-## Numeric peculiarities that must not be "simplified"
+## Retail numerical behavior (historical)
 
-- Most methods are x87 with intermediate values in 80-bit precision; the order of additions, early rounding to `float`, and reading the source after writing the destination (input/output aliasing) affect the result and are reproduced literally. Only a listing comparison is acceptable; an "equivalent" `float` expression rounds differently.
+- Retail methods use x87 intermediate precision, early float stores and order-dependent alias behavior. The current port has replaced all inline assembly in `src/x86math` with portable C++ math or removed unused code. Double intermediates and safe in-place operations intentionally differ from exact retail results; numerical test limits and remaining platform dependencies are documented below.
 - `MIN_DET = 1e-8f`: when `|det| <= MIN_DET`, `inverse` and `general_inverse` write the adjugate without dividing and return `GR_INVALID_PARMS`.
 - **`InvSqrt`/`Sqrt`**: a table with 10 mantissa bits (`0x400` bytes) + two Newton iterations `(3 - y²x) * y * 0.5`; `Sqrt` = the same result × x. In the PE the table is zeros (BSS) and is built in `DllMain` by an x87 generator (`FLD (i|0xFC00)<<14`, `FSQRT`, `FDIVR 1.0`, `(bits+0x2000)>>15`), after which `table[0x200] = 0xFF` (the mantissa slot of 1.0, where the computed byte overflows). Comparing against the PE file is meaningless; compare against the live table after `DllMain`; isolated discrepancies are possible with a different x87 control word.
 - **`transform_list` (Matrix)** — "FastDot": each matrix row is classified as `==0` / `==1` / other (27 kernel variants, FPU order: Z·C, then Y·B, then X·A); if the sum of "saved operations" over the three rows is `< 4`, the common triple MAD is used, otherwise three indirect kernel calls. Not SIMD. The `Transform` variant adds the translation on x87 before the final `float` store (with zero translation — a tail call into the Matrix version).
@@ -27,7 +27,7 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 2. The original FastDot specialization machinery has been replaced by the portable batch loop in `BatchTransform.h`. All matrix terms are evaluated; XYZ is read before output stores, allowing exact in-place use. Matrix/translation values are snapshotted for the call. This deliberately changes legacy sparse-path in-place behavior, zero-term exceptional arithmetic, and low-order rounding. Slots 16/17 remain `DACOM_API` stdcall. The 27 kernels described above document retail behavior and remain only as a test oracle.
 3. The object is created with `::operator new(8, nothrow)` + placement new (MSVC writes the vfptr itself, retail does it manually; `sizeof == 8`).
 4. The port's `QueryInterface` and `CreateInstance` check the output pointer for NULL; retail writes without a check.
-5. The status of individual methods (some remain incompletely verified with respect to FP-stack argument preparation) is in the tracker, not here.
+5. Replacement evidence and numerical limits are tracked in `docs/portability/assembly-inventory.json` and `tests/portability/README.md`. The pure math helpers have isolated MSVC/Clang Release tests; Debug and other architectures have not been validated. The DACOM/Windows DLL wrapper and current x86 ABI still need platform work; removing manual assembly does not make the whole module cross-platform.
 
 6. The former `QuatSlerp`/`QuatSlerpValue` methods and their callers are named
    `QuatNlerp`/`QuatNlerpValue` in the port, with virtual slots and calling
@@ -37,3 +37,13 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
    blend-factor reads retain alias behavior. There is still no zero-length
    fallback. Low-order rounding, NaN payload/sign and exception flags may differ
    from the original assembly; isolated tests record a 2e-6 component tolerance.
+
+7. `MatrixMath.h` and `TransformMath.h` now own matrix multiplication, transpose,
+   single-vector application and affine composition. They share the portable
+   batch kernel and compute into temporaries for safe exact in-place use.
+   Quaternion conversion uses standard trace/largest-diagonal and normalized
+   matrix formulas in `QuaternionMath.h`, preserving W/X/Y/Z and row-major
+   conventions. The unused `RecipSqrtFsqrt` helper is removed. Original assembly
+   survives only as test oracles. Public method slots, result codes, singular
+   inverse threshold and component registration are unchanged. The x86math DLL
+   build and public component contract pass; gameplay smoke tests remain pending.

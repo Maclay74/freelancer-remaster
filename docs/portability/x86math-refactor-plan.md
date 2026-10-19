@@ -74,10 +74,9 @@ moving code out of line can itself change compiler rounding/inlining behavior.
    implementation in `QuaternionMath.h` preserves sign-adjusted linear blending
    and normalization, with explicit numerical tolerances in isolated tests.
    Replacing it with true slerp would change animation behavior.
-5. **Unused production helper.** `RecipSqrtFsqrt` has no production caller in
-   this file; only the contract test calls it. Its assembly does not provide the
-   normalization performed inside `QuatNlerpValue`. Remove or relocate it once
-   tests directly exercise the relevant production operations.
+5. **Unused production helper (removed).** `RecipSqrtFsqrt` had no production
+   caller. It and its constant-only test checks are removed; actual scalar and
+   quaternion operations have direct coverage.
 
 ## Behavioral decisions to keep explicit
 
@@ -128,3 +127,27 @@ The isolated zero/component FastDot tests provide additional coverage only for
 those four replacements. Neither suite proves that all historical x87 behavior
 can be discarded. Run gameplay checks at integration milestones, especially
 cutscenes, ship movement, camera transforms, and object animation.
+
+## Assembly removal completed for x86math
+
+`src/x86math` now has zero inline-assembly blocks, naked entry points or FastDot
+calling-convention workarounds. The last eight blocks were handled individually:
+five matrix/affine kernels, two quaternion conversions and one unused helper.
+Numerical implementations live in `MatrixMath.h`, `TransformMath.h`,
+`QuaternionMath.h`, `BatchTransform.h` and `ScalarMath.h`; `x86math.cpp` retains
+the interface adapter, existing C++ inverse/quaternion operations and DLL setup.
+Redundant local forwarding helpers have also been removed.
+
+The DLL builds in the existing Windows x86 Clang Release configuration. The
+public component contract covers matrix multiplication, affine composition,
+single-vector/inverse transforms, exact in-place operations, conversions,
+batches, scalar math and nlerp. Isolated core and conversion checks pass with
+MSVC and Clang Release. New tests have explicit tolerances rather than claiming
+bit-exact x87 emulation. Original implementations are test-only oracles. The
+existing inverse formulas, error codes and determinant threshold were retained.
+
+This completes the module's manual-assembly removal, not its platform port or
+all proposed architectural work. The component test still includes the adapter
+source directly, and Windows/DACOM ABI dependencies remain. Debug, other
+architectures and gameplay smoke tests are not validated here. The whole game
+has not been rebuilt or restaged during this module refactor. CI stays disabled.
