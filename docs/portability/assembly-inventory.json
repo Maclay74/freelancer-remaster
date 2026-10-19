@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 52,
+  "remaining_blocks": 51,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -162,18 +162,10 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "ApplyPsysSparam",
-      "status": "pending",
-      "asm_lines": [
-        1916
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        1942
+        1930
       ]
     },
     {
@@ -181,7 +173,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        2006
+        1994
       ]
     },
     {
@@ -189,7 +181,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        2079
+        2067
       ]
     },
     {
@@ -197,7 +189,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2132
+        2120
       ]
     },
     {
@@ -205,11 +197,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3653,
+        3641,
+        3652,
         3664,
-        3676,
-        3685,
-        3695
+        3673,
+        3683
       ]
     },
     {
@@ -217,9 +209,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3964,
-        3982,
-        3992
+        3952,
+        3970,
+        3980
       ]
     },
     {
@@ -227,9 +219,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        4015,
-        4024,
-        4036
+        4003,
+        4012,
+        4024
       ]
     },
     {
@@ -237,10 +229,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        4052,
+        4040,
+        4064,
         4076,
-        4088,
-        4101
+        4089
       ]
     },
     {
@@ -248,7 +240,7 @@
       "method": "FThornEvent::StartAttachEntity",
       "status": "pending",
       "asm_lines": [
-        4295
+        4283
       ]
     },
     {
@@ -256,8 +248,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4516,
-        4550
+        4504,
+        4538
       ]
     },
     {
@@ -265,7 +257,7 @@
       "method": "FThornEvent::TickPsysPropAnim",
       "status": "pending",
       "asm_lines": [
-        4993
+        4981
       ]
     },
     {
@@ -291,6 +283,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ApplyPsysSparam",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scene_interpolation: 270,336 cases across eleven methods/spans per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Scalar/vector/scale aliases, late accumulator rereads, zero/subnormal/nonfinite inputs, axis IDs/cardinal angles, particle runtime-before-callback publication and compact-light raw-buffer overlaps. Thorn DLL, scene source contract and targeted CTests build/pass.",
+      "notes": "Portable double math retains explicit light-direction float boundaries, sequential component publication, axis sine/double versus cosine/float, compact layout/branch/selective writes and existing caller callback order. Float tolerance 3e-6 scaled; attach decisions/untouched bytes exact. Particle publication and Z/Y/X negation buffers exact in samples; StartAttachEntity reuses NegateStored, not snapshot NegateVector (the initial wrong helper failed overlapping cases and was corrected). Event methods compare replaced spans plus actual scene source contract, not full event/gameplay execution. NaN payloads, signed-zero bits, flags, unmasked timing, huge finite trig C2 behavior, Debug and non-x86 execution untested/not legacy contracts."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
