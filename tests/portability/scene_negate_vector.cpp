@@ -1,4 +1,5 @@
 #include "../../src/Thorn/PortableSplineMath.h"
+#include "../../src/include/portable_vector_load.h"
 #include <cstdint>
 #include <cstring>
 #include <cstdio>
@@ -9,13 +10,27 @@ __declspec(noinline) void Reference(float* dst, const float* src)
 {
     __asm {
         mov ecx, src
+#if defined(TEST_COLUMN_COPY)
+        fld dword ptr [ecx+24]
+#else
         fld dword ptr [ecx+8]
+#endif
         mov eax, dst
+#if !defined(TEST_VECTOR_COPY)
         fchs
+#endif
+#if defined(TEST_COLUMN_COPY)
+        fld dword ptr [ecx+12]
+#else
         fld dword ptr [ecx+4]
+#endif
+#if !defined(TEST_VECTOR_COPY)
         fchs
+#endif
         fld dword ptr [ecx]
+#if !defined(TEST_VECTOR_COPY)
         fchs
+#endif
         fstp dword ptr [eax]
         fstp dword ptr [eax+4]
         fstp dword ptr [eax+8]
@@ -24,7 +39,13 @@ __declspec(noinline) void Reference(float* dst, const float* src)
 
 __declspec(noinline) void Candidate(float* dst, const float* src)
 {
+#if defined(TEST_COLUMN_COPY)
+    PortableVectorLoad::Copy(dst, src, 3);
+#elif defined(TEST_VECTOR_COPY)
+    PortableVectorLoad::Copy(dst, src);
+#else
     ThornPortableSplineMath::NegateVector(dst, src);
+#endif
 }
 
 int main()

@@ -5,6 +5,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 ```powershell
 .\scripts\test-portable-kernel.ps1 -Test hermite_assignment
 .\scripts\test-portable-kernel.ps1 -Test scene_negate_vector
+.\scripts\test-portable-kernel.ps1 -Test server_vector_copy
 .\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
 .\scripts\test-portable-kernel.ps1 -Test lua_float_probe
@@ -28,6 +29,7 @@ that does not require the proprietary SDK secret or game DATA.
 | --- | --- |
 | Hermite record assignment | 1,080,000 exact whole-buffer comparisons, special bit patterns and overlaps; unchanged x87 status/MXCSR |
 | Scene vector negation | 43,008 exact whole-buffer/status comparisons per Release compiler, overlapping vectors and all precision/rounding modes; unmasked exception delivery untested |
+| Server position copy | Same 43,008-case matrix with the original numerical load/store order; unmasked exception delivery untested |
 | Hermite record construction | 1,080,000 exact whole-buffer/status comparisons and null destination per Release compiler; overlaps, NaNs, subnormals and all precision/rounding modes. Unmasked exception delivery is untested. |
 | Lua double-index probe | 2,400,000 exact return/index/callback-order and x87-status comparisons, full uint32 range samples, table failure/success, unchanged MXCSR |
 | Lua float-index probe | Same matrix, including conversion status at each callback |

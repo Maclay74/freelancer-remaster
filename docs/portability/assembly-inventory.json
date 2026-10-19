@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 215,
+  "remaining_blocks": 214,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -190,7 +190,7 @@
       "method": "RpcServerQuantize127",
       "status": "pending",
       "asm_lines": [
-        24
+        25
       ]
     },
     {
@@ -198,7 +198,7 @@
       "method": "RpcServerExpand127",
       "status": "pending",
       "asm_lines": [
-        41
+        42
       ]
     },
     {
@@ -206,7 +206,7 @@
       "method": "RpcServerQuantize255",
       "status": "pending",
       "asm_lines": [
-        67
+        68
       ]
     },
     {
@@ -214,7 +214,7 @@
       "method": "RpcServerExpand255",
       "status": "pending",
       "asm_lines": [
-        86
+        87
       ]
     },
     {
@@ -222,8 +222,8 @@
       "method": "RpcServerQuantizeHull",
       "status": "pending",
       "asm_lines": [
-        100,
-        108
+        101,
+        109
       ]
     },
     {
@@ -231,15 +231,7 @@
       "method": "RpcServerExpandHull",
       "status": "pending",
       "asm_lines": [
-        131
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
-      "method": "RpcServerCreateObjectRead",
-      "status": "pending",
-      "asm_lines": [
-        637
+        132
       ]
     },
     {
@@ -247,7 +239,7 @@
       "method": "FRpcServerCharSelectVerifiedPacket::Encode",
       "status": "pending",
       "asm_lines": [
-        1130
+        1122
       ]
     },
     {
@@ -255,7 +247,7 @@
       "method": "RpcServerSendCommQuantize",
       "status": "pending",
       "asm_lines": [
-        3316
+        3308
       ]
     },
     {
@@ -263,7 +255,7 @@
       "method": "RpcServerSendCommExpand",
       "status": "pending",
       "asm_lines": [
-        3334
+        3326
       ]
     },
     {
@@ -1457,6 +1449,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerCreateObjectRead",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test server_vector_copy: MSVC and Clang Release; 43,008 exact whole-buffer/status/MXCSR comparisons per compiler across all precision/rounding modes and overlapping layouts.",
+      "notes": "PortableVectorLoad::Copy preserves Z/Y/X snapshots then X/Y/Z stores. Surrounding field copies unchanged. No tolerance accepted. Unmasked exception delivery untested."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
