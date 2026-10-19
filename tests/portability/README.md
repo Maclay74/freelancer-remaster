@@ -131,3 +131,9 @@ to cover both byte and short inputs.
 including NaN/overflow integer-indefinite results and fractional inexact flags.
 49,152 exact result/exception-flag comparisons per Release compiler pass with
 unchanged x87 control and MXCSR. Condition codes and unmasked timing are untested.
+
+`rpc_quantize127` and `rpc_quantize255` test float scaling followed by legacy
+truncation: 49,152 exact int64-result/exception-flag comparisons per Release
+compiler and scale, including fractional and overflow boundaries, NaNs and
+infinities; x87 control/MXCSR unchanged. Condition codes and unmasked timing
+are untested. These integer scales need at most 32 product significand bits.
