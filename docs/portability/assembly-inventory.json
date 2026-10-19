@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 217,
+  "remaining_blocks": 216,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -36,14 +36,6 @@
         1399,
         1427,
         1456
-      ]
-    },
-    {
-      "file": "src/freelancer/Client/room_camera.cpp",
-      "method": "RoomCameraSetZNearValue",
-      "status": "pending",
-      "asm_lines": [
-        630
       ]
     },
     {
@@ -1473,6 +1465,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/freelancer/Client/room_camera.cpp",
+      "method": "RoomCameraSetZNearValue",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "Reuses float_load_copy MSVC and Clang Release results: 2,520,000 exact encoding/buffer/status comparisons and 504 unmasked cases per compiler. Retained oracle matches this binary32 FLD/FSTP pair.",
+      "notes": "Replaced only the numeric copy with PortableFloatLoad::Copy; existing surrounding control flow and operations preserved. No tolerance accepted. No duplicate helper tests run."
     },
     {
       "file": "src/Shading/Material.cpp",
