@@ -24,8 +24,8 @@ Release. Debug is available for investigating failures with
 `-Configuration debug`, or both with `-Configuration release,debug`.
 The test includes the actual production C++ kernel and a
 retained assembly oracle. Results go to `out/tests/portability/<test>/results.txt`.
-The verified tests also run through CTest and a separate Windows CI job
-that does not require the proprietary SDK secret or game DATA.
+The verified tests also run through CTest. GitHub Actions is currently disabled;
+the saved workflow is in `.github/disabled-workflows/windows-clang.yml`.
 
 | Replacement | Comparisons per compiler/configuration |
 | --- | --- |
@@ -78,3 +78,12 @@ three compiler/configuration combinations pass. Clang Debug loads/quietens
 both operands before FADDP, whereas the original uses an FADD memory operand.
 Production assembly is retained; no tolerance has been accepted. The candidate
 is test-only and excluded from the normal CTest/CI pass gate.
+
+## Open investigation: strict parameter comparison
+
+`test-portable-kernel.ps1 -Test param_strict_less -ContinueOnFailure` compares
+the original FLD/FCOMP kernel against ordinary C++ `<`. Each Release compiler
+ran 24,576 comparisons over special-value pairs and deterministic random inputs,
+with all x87 precision/rounding settings. Return values agreed, but exception
+flags differed in 752 Clang cases and 145 MSVC cases. Production assembly remains;
+the candidate is test-only and excluded from CTest. No tolerance was accepted.

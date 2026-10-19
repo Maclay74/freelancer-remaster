@@ -436,10 +436,12 @@
     {
       "file": "src/Thorn/ParamCurve.cpp",
       "method": "ParamStrictLess",
-      "status": "pending",
+      "status": "investigating",
       "asm_lines": [
         71
-      ]
+      ],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test param_strict_less -ContinueOnFailure: 24,576 comparisons per Release compiler; zero return mismatches; 752 Clang and 145 MSVC exception-flag mismatches.",
+      "notes": "Ordinary C++ less-than candidate remains test-only. Original assembly unchanged; no tolerance accepted."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",

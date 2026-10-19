@@ -1,3 +1,4 @@
+# CI disabled: restore this file to .github/workflows/ to enable it again.
 name: Windows x86 Clang
 on:
   push:
