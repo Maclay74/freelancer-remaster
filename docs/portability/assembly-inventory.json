@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 206,
+  "remaining_blocks": 205,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -280,14 +280,6 @@
       "status": "pending",
       "asm_lines": [
         286
-      ]
-    },
-    {
-      "file": "src/rpclocal/rpc_wire_fields.cpp",
-      "method": "RpcEncodeServerCharSelectVerified",
-      "status": "pending",
-      "asm_lines": [
-        1135
       ]
     },
     {
@@ -1385,6 +1377,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/rpclocal/rpc_wire_fields.cpp",
+      "method": "RpcEncodeServerCharSelectVerified",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test double_load_copy: MSVC and Clang Release; 104,448 exact whole-buffer/x87-status/MXCSR comparisons per compiler, all precision/rounding modes, byte overlaps and special values.",
+      "notes": "Retains original reservation, cached destination and cursor commit order. Numerical binary64 load/store replaced by PortableDoubleLoad::Copy. No tolerance accepted. Unmasked exception delivery untested."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
