@@ -1,13 +1,13 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 48,
+  "remaining_blocks": 47,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
       "method": "CatmullRom1D",
       "status": "pending",
       "asm_lines": [
-        172
+        174
       ]
     },
     {
@@ -15,7 +15,7 @@
       "method": "ParamLerp",
       "status": "pending",
       "asm_lines": [
-        230
+        232
       ]
     },
     {
@@ -23,7 +23,7 @@
       "method": "Hermite1D",
       "status": "pending",
       "asm_lines": [
-        277
+        279
       ]
     },
     {
@@ -31,7 +31,7 @@
       "method": "HermiteEvaluate",
       "status": "pending",
       "asm_lines": [
-        380
+        382
       ]
     },
     {
@@ -39,20 +39,12 @@
       "method": "ApplyHermiteTangents",
       "status": "pending",
       "asm_lines": [
-        506,
-        527,
-        534,
-        545,
-        556,
-        582
-      ]
-    },
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
-      "method": "Evaluate",
-      "status": "pending",
-      "asm_lines": [
-        744
+        508,
+        529,
+        536,
+        547,
+        558,
+        584
       ]
     },
     {
@@ -60,7 +52,7 @@
       "method": "WrapEvaluateToExtended",
       "status": "pending",
       "asm_lines": [
-        761
+        757
       ]
     },
     {
@@ -68,7 +60,7 @@
       "method": "Slot4Replace",
       "status": "pending",
       "asm_lines": [
-        790
+        786
       ]
     },
     {
@@ -76,7 +68,7 @@
       "method": "AddKey",
       "status": "pending",
       "asm_lines": [
-        875
+        871
       ]
     },
     {
@@ -84,7 +76,7 @@
       "method": "Slot12WrapEvaluate",
       "status": "pending",
       "asm_lines": [
-        1002
+        998
       ]
     },
     {
@@ -92,7 +84,7 @@
       "method": "InsertDerivedRecord",
       "status": "pending",
       "asm_lines": [
-        1080
+        1076
       ]
     },
     {
@@ -100,8 +92,8 @@
       "method": "EvaluateExtended",
       "status": "pending",
       "asm_lines": [
-        1210,
-        1227
+        1206,
+        1223
       ]
     },
     {
@@ -109,7 +101,7 @@
       "method": "EvaluateLerp",
       "status": "pending",
       "asm_lines": [
-        1259
+        1255
       ]
     },
     {
@@ -117,7 +109,7 @@
       "method": "EvaluateCatmull",
       "status": "pending",
       "asm_lines": [
-        1293
+        1289
       ]
     },
     {
@@ -125,7 +117,7 @@
       "method": "AudioLerpFloat",
       "status": "pending",
       "asm_lines": [
-        871
+        872
       ]
     },
     {
@@ -133,7 +125,7 @@
       "method": "ComputeAudioLerpInteger",
       "status": "pending",
       "asm_lines": [
-        895
+        896
       ]
     },
     {
@@ -141,7 +133,7 @@
       "method": "ComputeLightColor",
       "status": "pending",
       "asm_lines": [
-        917
+        918
       ]
     },
     {
@@ -149,7 +141,7 @@
       "method": "FogLerpInteger",
       "status": "pending",
       "asm_lines": [
-        944
+        945
       ]
     },
     {
@@ -157,7 +149,7 @@
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        1841
+        1842
       ]
     },
     {
@@ -165,7 +157,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        1905
+        1906
       ]
     },
     {
@@ -173,7 +165,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        1978
+        1979
       ]
     },
     {
@@ -181,7 +173,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2031
+        2032
       ]
     },
     {
@@ -189,11 +181,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3552,
-        3563,
-        3575,
-        3584,
-        3594
+        3553,
+        3564,
+        3576,
+        3585,
+        3595
       ]
     },
     {
@@ -201,9 +193,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3863,
-        3881,
-        3891
+        3864,
+        3882,
+        3892
       ]
     },
     {
@@ -211,9 +203,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        3914,
-        3923,
-        3935
+        3915,
+        3924,
+        3936
       ]
     },
     {
@@ -221,10 +213,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        3951,
-        3975,
-        3987,
-        4000
+        3952,
+        3976,
+        3988,
+        4001
       ]
     },
     {
@@ -232,8 +224,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4403,
-        4437
+        4404,
+        4438
       ]
     },
     {
@@ -259,6 +251,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "Evaluate",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "extended_progress_codec: 147,456 exact conversion cases per MSVC/Clang x86 Release compiler, all precision/rounding modes, subnormal/NaN/unsupported/pseudo encodings and rounding boundaries. Actual curve contract confirms scalar and output-transport results. Thorn DLL, actual parameter-curve/scene source contracts and targeted CTests build/pass. Debug, non-x86 execution, complete event flows and gameplay untested.",
+      "notes": "Explicit binary80-to-binary32 result replaces the hidden extended ST(0) return. Public float signature and 10-byte transport layout unchanged. Numeric conversion bits match sampled x87 stores; retaining extra precision behind a float ABI is no longer supported. Exception flags/timing are not contracts."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
