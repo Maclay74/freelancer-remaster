@@ -1,4 +1,7 @@
 #include "../../src/include/portable_rpc_quantization.h"
+#if defined(TEST_COLOR_QUANTIZE)
+#include "../../src/include/portable_color_quantization.h"
+#endif
 #if defined(TEST_FIRE_QUANTIZE_MEDIUM)
 static const double Scale = 32767.0;
 static const float PreScale = 0.0001220703125f;
@@ -24,11 +27,13 @@ __declspec(noinline) std::uint64_t Reference(const float* input)
     std::uint64_t result;
     __asm {
         mov ecx, input
+#if !defined(TEST_COLOR_QUANTIZE)
         fld dword ptr [ecx]
 #if defined(TEST_FIRE_QUANTIZE)
         fmul dword ptr PreScale
 #endif
         fmul qword ptr Scale
+#endif
 #if defined(TEST_UPDATE_COMMIT)
         mov ecx, PointerToCommit
         test ecx, ecx
@@ -42,6 +47,10 @@ __declspec(noinline) std::uint64_t Reference(const float* input)
         or ax, 0c00h
         mov chop, ax
         fldcw chop
+#if defined(TEST_COLOR_QUANTIZE)
+        fld dword ptr [ecx]
+        fmul qword ptr Scale
+#endif
         fistp qword ptr result
         fldcw saved
     }
@@ -50,7 +59,9 @@ __declspec(noinline) std::uint64_t Reference(const float* input)
 
 __declspec(noinline) std::uint64_t Candidate(const float* input)
 {
-#if defined(TEST_FIRE_QUANTIZE_MEDIUM)
+#if defined(TEST_COLOR_QUANTIZE)
+    return PortableColorQuantization::ToInt64Bits(input);
+#elif defined(TEST_FIRE_QUANTIZE_MEDIUM)
     return PortableRpcQuantization::QuantizeFire(input, true);
 #elif defined(TEST_FIRE_QUANTIZE)
     return PortableRpcQuantization::QuantizeFire(input, false);

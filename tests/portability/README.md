@@ -154,3 +154,9 @@ bits. Condition codes and unmasked timing remain untested.
 stack-balance comparisons per Release compiler, including adjacent values at
 64 and 8192, signed zeros, NaNs, infinities and random encodings. Control and
 MXCSR remain unchanged; condition codes and unmasked timing are untested.
+
+`material_wire_color` checks chopping during both multiplication and conversion:
+49,152 exact result/exception-flag cases per Release compiler, including
+subnormals, NaNs and overflow; caller x87 control/MXCSR unchanged. The portable
+environment restore replays the input load to retain denormal flags omitted by
+MSVC FE_ALL_EXCEPT. Condition codes and unmasked timing remain untested.

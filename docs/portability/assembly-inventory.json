@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 191,
+  "remaining_blocks": 190,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -8,14 +8,6 @@
       "status": "pending",
       "asm_lines": [
         1496
-      ]
-    },
-    {
-      "file": "src/flmaterials/MaterialImpl.cpp",
-      "method": "FlmWireColorByte",
-      "status": "pending",
-      "asm_lines": [
-        139
       ]
     },
     {
@@ -1272,6 +1264,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/flmaterials/MaterialImpl.cpp",
+      "method": "FlmWireColorByte",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test material_wire_color: MSVC/Clang Release; 49,152 exact int64-result/exception-flag comparisons per compiler, all precision/rounding settings; x87 control/MXCSR unchanged.",
+      "notes": "Chop rounding applies during multiplication and truncation. feupdateenv retains standard exceptions; an input reload restores denormal-load flags omitted by MSVC FE_ALL_EXCEPT. Low byte retained without clamp. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",
