@@ -4,6 +4,10 @@ static const double Scale = 255.0;
 #else
 static const double Scale = 127.0;
 #endif
+#if defined(TEST_UPDATE_COMMIT)
+static unsigned int* PointerToCommit;
+static unsigned int CommittedPointer;
+#endif
 #include <cstdio>
 #include <cstring>
 #include <xmmintrin.h>
@@ -16,6 +20,14 @@ __declspec(noinline) std::uint64_t Reference(const float* input)
         mov ecx, input
         fld dword ptr [ecx]
         fmul qword ptr Scale
+#if defined(TEST_UPDATE_COMMIT)
+        mov ecx, PointerToCommit
+        test ecx, ecx
+        jz Conversion
+        mov eax, CommittedPointer
+        mov dword ptr [ecx], eax
+    Conversion:
+#endif
         fnstcw saved
         mov ax, saved
         or ax, 0c00h
@@ -29,7 +41,11 @@ __declspec(noinline) std::uint64_t Reference(const float* input)
 
 __declspec(noinline) std::uint64_t Candidate(const float* input)
 {
+#if defined(TEST_UPDATE_COMMIT)
+    return PortableRpcQuantization::QuantizeUpdate(input, PointerToCommit, CommittedPointer);
+#else
     return PortableRpcQuantization::QuantizeByte(input, Scale);
+#endif
 }
 
 int main()
@@ -58,13 +74,24 @@ int main()
             unsigned short expectedStatus, actualStatus, after;
             const unsigned mxcsr = _mm_getcsr();
             __asm { fnclex }
+#if defined(TEST_UPDATE_COMMIT)
+            unsigned int expectedCommit = 0xa5a5a5a5u, actualCommit = expectedCommit;
+            CommittedPointer = bits;
+            PointerToCommit = sample & 1 ? &expectedCommit : nullptr;
+#endif
             const auto expected = Reference(&input);
             __asm { fnstsw expectedStatus }
             __asm { fnclex }
+#if defined(TEST_UPDATE_COMMIT)
+            PointerToCommit = sample & 1 ? &actualCommit : nullptr;
+#endif
             const auto actual = Candidate(&input);
             __asm { fnstsw actualStatus }
             __asm { fnstcw after }
             outputs += expected != actual;
+#if defined(TEST_UPDATE_COMMIT)
+            outputs += expectedCommit != actualCommit;
+#endif
             flags += (expectedStatus & 0x3f) != (actualStatus & 0x3f);
             controls += after != control;
             mxcsrChanges += mxcsr != _mm_getcsr();

@@ -137,3 +137,8 @@ truncation: 49,152 exact int64-result/exception-flag comparisons per Release
 compiler and scale, including fractional and overflow boundaries, NaNs and
 infinities; x87 control/MXCSR unchanged. Condition codes and unmasked timing
 are untested. These integer scales need at most 32 product significand bits.
+
+`rpc_update_quantize` adds the update encoder pointer commit to the 127-scale
+fixture: 49,152 exact result/commit/exception-flag comparisons per Release
+compiler, null/non-null targets and unchanged x87 control/MXCSR. Unmasked trap
+timing and condition codes remain untested.

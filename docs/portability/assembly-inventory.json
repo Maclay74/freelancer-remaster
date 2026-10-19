@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 195,
+  "remaining_blocks": 194,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -146,19 +146,11 @@
     },
     {
       "file": "src/RemoteCommon/remote_packet_codecs.cpp",
-      "method": "RpcUpdateQuantize",
-      "status": "pending",
-      "asm_lines": [
-        1352
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
       "method": "RpcFirePickTier",
       "status": "pending",
       "asm_lines": [
-        1385,
-        1407
+        1364,
+        1386
       ]
     },
     {
@@ -166,7 +158,7 @@
       "method": "RpcFireQuantize",
       "status": "pending",
       "asm_lines": [
-        1433
+        1412
       ]
     },
     {
@@ -1297,6 +1289,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcUpdateQuantize",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_update_quantize: MSVC/Clang Release; 49,152 exact int64-result/pointer-commit and exception-flag comparisons per compiler, all precision/rounding settings; unchanged control/MXCSR.",
+      "notes": "Volatile scaled snapshot precedes optional cached-pointer commit; legacy truncation follows. Null and non-null pointer targets tested. No numeric tolerance. Condition codes and unmasked trap timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
