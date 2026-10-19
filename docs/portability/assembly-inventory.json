@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 174,
+  "remaining_blocks": 173,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -422,19 +422,11 @@
     },
     {
       "file": "src/Thorn/SplineMath.h",
-      "method": "Subtract",
-      "status": "pending",
-      "asm_lines": [
-        78
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        120,
-        153
+        106,
+        139
       ]
     },
     {
@@ -442,7 +434,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        181
+        167
       ]
     },
     {
@@ -450,7 +442,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        198
+        184
       ]
     },
     {
@@ -458,9 +450,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        250,
-        274,
-        295
+        236,
+        260,
+        281
       ]
     },
     {
@@ -1148,6 +1140,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Subtract",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_subtract_portable: MSVC/Clang Release; 86,016 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlaps with either input, all precision/rounding modes; unchanged control/MXCSR.",
+      "notes": "Shared binary kernel preserves reverse publication order, left-load/raw-right NaN selection and invalid infinity-difference bits. No numerical tolerance. Debug, condition codes and unmasked trap timing are untested."
     },
     {
       "file": "src/Thorn/SplineMath.h",
