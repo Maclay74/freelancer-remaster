@@ -502,35 +502,7 @@ namespace
     // The two input columns are read before rotational output publication.
     void NormalizeLookAtVector(FVec3& Vector)
     {
-        const float One = 1.0f;
-        // The intrinsic C++ candidate changes PC24/RC_DOWN output bits and
-        // spills Inverse to qword in Debug. 341cc..34215 retains it through
-        // all three float stores; 342b5..342f7 uses the same arithmetic.
-        FVec3* const VectorPtr = &Vector;
-        __asm
-        {
-            mov edx, VectorPtr
-            fld dword ptr [edx + 8]
-            fmul dword ptr [edx + 8]
-            fld dword ptr [edx + 4]
-            fmul dword ptr [edx + 4]
-            faddp st(1), st(0)
-            fld dword ptr [edx]
-            fmul dword ptr [edx]
-            faddp st(1), st(0)
-            fsqrt
-            fdivr One
-            fld dword ptr [edx]
-            fmul st(0), st(1)
-            fstp dword ptr [edx]
-            fld dword ptr [edx + 4]
-            fmul st(0), st(1)
-            fstp dword ptr [edx + 4]
-            fld dword ptr [edx + 8]
-            fmul st(0), st(1)
-            fstp dword ptr [edx + 8]
-            fstp st(0)
-        }
+        ThornSceneGeometry::Normalize(Vector.X, Vector.Y, Vector.Z, true);
     }
 
     void CrossLookAtVector(FVec3& Result, const FVec3& A, const FVec3& B, bool bReverseOrder)
