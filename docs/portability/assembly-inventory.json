@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 72,
+  "remaining_blocks": 71,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -122,18 +122,10 @@
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
-      "method": "QuatInverseScaleRetail",
-      "status": "pending",
-      "asm_lines": [
-        103
-      ]
-    },
-    {
-      "file": "src/Thorn/SplinePath.cpp",
       "method": "SquadBlendRetail",
       "status": "pending",
       "asm_lines": [
-        129
+        107
       ]
     },
     {
@@ -141,7 +133,7 @@
       "method": "BuildSlot5MatrixRetail",
       "status": "pending",
       "asm_lines": [
-        151
+        126
       ]
     },
     {
@@ -149,7 +141,7 @@
       "method": "AccumulateSegmentSampleRetail",
       "status": "pending",
       "asm_lines": [
-        418
+        391
       ]
     },
     {
@@ -157,7 +149,7 @@
       "method": "NormalizeSegmentSamplesRetail",
       "status": "pending",
       "asm_lines": [
-        470
+        441
       ]
     },
     {
@@ -165,7 +157,7 @@
       "method": "QuatAdd",
       "status": "pending",
       "asm_lines": [
-        525
+        496
       ]
     },
     {
@@ -173,7 +165,7 @@
       "method": "QuatScale",
       "status": "pending",
       "asm_lines": [
-        556
+        527
       ]
     },
     {
@@ -181,7 +173,7 @@
       "method": "QuatLogRetail",
       "status": "pending",
       "asm_lines": [
-        635
+        605
       ]
     },
     {
@@ -189,8 +181,8 @@
       "method": "QuatFirstControlExp",
       "status": "pending",
       "asm_lines": [
-        717,
-        753
+        687,
+        723
       ]
     },
     {
@@ -198,7 +190,7 @@
       "method": "QuatExpRetail",
       "status": "pending",
       "asm_lines": [
-        775
+        745
       ]
     },
     {
@@ -206,7 +198,7 @@
       "method": "SubtractGhostVector",
       "status": "pending",
       "asm_lines": [
-        1798
+        1766
       ]
     },
     {
@@ -214,7 +206,7 @@
       "method": "ApplyCtorGhosts",
       "status": "pending",
       "asm_lines": [
-        1840
+        1808
       ]
     },
     {
@@ -444,6 +436,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatInverseScaleRetail",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "spline_quaternion: 221,184 cases across seven methods per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Both log scale modes, both exp norm modes and first-control float scale; aliases, threshold neighbors, zero/subnormal/nonfinite inputs. Thorn DLL, actual spline reference contract and targeted CTests build/pass.",
+      "notes": "Portable double arithmetic and standard sin/cos retain the algorithm, final float stores and variant-specific scale/norm float boundaries. Scaled tolerance 5e-6; NaNs by classification, untouched objects exact. No zero-norm fallback. Huge finite exp angles follow standard range reduction rather than x87 C2 behavior. Flags, NaN payloads, signed-zero bits, unmasked waiting boundaries, Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/lua32/src/lobject.c",
