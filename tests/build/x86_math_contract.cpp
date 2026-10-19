@@ -20,6 +20,7 @@ int main()
         }
     }
     FMathEngine engine{};
+    if (RecipSqrtFsqrt(4) != 0.5f || RecipSqrtFsqrt(16) != 0.25f) return 7;
     FQuaternion identity = {1, 0, 0, 0};
     FMatrix matrix{};
     engine.QuaternionToMatrix(matrix, identity);

@@ -5,6 +5,8 @@ I3DMathEngine* ThornAcquire3DMathEngine() { std::abort(); }
 bool ThornNameEqual(const char* a, const char* b) { return a && b && _stricmp(a, b) == 0; }
 int main()
 {
+    for (float time : {0.0f, 0.25f, 0.5f, 0.75f, 1.0f})
+        if (SquadBlendRetail(&time) != 2 * time * (1 - time)) return 9;
     FQuat source = {1, 2, 3, 4}, scaled{};
     QuatScale(scaled, source, 2);
     if (scaled.W != 2 || scaled.X != 4 || scaled.Y != 6 || scaled.Z != 8) return 1;

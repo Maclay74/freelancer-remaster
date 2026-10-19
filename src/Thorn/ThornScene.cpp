@@ -8,6 +8,7 @@
 #include "readfile.h"
 #include "ThornModernAdapters.h"
 #include "ThornControlCalls.h"
+#include "X87Return.h"
 
 #include <cmath>
 #include <cstdarg>
@@ -1096,6 +1097,9 @@ namespace
             fmul st(0), st(1)
             fiadd dword ptr From
         }
+#if defined(__clang__)
+        return ThornReturnSt0Double();
+#endif
     }
 #pragma warning(pop)
 
@@ -1116,6 +1120,9 @@ namespace
             fmul dword ptr [eax]
             fiadd dword ptr From
         }
+#if defined(__clang__)
+        return ThornReturnSt0Double();
+#endif
     }
 #pragma warning(pop)
 
@@ -4160,6 +4167,9 @@ float FThornEvent::EvaluateControlBackedCurve(float Scale, int TimeMs)
             fadd dword ptr [edx]
         }
     }
+#if defined(__clang__)
+    return ThornReturnSt0Float();
+#endif
 }
 #pragma float_control(pop)
 #pragma warning(pop)
@@ -4454,6 +4464,9 @@ float FThornEvent::EvaluateProgress(int TimeMs) const
             }
         }
     }
+#if defined(__clang__)
+    return ThornReturnSt0Float();
+#endif
 }
 #pragma warning(pop)
 
@@ -4491,6 +4504,9 @@ float FThornEvent::EvaluateProgressNoPeriodWrap(int TimeMs) const
             __asm { fld Ratio }
         }
     }
+#if defined(__clang__)
+    return ThornReturnSt0Float();
+#endif
 }
 #pragma warning(pop)
 
