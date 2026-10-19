@@ -39,6 +39,7 @@
 #include "server_connect.h"
 #include "sound_config.h" // SetClientAudioMode (FUN_00428030)
 #include "space_letterbox.h" // UpdateRoomLetterbox (FUN_0041a140)
+#include "space_camera.h"
 #include "text_win.h"
 #include "type_select.h"
 #include "ui_page.h"
@@ -270,10 +271,16 @@ namespace
 
         // 0x005745bd..0x005745f4: the caption box height is the "Normal" font's line height
         // (slot 6, unsigned) times 0.002.
-        IFont* const NormalFont = FindMenuFontImp("Normal"); // FUN_004177b0
+        IFont* const NormalFont = FindMenuFontImp("Normal");
+
+        FSpaceCamera const* const Cam = Win3DGetCamera();
+
+        // Convert font height from screen pixels to world units,
+        // accounting for the camera's current projection scale.
         float const BoxHeight =
-            static_cast<float>(static_cast<unsigned>(NormalFont->GetLineHeight())) *
-            kFontLineScale;
+            static_cast<float>(NormalFont->GetLineHeight()) *
+            fabsf(kMainColumnPosZ) /
+            fabsf(Cam->YScale);
 
         // 0x005745f8..0x0057469c: five "bImg" StaticControls, FRONT_button.cmp, one per row.
         for (int Index = 0; Index < 5; ++Index)
