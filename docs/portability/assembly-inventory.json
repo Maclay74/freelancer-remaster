@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 70,
+  "remaining_blocks": 69,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -146,18 +146,10 @@
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
-      "method": "QuatAdd",
-      "status": "pending",
-      "asm_lines": [
-        485
-      ]
-    },
-    {
-      "file": "src/Thorn/SplinePath.cpp",
       "method": "QuatScale",
       "status": "pending",
       "asm_lines": [
-        516
+        494
       ]
     },
     {
@@ -165,7 +157,7 @@
       "method": "QuatLogRetail",
       "status": "pending",
       "asm_lines": [
-        594
+        572
       ]
     },
     {
@@ -173,8 +165,8 @@
       "method": "QuatFirstControlExp",
       "status": "pending",
       "asm_lines": [
-        676,
-        712
+        654,
+        690
       ]
     },
     {
@@ -182,7 +174,7 @@
       "method": "QuatExpRetail",
       "status": "pending",
       "asm_lines": [
-        734
+        712
       ]
     },
     {
@@ -190,7 +182,7 @@
       "method": "SubtractGhostVector",
       "status": "pending",
       "asm_lines": [
-        1755
+        1733
       ]
     },
     {
@@ -198,7 +190,7 @@
       "method": "ApplyCtorGhosts",
       "status": "pending",
       "asm_lines": [
-        1797
+        1775
       ]
     },
     {
@@ -428,6 +420,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatAdd",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "spline_quaternion: 221,184 cases across seven methods per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Both log scale modes, both exp norm modes and first-control float scale; aliases, threshold neighbors, zero/subnormal/nonfinite inputs. Thorn DLL, actual spline reference contract and targeted CTests build/pass.",
+      "notes": "Portable double arithmetic and standard sin/cos retain the algorithm, final float stores and variant-specific scale/norm float boundaries. Scaled tolerance 5e-6; NaNs by classification, untouched objects exact. No zero-norm fallback. Huge finite exp angles follow standard range reduction rather than x87 C2 behavior. Flags, NaN payloads, signed-zero bits, unmasked waiting boundaries, Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
