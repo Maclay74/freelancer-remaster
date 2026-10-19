@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 228,
+  "remaining_blocks": 227,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -652,7 +652,7 @@
       "method": "Scale",
       "status": "pending",
       "asm_lines": [
-        15
+        16
       ]
     },
     {
@@ -660,7 +660,7 @@
       "method": "Add",
       "status": "pending",
       "asm_lines": [
-        33
+        34
       ]
     },
     {
@@ -668,7 +668,7 @@
       "method": "SubtractVector",
       "status": "pending",
       "asm_lines": [
-        52
+        53
       ]
     },
     {
@@ -676,7 +676,7 @@
       "method": "DoubleStored",
       "status": "pending",
       "asm_lines": [
-        71
+        72
       ]
     },
     {
@@ -684,7 +684,7 @@
       "method": "Subtract",
       "status": "pending",
       "asm_lines": [
-        90
+        91
       ]
     },
     {
@@ -692,7 +692,7 @@
       "method": "AddStored",
       "status": "pending",
       "asm_lines": [
-        109
+        110
       ]
     },
     {
@@ -700,7 +700,7 @@
       "method": "Negate",
       "status": "pending",
       "asm_lines": [
-        128
+        129
       ]
     },
     {
@@ -708,15 +708,7 @@
       "method": "ScaleStored",
       "status": "pending",
       "asm_lines": [
-        146
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "NegateStored",
-      "status": "pending",
-      "asm_lines": [
-        164
+        147
       ]
     },
     {
@@ -724,8 +716,8 @@
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        185,
-        218
+        173,
+        206
       ]
     },
     {
@@ -733,7 +725,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        246
+        234
       ]
     },
     {
@@ -741,7 +733,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        263
+        251
       ]
     },
     {
@@ -749,9 +741,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        315,
-        339,
-        360
+        303,
+        327,
+        348
       ]
     },
     {
@@ -1559,6 +1551,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "NegateStored",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_negate_stored: MSVC/Clang Debug/Release; 840,000 exact output/x87-status comparisons per configuration, all PC/RC modes, special values and overlap; 504 unmasked invalid/denormal cases matching exception code/status and partial output.",
+      "notes": "Production kernel in PortableSplineMath.h. Volatile double widening retains signaling-NaN quieting, denormal load effects, and Z/Y/X store order. No tolerance."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
