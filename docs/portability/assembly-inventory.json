@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 120,
+  "remaining_blocks": 119,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -105,14 +105,6 @@
       "status": "pending",
       "asm_lines": [
         3265
-      ]
-    },
-    {
-      "file": "src/RemoteServer/RemoteServer_main.cpp",
-      "method": "HandlePacket",
-      "status": "pending",
-      "asm_lines": [
-        286
       ]
     },
     {
@@ -767,11 +759,19 @@
       ]
     },
     {
+      "file": "src/RemoteServer/RemoteServer_main.cpp",
+      "method": "HandlePacket",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "rpc_update_receive: MSVC/Clang Release, 36,864 exact whole-buffer/exception-flag/stack comparisons per compiler; all precision/rounding settings, NaN/infinity/subnormal pairs, random encodings, swapped/overlapping/unaligned destination and source aliases; unchanged control/MXCSR. Integration: RemoteServer DLL target and both field CTests pass in Clang Release.",
+      "notes": "Both incoming float fields are numerically loaded before either destination is written. Packet dispatch, destination fields and callback ordering unchanged. No numerical tolerance. Condition codes, unmasked trap timing, Debug and non-x86 builds remain untested."
+    },
+    {
       "file": "src/RemoteServer/IServerImpl.cpp",
       "method": "IServerImpl::SPObjUpdate",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "rpc_update_narrow: MSVC/Clang Release, 43,008 exact whole-buffer/exception-flag/stack comparisons per compiler; all precision/rounding settings, overlap/unaligned destination, signed zeros, NaNs, infinities, denormals and narrowing underflow/overflow boundaries; unchanged control/MXCSR.",
+      "evidence": "rpc_update_narrow: MSVC/Clang Release, 43,008 exact whole-buffer/exception-flag/stack comparisons per compiler; all precision/rounding settings, overlap/unaligned destination, signed zeros, NaNs, infinities, denormals and narrowing underflow/overflow boundaries; unchanged control/MXCSR. Integration: RemoteServer DLL target and both field CTests pass in Clang Release.",
       "notes": "Narrow timestamp before packet payload writes, after allocation success. feupdateenv plus original-input replay filters a Clang-only denormal flag from narrowed-result reloads. No numerical tolerance. Condition codes and unmasked exception timing are untested; Debug and non-x86 not tested."
     },
     {

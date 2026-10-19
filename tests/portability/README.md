@@ -365,3 +365,8 @@ rounding settings, swapped/overlapping/unaligned destinations and output aliases
 of either input. Both helpers preserve control/MXCSR and use no numerical
 tolerance. x87 condition codes and unmasked trap timing are not checked; Debug,
 other architectures and gameplay/multiplayer checks are not performed here.
+
+The RemoteServer DLL target and both CTests build/pass with Clang Release.
+`src/RemoteServer` now contains no inline assembly; four shared codec blocks in
+`src/RemoteCommon/remote_server_channel_codecs.cpp` remain a separate task and
+are still linked into the DLL. The full game was not built, run or restaged.
