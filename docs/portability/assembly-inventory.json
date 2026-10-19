@@ -738,7 +738,7 @@
       "method": "RpcServerQuantizeHull",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "rpc_server_quantize_hull: MSVC/Clang Release, 12,288 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes.",
+      "evidence": "rpc_server_quantize_hull: MSVC/Clang Release, 12,288 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes. Integration: RemoteClient and RemoteServer DLL targets build; all three new CTests pass in Clang Release.",
       "notes": "Portable C++ with domain-specific integer arithmetic for legacy PC64 intermediate precision; PC24/53 use ordinary binary64 expressions and the existing safe truncation helper. Windows x86 uses CRT control queries only, with no inline assembly. No numerical tolerance. C1/condition codes, unmasked trap timing, Debug, other architectures and end-to-end gameplay/networking are untested. Other targets default to binary64 arithmetic; cross-platform wire equivalence still needs validation."
     },
     {
@@ -746,7 +746,7 @@
       "method": "RpcServerExpandHull",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "rpc_server_expand_hull: MSVC/Clang Release, 113,664 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes.",
+      "evidence": "rpc_server_expand_hull: MSVC/Clang Release, 113,664 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes. Integration: RemoteClient and RemoteServer DLL targets build; all three new CTests pass in Clang Release.",
       "notes": "Portable C++ with domain-specific integer arithmetic for legacy PC64 intermediate precision; PC24/53 use ordinary binary64 expressions and the existing safe truncation helper. Windows x86 uses CRT control queries only, with no inline assembly. No numerical tolerance. C1/condition codes, unmasked trap timing, Debug, other architectures and end-to-end gameplay/networking are untested. Other targets default to binary64 arithmetic; cross-platform wire equivalence still needs validation."
     },
     {
@@ -754,7 +754,7 @@
       "method": "RpcServerSendCommQuantize",
       "status": "replaced",
       "asm_lines": [],
-      "evidence": "rpc_server_quantize_comm: MSVC/Clang Release, 49,152 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes.",
+      "evidence": "rpc_server_quantize_comm: MSVC/Clang Release, 49,152 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes. Integration: RemoteClient and RemoteServer DLL targets build; all three new CTests pass in Clang Release.",
       "notes": "Portable C++ with domain-specific integer arithmetic for legacy PC64 intermediate precision; PC24/53 use ordinary binary64 expressions and the existing safe truncation helper. Windows x86 uses CRT control queries only, with no inline assembly. No numerical tolerance. C1/condition codes, unmasked trap timing, Debug, other architectures and end-to-end gameplay/networking are untested. Other targets default to binary64 arithmetic; cross-platform wire equivalence still needs validation."
     },
     {
