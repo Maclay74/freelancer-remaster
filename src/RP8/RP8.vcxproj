@@ -56,6 +56,8 @@
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
+      <!-- DX8.1 embeds obsolete static CRT defaults; use this project's modern /MD CRT. -->
+      <IgnoreSpecificDefaultLibraries>libci.lib;libc.lib;%(IgnoreSpecificDefaultLibraries)</IgnoreSpecificDefaultLibraries>
       <AdditionalDependencies>dacom.lib;ddraw.lib;d3d8.lib;d3dx8.lib;legacy_stdio_definitions.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <AdditionalLibraryDirectories>$(Dx8SdkDir)\lib;$(OutDir);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
       <!-- DX8.1 SDK d3dx8.lib has no SafeSEH tables; Release otherwise links with /SAFESEH. -->

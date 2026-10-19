@@ -223,7 +223,13 @@ namespace
         float A;
         float B;
         float C;
+#if defined(__clang__) && defined(_M_IX86)
+        // Clang rejects naked member functions. A fastcall entry keeps this in
+        // ECX and Vec on the stack (unused EDX), preserving the RET 4/ST0 ABI.
+        float (__fastcall *Kernel)(FFastDot*, void*, const FVector*);
+#else
         float (FFastDot::*Kernel)(const FVector* Vec);
+#endif
         int SavedOps;
 
         float FastDotZZZ(const FVector* Vec);
@@ -255,7 +261,15 @@ namespace
         float FastDotGGG(const FVector* Vec);
     };
 
+#if defined(__clang__) && defined(_M_IX86)
+    typedef float (__fastcall *FFastDotKernel)(FFastDot*, void*, const FVector*);
+#define FAST_DOT_ENTRY(Name) __fastcall Name(FFastDot*, void*, const FVector*)
+#define FAST_DOT_ADDRESS(Name) &Name
+#else
     typedef float (FFastDot::*FFastDotKernel)(const FVector* Vec);
+#define FAST_DOT_ENTRY(Name) FFastDot::Name(const FVector* /*Vec*/)
+#define FAST_DOT_ADDRESS(Name) &FFastDot::Name
+#endif
 
     int ClassifyLane(float X)
     {
@@ -268,7 +282,7 @@ namespace
 
 #if defined(_M_IX86)
     // DAT_06f730fc — FLD of +0.0; FLDZ is the same value (ZZZ only).
-    __declspec(naked) float FFastDot::FastDotZZZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZZZ)
     {
         __asm
         {
@@ -276,7 +290,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZZO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZZO)
     {
         __asm
         {
@@ -285,7 +299,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZZG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZZG)
     {
         __asm
         {
@@ -295,7 +309,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZOZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZOZ)
     {
         __asm
         {
@@ -304,7 +318,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZOO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZOO)
     {
         __asm
         {
@@ -314,7 +328,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZOG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZOG)
     {
         __asm
         {
@@ -325,7 +339,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZGZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZGZ)
     {
         __asm
         {
@@ -335,7 +349,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZGO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZGO)
     {
         __asm
         {
@@ -346,7 +360,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotZGG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotZGG)
     {
         __asm
         {
@@ -359,7 +373,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOZZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOZZ)
     {
         __asm
         {
@@ -368,7 +382,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOZO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOZO)
     {
         __asm
         {
@@ -378,7 +392,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOZG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOZG)
     {
         __asm
         {
@@ -389,7 +403,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOOZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOOZ)
     {
         __asm
         {
@@ -399,7 +413,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOOO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOOO)
     {
         __asm
         {
@@ -410,7 +424,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOOG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOOG)
     {
         __asm
         {
@@ -422,7 +436,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOGZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOGZ)
     {
         __asm
         {
@@ -433,7 +447,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOGO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOGO)
     {
         __asm
         {
@@ -445,7 +459,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotOGG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotOGG)
     {
         __asm
         {
@@ -459,7 +473,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGZZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGZZ)
     {
         __asm
         {
@@ -469,7 +483,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGZO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGZO)
     {
         __asm
         {
@@ -480,7 +494,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGZG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGZG)
     {
         __asm
         {
@@ -493,7 +507,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGOZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGOZ)
     {
         __asm
         {
@@ -504,7 +518,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGOO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGOO)
     {
         __asm
         {
@@ -516,7 +530,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGOG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGOG)
     {
         __asm
         {
@@ -530,7 +544,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGGZ(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGGZ)
     {
         __asm
         {
@@ -543,7 +557,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGGO(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGGO)
     {
         __asm
         {
@@ -557,7 +571,7 @@ namespace
             ret 4
         }
     }
-    __declspec(naked) float FFastDot::FastDotGGG(const FVector* /*Vec*/)
+    __declspec(naked) float FAST_DOT_ENTRY(FastDotGGG)
     {
         __asm
         {
@@ -604,13 +618,16 @@ namespace
 #endif
 
     const FFastDotKernel G_FastDotKernels[27] = {
-        &FFastDot::FastDotZZZ, &FFastDot::FastDotZZO, &FFastDot::FastDotZZG, &FFastDot::FastDotZOZ,
-        &FFastDot::FastDotZOO, &FFastDot::FastDotZOG, &FFastDot::FastDotZGZ, &FFastDot::FastDotZGO,
-        &FFastDot::FastDotZGG, &FFastDot::FastDotOZZ, &FFastDot::FastDotOZO, &FFastDot::FastDotOZG,
-        &FFastDot::FastDotOOZ, &FFastDot::FastDotOOO, &FFastDot::FastDotOOG, &FFastDot::FastDotOGZ,
-        &FFastDot::FastDotOGO, &FFastDot::FastDotOGG, &FFastDot::FastDotGZZ, &FFastDot::FastDotGZO,
-        &FFastDot::FastDotGZG, &FFastDot::FastDotGOZ, &FFastDot::FastDotGOO, &FFastDot::FastDotGOG,
-        &FFastDot::FastDotGGZ, &FFastDot::FastDotGGO, &FFastDot::FastDotGGG};
+        FAST_DOT_ADDRESS(FastDotZZZ), FAST_DOT_ADDRESS(FastDotZZO), FAST_DOT_ADDRESS(FastDotZZG), FAST_DOT_ADDRESS(FastDotZOZ),
+        FAST_DOT_ADDRESS(FastDotZOO), FAST_DOT_ADDRESS(FastDotZOG), FAST_DOT_ADDRESS(FastDotZGZ), FAST_DOT_ADDRESS(FastDotZGO),
+        FAST_DOT_ADDRESS(FastDotZGG), FAST_DOT_ADDRESS(FastDotOZZ), FAST_DOT_ADDRESS(FastDotOZO), FAST_DOT_ADDRESS(FastDotOZG),
+        FAST_DOT_ADDRESS(FastDotOOZ), FAST_DOT_ADDRESS(FastDotOOO), FAST_DOT_ADDRESS(FastDotOOG), FAST_DOT_ADDRESS(FastDotOGZ),
+        FAST_DOT_ADDRESS(FastDotOGO), FAST_DOT_ADDRESS(FastDotOGG), FAST_DOT_ADDRESS(FastDotGZZ), FAST_DOT_ADDRESS(FastDotGZO),
+        FAST_DOT_ADDRESS(FastDotGZG), FAST_DOT_ADDRESS(FastDotGOZ), FAST_DOT_ADDRESS(FastDotGOO), FAST_DOT_ADDRESS(FastDotGOG),
+        FAST_DOT_ADDRESS(FastDotGGZ), FAST_DOT_ADDRESS(FastDotGGO), FAST_DOT_ADDRESS(FastDotGGG)};
+
+#undef FAST_DOT_ENTRY
+#undef FAST_DOT_ADDRESS
 
     const int G_FastDotSavedOps[27] = {5, 5, 4, 5, 4, 3, 4, 3, 2, 5, 4, 3, 4, 3, 2, 3, 2, 1, 4, 3, 2, 3, 2, 1, 2, 1, 0};
 
@@ -625,12 +642,20 @@ namespace
     // checked against 71ab4..71ad2 and 72110..7213c.
     void StoreKernelPlain(FFastDot& Dot, const FVector* Src, float* Dst)
     {
+#if defined(__clang__) && defined(_M_IX86)
+        *Dst = Dot.Kernel(&Dot, nullptr, Src);
+#else
         *Dst = (Dot.*Dot.Kernel)(Src);
+#endif
     }
 
     void StoreKernelAdd(FFastDot& Dot, const FVector* Src, float* Dst, const float* Addend)
     {
+#if defined(__clang__) && defined(_M_IX86)
+        *Dst = Dot.Kernel(&Dot, nullptr, Src) + *Addend;
+#else
         *Dst = (Dot.*Dot.Kernel)(Src) + *Addend;
+#endif
     }
 
     void BindFastDot(FFastDot& Dot, float A, float B, float C)
@@ -1214,9 +1239,13 @@ struct FMathEngine final : I3DMathEngine, IComponentFactory
         float Zs;
         const float One = 1.0f;
         const float Two = 2.0f;
+        // Named reference operands have different MSVC/Clang inline-asm
+        // semantics. Explicit pointers keep both compilers on the same ABI.
+        const FQuaternion* const QuatPtr = &Quat;
+        FMatrix* const DstPtr = &Dst;
         __asm
         {
-            mov eax, Quat
+            mov eax, QuatPtr
             lea edx, Scratch
             fld dword ptr [eax + 0ch]
             fld dword ptr [eax + 8]
@@ -1270,7 +1299,7 @@ struct FMathEngine final : I3DMathEngine, IComponentFactory
             fmul dword ptr [eax + 0ch]
             fld dword ptr [edx + 10h]
             // Every quaternion input read precedes the first output write.
-            mov eax, Dst
+            mov eax, DstPtr
             fadd st(0), st(1)
             fsubr One
             fstp dword ptr [eax]
@@ -1315,11 +1344,13 @@ struct FMathEngine final : I3DMathEngine, IComponentFactory
         // component store order and NaN hemisphere selection. Inputs may alias Dst.
         static const float Zero = 0.0f;
         static const float One = 1.0f;
+        const void* const Args[] = {T, &A, &B, &Dst, &Zero, &One};
         __asm
         {
-            mov esi, T
-            mov ecx, A
-            mov edx, B
+            lea edi, Args
+            mov esi, dword ptr [edi]
+            mov ecx, dword ptr [edi + 4]
+            mov edx, dword ptr [edi + 8]
             fld dword ptr [ecx + 8]
             fmul dword ptr [edx + 8]
             fld dword ptr [ecx + 4]
@@ -1331,10 +1362,11 @@ struct FMathEngine final : I3DMathEngine, IComponentFactory
             fld dword ptr [ecx]
             fmul dword ptr [edx]
             faddp st(1), st(0)
-            fcomp Zero
+            mov ebx, dword ptr [edi + 16]
+            fcomp dword ptr [ebx]
             fnstsw ax
             test ah, 05h
-            mov eax, Dst
+            mov eax, dword ptr [edi + 12]
             // Less=01h (odd parity) falls through. Nonnegative=00h and
             // unordered=05h (even parity) take the forward branch.
             jp QuatForwardHemisphere
@@ -1400,7 +1432,8 @@ struct FMathEngine final : I3DMathEngine, IComponentFactory
             fstp st(0)
             fstp st(0)
             fstp st(0)
-            fdivr One
+            mov ebx, dword ptr [edi + 20]
+            fdivr dword ptr [ebx]
             fld st(0)
             fmul dword ptr [eax]
             fstp dword ptr [eax]

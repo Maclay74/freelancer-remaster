@@ -215,10 +215,22 @@ namespace AlchemyImpl
     // per word (b * W) and (a * (255 - W)) keep their low 16 bits (PMULLW), shift right 8
     // (PSRLW), add with signed saturation (PADDSW), pack with unsigned saturation
     // (PACKUSWB). The alpha word has both weights 0, so the top byte comes out 0.
+#if defined(__clang__)
+    // Permit this intrinsic without enabling SSE scalar arithmetic in the ramp.
+    __attribute__((target("sse"), noinline))
+    static int RampRoundSse(float Value)
+    {
+        return _mm_cvtss_si32(_mm_set_ss(Value));
+    }
+#endif
     static unsigned long RampColorSmoothMmx(unsigned long A, unsigned long B, float T)
     {
         const float Weight = (T * -2.0f + 3.0f) * T * T * kRamp255;
+#if defined(__clang__)
+        const int W = RampRoundSse(Weight);
+#else
         const int W = _mm_cvtss_si32(_mm_set_ss(Weight));
+#endif
         const unsigned short WeightB = static_cast<unsigned short>(W);
         const unsigned short WeightA = static_cast<unsigned short>(0xFF - WeightB);
         unsigned long Result = 0;

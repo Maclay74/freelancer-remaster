@@ -10,6 +10,9 @@ Russian: [README.ru.md](README.ru.md). Documentation: [docs/README.md](docs/READ
 
 ## Building and running
 
+For the Windows x86 **CMake + Ninja + clang-cl** workflow, see
+[building with CMake](docs/building-cmake.md). The Visual Studio workflow below remains supported.
+
 1. **Clone** this repository.
 2. **Add the game data:** copy the `DATA` folder of an installed Freelancer (or of a mod) into
    the repository root, next to `src`, so that `DATA\` and `DATA_EXTRA\` sit side by side.

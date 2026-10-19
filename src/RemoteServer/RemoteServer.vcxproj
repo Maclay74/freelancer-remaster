@@ -80,6 +80,9 @@
     <ProjectReference Include="..\freelancer\freelancer.vcxproj">
       <Project>{7E2C0A19-8B3C-4D4E-9516-A7B8C9D0E1F2}</Project>
     </ProjectReference>
+    <ProjectReference Include="..\Server\Server.vcxproj">
+      <Project>{B1C2D3E4-F5A6-7890-BCDE-F12345678901}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
 </Project>

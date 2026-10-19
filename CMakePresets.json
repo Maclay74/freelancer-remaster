@@ -1,0 +1,53 @@
+{
+  "version": 6,
+  "cmakeMinimumRequired": {
+    "major": 3,
+    "minor": 29,
+    "patch": 0
+  },
+  "configurePresets": [
+    {
+      "name": "windows-x86-clang-base",
+      "hidden": true,
+      "generator": "Ninja",
+      "binaryDir": "${sourceDir}/out/build/${presetName}",
+      "cacheVariables": {
+        "CMAKE_C_COMPILER": "clang-cl",
+        "CMAKE_CXX_COMPILER": "clang-cl",
+        "CMAKE_C_FLAGS_INIT": "--target=i686-pc-windows-msvc",
+        "CMAKE_CXX_FLAGS_INIT": "--target=i686-pc-windows-msvc",
+        "CMAKE_INSTALL_PREFIX": "${sourceDir}/out/stage/${presetName}",
+        "CMAKE_EXPORT_COMPILE_COMMANDS": "ON",
+        "CMAKE_LINKER": "$env{VCToolsInstallDir}bin/Hostx64/x86/link.exe",
+        "CMAKE_MT": "$env{WindowsSdkVerBinPath}x64/mt.exe",
+        "CMAKE_LINKER_TYPE": "MSVC"
+      }
+    },
+    {
+      "name": "windows-x86-clang-debug",
+      "inherits": "windows-x86-clang-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Debug"
+      }
+    },
+    {
+      "name": "windows-x86-clang-release",
+      "inherits": "windows-x86-clang-base",
+      "cacheVariables": {
+        "CMAKE_BUILD_TYPE": "Release"
+      }
+    }
+  ],
+  "buildPresets": [
+    {
+      "name": "windows-x86-clang-debug",
+      "configurePreset": "windows-x86-clang-debug",
+      "jobs": 8
+    },
+    {
+      "name": "windows-x86-clang-release",
+      "configurePreset": "windows-x86-clang-release",
+      "jobs": 8
+    }
+  ]
+}

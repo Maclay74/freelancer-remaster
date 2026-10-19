@@ -114,13 +114,15 @@ static const int kFdumpLine = 0x167;
 static const int kFdumpError = 0x100001;
 
 // LAB_06801120: FDUMP is called through the import with no null test.
-extern "C" static void LuaErrorMessage(void)
+extern "C" {
+static void LuaErrorMessage(void)
 {
     lua_Object Param = lua_getparam(1);
     if (lua_isstring(Param) == 0)
         return;
     char* Message = lua_getstring(Param);
     FDUMP(kFdumpError, kFdumpFmt, kFdumpPath, kFdumpLine, Message);
+}
 }
 
 // Factory QI 068018e0: REPE CMPSB over 0x17 bytes, stops at the first mismatch.

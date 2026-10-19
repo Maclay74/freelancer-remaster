@@ -1427,6 +1427,11 @@ namespace AlchemyImpl
 
     // FUN_0623f590. Scalar SSE intrinsics preserve each MULSS/ADDSS store
     // precision and CVTTSS2SI's indefinite result, without C++ conversion UB.
+    // clang-cl's /arch:IA32 disables intrinsics unless this SSE-only routine
+    // explicitly opts in. Keep all other routines on the legacy x87 path.
+#if defined(__clang__)
+    __attribute__((target("sse")))
+#endif
     static void ComputeSinCosSse(float AngleRadians, float* Out)
     {
         unsigned long AngleBits;
