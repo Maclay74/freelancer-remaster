@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 53,
+  "remaining_blocks": 52,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -154,18 +154,10 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "ConvertCompactLightRetail",
-      "status": "pending",
-      "asm_lines": [
-        1021
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "ApplyAxisRotFpu",
       "status": "pending",
       "asm_lines": [
-        1383
+        1268
       ]
     },
     {
@@ -173,7 +165,7 @@
       "method": "ApplyPsysSparam",
       "status": "pending",
       "asm_lines": [
-        2031
+        1916
       ]
     },
     {
@@ -181,7 +173,7 @@
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        2057
+        1942
       ]
     },
     {
@@ -189,7 +181,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        2121
+        2006
       ]
     },
     {
@@ -197,7 +189,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        2194
+        2079
       ]
     },
     {
@@ -205,7 +197,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2247
+        2132
       ]
     },
     {
@@ -213,11 +205,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3768,
-        3779,
-        3791,
-        3800,
-        3810
+        3653,
+        3664,
+        3676,
+        3685,
+        3695
       ]
     },
     {
@@ -225,9 +217,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        4079,
-        4097,
-        4107
+        3964,
+        3982,
+        3992
       ]
     },
     {
@@ -235,9 +227,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        4130,
-        4139,
-        4151
+        4015,
+        4024,
+        4036
       ]
     },
     {
@@ -245,10 +237,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        4167,
-        4191,
-        4203,
-        4216
+        4052,
+        4076,
+        4088,
+        4101
       ]
     },
     {
@@ -256,7 +248,7 @@
       "method": "FThornEvent::StartAttachEntity",
       "status": "pending",
       "asm_lines": [
-        4410
+        4295
       ]
     },
     {
@@ -264,8 +256,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4631,
-        4665
+        4516,
+        4550
       ]
     },
     {
@@ -273,7 +265,7 @@
       "method": "FThornEvent::TickPsysPropAnim",
       "status": "pending",
       "asm_lines": [
-        5108
+        4993
       ]
     },
     {
@@ -299,6 +291,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ConvertCompactLightRetail",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scene_interpolation: 270,336 cases across eleven methods/spans per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Scalar/vector/scale aliases, late accumulator rereads, zero/subnormal/nonfinite inputs, axis IDs/cardinal angles, particle runtime-before-callback publication and compact-light raw-buffer overlaps. Thorn DLL, scene source contract and targeted CTests build/pass.",
+      "notes": "Portable double math retains explicit light-direction float boundaries, sequential component publication, axis sine/double versus cosine/float, compact layout/branch/selective writes and existing caller callback order. Float tolerance 3e-6 scaled; attach decisions/untouched bytes exact. Particle publication and Z/Y/X negation buffers exact in samples; StartAttachEntity reuses NegateStored, not snapshot NegateVector (the initial wrong helper failed overlapping cases and was corrected). Event methods compare replaced spans plus actual scene source contract, not full event/gameplay execution. NaN payloads, signed-zero bits, flags, unmasked timing, huge finite trig C2 behavior, Debug and non-x86 execution untested/not legacy contracts."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
