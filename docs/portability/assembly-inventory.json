@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 50,
+  "remaining_blocks": 49,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -245,14 +245,6 @@
       ]
     },
     {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "FThornEvent::TickPsysPropAnim",
-      "status": "pending",
-      "asm_lines": [
-        4892
-      ]
-    },
-    {
       "file": "src/Thorn/X87Return.h",
       "method": "ThornReturnExtendedFloat",
       "status": "pending",
@@ -275,6 +267,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::TickPsysPropAnim",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scene_interpolation: 270,336 cases across eleven methods/spans per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Scalar/vector/scale aliases, late accumulator rereads, zero/subnormal/nonfinite inputs, axis IDs/cardinal angles, particle runtime-before-callback publication and compact-light raw-buffer overlaps. Thorn DLL, scene source contract and targeted CTests build/pass.",
+      "notes": "Portable double math retains explicit light-direction float boundaries, sequential component publication, axis sine/double versus cosine/float, compact layout/branch/selective writes and existing caller callback order. Float tolerance 3e-6 scaled; attach decisions/untouched bytes exact. Particle publication and Z/Y/X negation buffers exact in samples; StartAttachEntity reuses NegateStored, not snapshot NegateVector (the initial wrong helper failed overlapping cases and was corrected). Event methods compare replaced spans plus actual scene source contract, not full event/gameplay execution. NaN payloads, signed-zero bits, flags, unmasked timing, huge finite trig C2 behavior, Debug and non-x86 execution untested/not legacy contracts."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
