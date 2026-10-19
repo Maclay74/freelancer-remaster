@@ -1,5 +1,6 @@
 [CmdletBinding()]
-param([Parameter(Mandatory)][ValidatePattern('^[a-z0-9_-]+$')][string]$Test)
+param([Parameter(Mandatory)][ValidatePattern('^[a-z0-9_-]+$')][string]$Test,
+      [switch]$ContinueOnFailure)
 $ErrorActionPreference = 'Stop'
 $originalEnvironment = @{}
 Get-ChildItem Env: | ForEach-Object { $originalEnvironment[$_.Name] = $_.Value }
@@ -20,6 +21,7 @@ try {
     New-Item -ItemType Directory -Force -Path $output | Out-Null
     $results = Join-Path $output 'results.txt'
     Set-Content -LiteralPath $results -Value "Isolated kernel: $Test"
+    $comparisonFailures = 0
     foreach ($compilerName in 'clang', 'msvc') {
         $compiler = if ($compilerName -eq 'clang') { Join-Path $env:ProgramFiles 'LLVM\bin\clang-cl.exe' } else { (Get-Command cl.exe).Source }
         foreach ($configuration in 'debug', 'release') {
@@ -34,10 +36,15 @@ try {
             if ($LASTEXITCODE) { throw "Kernel compilation failed: $name" }
             "`n=== $name ===" | Tee-Object -FilePath $results -Append
             & $exe | Tee-Object -FilePath $results -Append
-            if ($LASTEXITCODE) { throw "Kernel comparison failed: $name" }
+            if ($LASTEXITCODE) {
+                ++$comparisonFailures
+                if (!$ContinueOnFailure) { throw "Kernel comparison failed: $name" }
+                Write-Warning "Kernel comparison failed: $name; collecting the remaining configurations."
+            }
         }
     }
     Write-Host "Results: $results"
+    if ($comparisonFailures) { throw "$comparisonFailures compiler/configuration comparisons failed." }
 }
 finally {
     Get-ChildItem Env: | Where-Object { !$originalEnvironment.ContainsKey($_.Name) } | ForEach-Object { [Environment]::SetEnvironmentVariable($_.Name, $null, 'Process') }

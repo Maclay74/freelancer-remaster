@@ -682,10 +682,12 @@
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "AddStored",
-      "status": "pending",
+      "status": "investigating",
       "asm_lines": [
         97
-      ]
+      ],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_add_stored -ContinueOnFailure: 1,680,000 masked and 3,024 unmasked cases per configuration. Clang Debug: 956 output mismatches (all NaN payloads), 2,390 status mismatches, 468 unmasked mismatches. Clang Release and MSVC Debug/Release pass.",
+      "notes": "Production assembly retained. Candidate in tests/portability/candidates/spline_add_stored.h. Clang Debug separately quiets both operand loads before FADDP; original FLD/FADD-memory quiets only the first before arithmetic, changing NaN choice and unmasked stack/status. No tolerance accepted."
     },
     {
       "file": "src/Thorn/SplineMath.h",
