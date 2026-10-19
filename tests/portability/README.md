@@ -75,6 +75,24 @@ unchanged in time tests. Exception flags, NaN payload effects and unmasked wait
 timing are not contracts. Thorn builds and the targeted CTest passes; the Lua VM,
 gameplay, Debug and non-x86 execution remain untested.
 
+`lua_binary_number` tests the C-compatible production VM arithmetic helpers with
+196,608 exact whole-buffer/control-word cases per MSVC/Clang Release compiler,
+covering subtraction/division, aliases, arbitrary binary64 encodings and explicit
+zero/subnormal/infinite/quiet and signaling NaN pairs in all 12 precision/rounding
+modes. Right-load-first NaN quieting/selection and invalid arithmetic's indefinite
+bits are retained. No numerical tolerance is used. Exception flags and unmasked
+trap timing are not compared. This exercises the arithmetic helpers rather than
+the interpreter's dispatch loop; Thorn's C integration builds.
+
+`lua_number_parse_contract` links the actual C parser and compares its signed
+object boundary with the original waiting wrapper: 504 exact return/object cases
+per MSVC/Clang Release compiler, all 12 precision/rounding modes, valid/invalid/
+overflow strings and sign variants. Clang runs through CTest; the standalone
+MSVC check compiles `lobject.c` as C and links the C++ contract with `/O2 /MD
+/arch:IA32` and the Lua include directory. Removing `fwait` deliberately adopts
+the runtime's exception-delivery rules; unmasked delivery timing is not retained.
+Debug, non-x86 execution, complete VM execution and gameplay remain untested.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are

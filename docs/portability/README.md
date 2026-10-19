@@ -90,6 +90,14 @@ negative-cutoff handling and source reads/publication relevant to aliases, with
 the tested RGB tolerance documented separately. The Lua interpreter and the
 remaining scene/curve assembly are separate outstanding work.
 
+The remaining Lua C runtime assembly is removed as well. VM subtraction/division
+use `PortableNumberMath.h` to retain right-load-first NaN selection and invalid
+result bits with standard C arithmetic and bit operations. Number-object parsing
+no longer inserts an x87-only waiting instruction. Numeric/object results are
+checked separately from exception-delivery timing, which now follows the runtime.
+The actual C parser and math callbacks are tested without building the game; a
+complete interpreter/gameplay regression check is still outstanding.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.
