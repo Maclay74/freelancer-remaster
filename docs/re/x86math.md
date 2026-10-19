@@ -6,7 +6,7 @@
 
 There are no PE exports (only `DllMain`); other modules do not link against x86math but create the object through `ICOManager::CreateInstance` with the descriptor `{size = 0xC, interface_name = "3DMathEngine", implementation = NULL}` (field `+8`: NULL or `"x86"`). The factory is registered with priority `0x40000000`. Codes: success — `GR_OK`, `*out` is the object with AddRef; `desc == 0` or no name — `0xFFFFFFFE`; wrong size/name/implementation — `0xFFFFFFFD`. The name is compared bytewise with `"3DMathEngine"` (13 bytes). `QueryInterface` on the object itself always returns `*out = 0` and `GR_GENERIC`: the IID `"1.11_I3DMathEngine"` is not used in retail, the only path to the object is `CreateInstance`. `AddRef`/`Release` always return 1 (singleton). If `CreateInstance` is broken, EngBase gets null math pointers and crashes on the first call.
 
-`DllMain` (attach): creates the object with two vfptrs (math interface + factory, 8 bytes), builds the `InvSqrt` table and registers the component. If `new` fails it returns TRUE without building the table.
+`DllMain` (attach): creates the object with two vfptrs (math interface + factory, 8 bytes) and registers the component. If `new` fails it returns TRUE. The port no longer initializes an inverse-square-root table.
 
 ## Types
 
@@ -23,7 +23,7 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 
 ## Port deviations
 
-1. No CRT `_initterm`/onexit: the table is built explicitly in `DllMain` after a successful `new`.
+1. No CRT `_initterm`/onexit or inverse-square-root table initialization. At the user's request, `Sqrt` now uses standard square root and `InvSqrt` uses `1.0 / sqrt(double(X))` narrowed to float (`src/x86math/ScalarMath.h`). This deliberately changes approximation/edge-case results and floating-point flags. The table algorithm described above documents retail behavior; it remains only as a test oracle, not in production.
 2. The FastDot kernels are naked thiscall members of `FFastDot` (result in ST0), because MSVC cannot express a free `__thiscall`; thresholds and layout are the same. Slots 16/17 remain `DACOM_API` stdcall.
 3. The object is created with `::operator new(8, nothrow)` + placement new (MSVC writes the vfptr itself, retail does it manually; `sizeof == 8`).
 4. The port's `QueryInterface` and `CreateInstance` check the output pointer for NULL; retail writes without a check.

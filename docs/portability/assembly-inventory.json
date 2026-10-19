@@ -1,35 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 173,
+  "remaining_blocks": 153,
   "methods": [
-    {
-      "file": "src/alchemy/alchemy_common.cpp",
-      "method": "ComputeSinCosFpu",
-      "status": "pending",
-      "asm_lines": [
-        1496
-      ]
-    },
-    {
-      "file": "src/freelancer/Client/menu_sound_arch.cpp",
-      "method": "Update",
-      "status": "pending",
-      "asm_lines": [
-        345
-      ]
-    },
-    {
-      "file": "src/freelancer/Client/menu_sound_arch.cpp",
-      "method": "FSoundSource::ComputeMixerScore",
-      "status": "pending",
-      "asm_lines": [
-        1328,
-        1368,
-        1399,
-        1427,
-        1456
-      ]
-    },
     {
       "file": "src/include/x87_trig.h",
       "method": "X87Sin",
@@ -111,14 +83,6 @@
       ]
     },
     {
-      "file": "src/RemoteClient/RemoteClient_main.cpp",
-      "method": "DispatchClientPacket",
-      "status": "pending",
-      "asm_lines": [
-        46
-      ]
-    },
-    {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerQuantizeHull",
       "status": "pending",
@@ -179,14 +143,6 @@
         625,
         634,
         642
-      ]
-    },
-    {
-      "file": "src/SoundManager/SoundManager.cpp",
-      "method": "SoftwareAttenuation",
-      "status": "pending",
-      "asm_lines": [
-        735
       ]
     },
     {
@@ -394,65 +350,6 @@
       "status": "pending",
       "asm_lines": [
         1293
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "Scale",
-      "status": "pending",
-      "asm_lines": [
-        16
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "Add",
-      "status": "pending",
-      "asm_lines": [
-        34
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "SubtractVector",
-      "status": "pending",
-      "asm_lines": [
-        53
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "CatmullRom3D",
-      "status": "pending",
-      "asm_lines": [
-        106,
-        139
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "SampleParameter",
-      "status": "pending",
-      "asm_lines": [
-        167
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "Lerp3D",
-      "status": "pending",
-      "asm_lines": [
-        184
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
-      "method": "CatmullRomTangent3D",
-      "status": "pending",
-      "asm_lines": [
-        236,
-        260,
-        281
       ]
     },
     {
@@ -879,18 +776,10 @@
     },
     {
       "file": "src/x86math/x86math.cpp",
-      "method": "BuildInvSqrtTable",
-      "status": "pending",
-      "asm_lines": [
-        43
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
       "method": "MulVecByMatrix",
       "status": "pending",
       "asm_lines": [
-        93
+        37
       ]
     },
     {
@@ -898,7 +787,7 @@
       "method": "MulVecByTranspose",
       "status": "pending",
       "asm_lines": [
-        136
+        80
       ]
     },
     {
@@ -906,7 +795,7 @@
       "method": "RecipSqrtFsqrt",
       "status": "pending",
       "asm_lines": [
-        205
+        149
       ]
     },
     {
@@ -914,7 +803,7 @@
       "method": "FastDotZZG",
       "status": "pending",
       "asm_lines": [
-        296
+        240
       ]
     },
     {
@@ -922,7 +811,7 @@
       "method": "FastDotZOO",
       "status": "pending",
       "asm_lines": [
-        310
+        254
       ]
     },
     {
@@ -930,7 +819,7 @@
       "method": "FastDotZOG",
       "status": "pending",
       "asm_lines": [
-        320
+        264
       ]
     },
     {
@@ -938,7 +827,7 @@
       "method": "FastDotZGZ",
       "status": "pending",
       "asm_lines": [
-        331
+        275
       ]
     },
     {
@@ -946,7 +835,7 @@
       "method": "FastDotZGO",
       "status": "pending",
       "asm_lines": [
-        341
+        285
       ]
     },
     {
@@ -954,7 +843,7 @@
       "method": "FastDotZGG",
       "status": "pending",
       "asm_lines": [
-        352
+        296
       ]
     },
     {
@@ -962,7 +851,7 @@
       "method": "FastDotOZO",
       "status": "pending",
       "asm_lines": [
-        369
+        313
       ]
     },
     {
@@ -970,7 +859,7 @@
       "method": "FastDotOZG",
       "status": "pending",
       "asm_lines": [
-        379
+        323
       ]
     },
     {
@@ -978,7 +867,7 @@
       "method": "FastDotOOZ",
       "status": "pending",
       "asm_lines": [
-        390
+        334
       ]
     },
     {
@@ -986,7 +875,7 @@
       "method": "FastDotOOO",
       "status": "pending",
       "asm_lines": [
-        400
+        344
       ]
     },
     {
@@ -994,7 +883,7 @@
       "method": "FastDotOOG",
       "status": "pending",
       "asm_lines": [
-        411
+        355
       ]
     },
     {
@@ -1002,7 +891,7 @@
       "method": "FastDotOGZ",
       "status": "pending",
       "asm_lines": [
-        423
+        367
       ]
     },
     {
@@ -1010,7 +899,7 @@
       "method": "FastDotOGO",
       "status": "pending",
       "asm_lines": [
-        434
+        378
       ]
     },
     {
@@ -1018,7 +907,7 @@
       "method": "FastDotOGG",
       "status": "pending",
       "asm_lines": [
-        446
+        390
       ]
     },
     {
@@ -1026,7 +915,7 @@
       "method": "FastDotGZZ",
       "status": "pending",
       "asm_lines": [
-        460
+        404
       ]
     },
     {
@@ -1034,7 +923,7 @@
       "method": "FastDotGZO",
       "status": "pending",
       "asm_lines": [
-        470
+        414
       ]
     },
     {
@@ -1042,7 +931,7 @@
       "method": "FastDotGZG",
       "status": "pending",
       "asm_lines": [
-        481
+        425
       ]
     },
     {
@@ -1050,7 +939,7 @@
       "method": "FastDotGOZ",
       "status": "pending",
       "asm_lines": [
-        494
+        438
       ]
     },
     {
@@ -1058,7 +947,7 @@
       "method": "FastDotGOO",
       "status": "pending",
       "asm_lines": [
-        505
+        449
       ]
     },
     {
@@ -1066,7 +955,7 @@
       "method": "FastDotGOG",
       "status": "pending",
       "asm_lines": [
-        517
+        461
       ]
     },
     {
@@ -1074,7 +963,7 @@
       "method": "FastDotGGZ",
       "status": "pending",
       "asm_lines": [
-        531
+        475
       ]
     },
     {
@@ -1082,7 +971,7 @@
       "method": "FastDotGGO",
       "status": "pending",
       "asm_lines": [
-        544
+        488
       ]
     },
     {
@@ -1090,7 +979,7 @@
       "method": "FastDotGGG",
       "status": "pending",
       "asm_lines": [
-        558
+        502
       ]
     },
     {
@@ -1098,7 +987,7 @@
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        804
+        748
       ]
     },
     {
@@ -1106,7 +995,7 @@
       "method": "MulMatrix",
       "status": "pending",
       "asm_lines": [
-        932
+        876
       ]
     },
     {
@@ -1114,7 +1003,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        998
+        942
       ]
     },
     {
@@ -1122,7 +1011,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        1119
+        1063
       ]
     },
     {
@@ -1130,7 +1019,7 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        1228
+        1172
       ]
     },
     {
@@ -1138,8 +1027,112 @@
       "method": "QuatSlerpValue",
       "status": "pending",
       "asm_lines": [
-        1330
+        1274
       ]
+    },
+    {
+      "file": "src/alchemy/alchemy_common.cpp",
+      "method": "ComputeSinCosFpu",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/freelancer/Client/menu_sound_arch.cpp",
+      "method": "Update",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/freelancer/Client/menu_sound_arch.cpp",
+      "method": "FSoundSource::ComputeMixerScore",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/RemoteClient/RemoteClient_main.cpp",
+      "method": "DispatchClientPacket",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/SoundManager/SoundManager.cpp",
+      "method": "SoftwareAttenuation",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Scale",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Add",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "SubtractVector",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "CatmullRom3D",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "SampleParameter",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Lerp3D",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "CatmullRomTangent3D",
+      "status": "removed-unverified",
+      "asm_lines": [],
+      "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
+      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "BuildInvSqrtTable",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "Table and initializer removed at user request. scalar_math: 196,608 input pairs per MSVC/Clang Release compiler, 3 precision x 4 rounding settings. Mathematical squared relative residual <=5e-7 for positive finite inputs; standard zero/infinity/negative/NaN classification; unchanged control settings. x86math DLL builds and x86_math_contract passes.",
+      "notes": "Intentional algorithm change: standard square root and double-precision reciprocal-root replace the old table/Newton approximation for both API methods. Legacy bit equality, exception flags, NaN payloads, errno and unmasked trap timing are not required by this new contract. No table initialization remains in production."
     },
     {
       "file": "src/Thorn/SplineMath.h",

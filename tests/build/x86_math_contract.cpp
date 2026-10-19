@@ -20,6 +20,11 @@ int main()
         }
     }
     FMathEngine engine{};
+    float root = 0, inverseRoot = 0;
+    if (engine.Sqrt(root, 4.0f) != GR_OK || root != 2.0f ||
+        engine.InvSqrt(inverseRoot, 4.0f) != GR_OK || inverseRoot != 0.5f) return 8;
+    if (engine.Sqrt(root, 0.0f) != GR_OK || root != 0.0f ||
+        engine.InvSqrt(inverseRoot, 0.0f) != GR_OK || !std::isinf(inverseRoot)) return 9;
     if (RecipSqrtFsqrt(4) != 0.5f || RecipSqrtFsqrt(16) != 0.25f) return 7;
     FQuaternion identity = {1, 0, 0, 0};
     FMatrix matrix{};

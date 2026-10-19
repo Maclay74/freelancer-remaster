@@ -71,7 +71,7 @@ def main():
         if key in live:
             for field in ("status", "evidence", "notes"):
                 if field in record: live[key][field] = record[field]
-        elif record["status"] == "replaced":
+        elif record["status"] in {"replaced", "removed-unverified"}:
             live[key] = {**record, "asm_lines": []}
         else:
             raise SystemExit(f"Assembly disappeared without a recorded replacement: {key}")
@@ -84,7 +84,8 @@ def main():
         raise SystemExit("Assembly inventory is stale. Run scripts/assembly_inventory.py --refresh and review it.")
     print(f"{len(current)} blocks; {sum(r['status'] != 'replaced' for r in live.values())} methods remaining; "
           f"{sum(r['status'] == 'replaced' for r in live.values())} replaced; "
-          f"{sum(r['status'] == 'investigating' for r in live.values())} investigating")
+          f"{sum(r['status'] == 'investigating' for r in live.values())} investigating; "
+          f"{sum(r['status'] == 'removed-unverified' for r in live.values())} removed but unverified")
     for record in live.values():
         if record["method"] == "<unknown>": print(f"Review unknown scope: {record['file']}:{record['asm_lines']}")
 

@@ -24,6 +24,19 @@ use `investigating` when a candidate has a known mismatch. A `replaced` entry mu
 identify test evidence and exactness/tolerance decisions. No tolerances have been
 accepted by default.
 
+`removed-unverified` records assembly removed outside this verification workflow:
+the source no longer contains it, but isolated equivalence evidence is still
+missing. Such entries remain unfinished work and do not count as verified
+replacements. This status accounts for the removals in user commit `f21d00b`.
+
+The user requested replacing the x86math inverse-square-root approximation with
+standard math. This is a deliberate algorithm change rather than a bit-exact
+translation: `Sqrt` uses standard square root and `InvSqrt` uses a double
+square root and reciprocal before narrowing. The table and its assembly-based
+initializer are gone. See `tests/portability/scalar_math.cpp` for retained legacy
+comparisons and the new mathematical contract. Legacy NaN payloads, exception
+flags, and edge-case results are not preserved for these two operations.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.

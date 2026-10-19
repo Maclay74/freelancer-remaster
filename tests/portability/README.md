@@ -218,3 +218,30 @@ left numerical load and raw right memory operand; invalid infinity combinations
 produce the original negative quiet NaN. Scaling also passes its 43,008-case
 regression matrix after sharing that helper. Debug, condition codes and unmasked
 trap timing remain untested for these new implementations.
+
+## Standard square root / inverse square root
+
+`scalar_math` checks the intentional replacement of the old x86math table and
+Newton approximation with standard math. Run:
+
+```powershell
+.\scripts\test-portable-kernel.ps1 -Test scalar_math
+```
+
+MSVC and Clang Release each pass 196,608 input pairs across all precision and
+rounding settings: normal exponent boundaries, random encodings, subnormals,
+signed zero, infinities, negative values, and quiet/signaling NaNs. For positive
+finite inputs the squared relative residuals `abs(root*root/x - 1)` and
+`abs(inverse*inverse*x - 1)` must be <= 5e-7. Observed maxima are below 2.94e-7.
+The test verifies signed-zero/infinity/NaN classifications and unchanged x87 and
+MXCSR control settings. It does not require matching old flags, NaN payloads,
+errno, or unmasked exception delivery, and does not test Debug.
+
+The retained legacy initializer still uses its original assembly; both old and
+new algorithms are evaluated by each compiler. Diagnostic mismatch counts are
+not failures: bit equality with the approximation is intentionally not the
+contract. Largest sampled inverse relative change for normal inputs is below
+2.48e-7, while the smallest positive subnormal differs by about 99.89% relative
+to the new result. These samples do not establish an exhaustive error bound.
+The component contract also checks both public API wrappers and `GR_OK` results
+for four and zero. No game build or gameplay test is performed by this fixture.
