@@ -19,7 +19,7 @@ jobs:
         run: |
           python scripts/assembly_inventory.py
           if ($LASTEXITCODE) { throw 'Assembly inventory is stale' }
-          foreach ($kernel in 'hermite_assignment', 'lua_double_probe', 'lua_float_probe', 'spline_negate_stored', 'spline_double_stored', 'float_extended_storage', 'float_load_copy', 'wire_put_float', 'rpc_server_float_copy') {
+          foreach ($kernel in 'hermite_assignment', 'hermite_construction', 'lua_double_probe', 'lua_float_probe', 'spline_negate_stored', 'spline_double_stored', 'float_extended_storage', 'float_load_copy', 'wire_put_float', 'rpc_server_float_copy') {
             ./scripts/test-portable-kernel.ps1 -Test $kernel
           }
       - name: Upload kernel comparisons

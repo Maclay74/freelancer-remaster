@@ -4,6 +4,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 
 ```powershell
 .\scripts\test-portable-kernel.ps1 -Test hermite_assignment
+.\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
 .\scripts\test-portable-kernel.ps1 -Test lua_float_probe
 .\scripts\test-portable-kernel.ps1 -Test spline_negate_stored
@@ -25,6 +26,7 @@ that does not require the proprietary SDK secret or game DATA.
 | Replacement | Comparisons per compiler/configuration |
 | --- | --- |
 | Hermite record assignment | 1,080,000 exact whole-buffer comparisons, special bit patterns and overlaps; unchanged x87 status/MXCSR |
+| Hermite record construction | 1,080,000 exact whole-buffer/status comparisons and null destination per Release compiler; overlaps, NaNs, subnormals and all precision/rounding modes. Unmasked exception delivery is untested. |
 | Lua double-index probe | 2,400,000 exact return/index/callback-order and x87-status comparisons, full uint32 range samples, table failure/success, unchanged MXCSR |
 | Lua float-index probe | Same matrix, including conversion status at each callback |
 | Stored spline negation | 840,000 exact output/status comparisons with NaNs, subnormals, signed zero, infinities, and overlaps; 504 unmasked invalid/denormal cases comparing exception code, status, and partial output |

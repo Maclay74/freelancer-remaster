@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 223,
+  "remaining_blocks": 222,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -515,18 +515,10 @@
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
-      "method": "ConstructHermiteRecord",
-      "status": "pending",
-      "asm_lines": [
-        285
-      ]
-    },
-    {
-      "file": "src/Thorn/ParamCurve.cpp",
       "method": "Hermite1D",
       "status": "pending",
       "asm_lines": [
-        307
+        288
       ]
     },
     {
@@ -534,7 +526,7 @@
       "method": "HermiteEvaluate",
       "status": "pending",
       "asm_lines": [
-        410
+        391
       ]
     },
     {
@@ -542,12 +534,12 @@
       "method": "ApplyHermiteTangents",
       "status": "pending",
       "asm_lines": [
-        536,
-        557,
-        564,
-        575,
-        586,
-        612
+        517,
+        538,
+        545,
+        556,
+        567,
+        593
       ]
     },
     {
@@ -555,7 +547,7 @@
       "method": "Evaluate",
       "status": "pending",
       "asm_lines": [
-        774
+        755
       ]
     },
     {
@@ -563,7 +555,7 @@
       "method": "WrapEvaluateToExtended",
       "status": "pending",
       "asm_lines": [
-        791
+        772
       ]
     },
     {
@@ -571,7 +563,7 @@
       "method": "Slot4Replace",
       "status": "pending",
       "asm_lines": [
-        820
+        801
       ]
     },
     {
@@ -579,7 +571,7 @@
       "method": "AddKey",
       "status": "pending",
       "asm_lines": [
-        905
+        886
       ]
     },
     {
@@ -587,7 +579,7 @@
       "method": "Slot12WrapEvaluate",
       "status": "pending",
       "asm_lines": [
-        1032
+        1013
       ]
     },
     {
@@ -595,7 +587,7 @@
       "method": "InsertDerivedRecord",
       "status": "pending",
       "asm_lines": [
-        1110
+        1091
       ]
     },
     {
@@ -603,8 +595,8 @@
       "method": "EvaluateExtended",
       "status": "pending",
       "asm_lines": [
-        1240,
-        1257
+        1221,
+        1238
       ]
     },
     {
@@ -612,7 +604,7 @@
       "method": "EvaluateLerp",
       "status": "pending",
       "asm_lines": [
-        1289
+        1270
       ]
     },
     {
@@ -620,7 +612,7 @@
       "method": "EvaluateCatmull",
       "status": "pending",
       "asm_lines": [
-        1323
+        1304
       ]
     },
     {
@@ -1521,6 +1513,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ConstructHermiteRecord",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test hermite_construction: MSVC and Clang Release; 1,080,000 exact whole-buffer and x87-status comparisons per compiler, including overlaps, special float encodings, all precision/rounding modes, and null destination.",
+      "notes": "Raw forward copy of Value/T; numerical MOut then MIn snapshots precede tangent stores. No tolerance accepted. Unmasked floating-point exception delivery was not tested."
     },
     {
       "file": "src/include/rpc_server_channel_codec.h",

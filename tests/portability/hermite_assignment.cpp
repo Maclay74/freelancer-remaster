@@ -11,21 +11,37 @@ __declspec(noinline) void Reference(FHermiteKnot* Destination, const FHermiteKno
 {
     __asm {
         mov eax, Destination
+#if defined(TEST_HERMITE_CONSTRUCTION)
+        test eax, eax
+        jz ConstructionDone
+#endif
         mov ecx, Source
         mov edx, dword ptr [ecx]
         mov dword ptr [eax], edx
         mov edx, dword ptr [ecx + 4]
         mov dword ptr [eax + 4], edx
+#if defined(TEST_HERMITE_CONSTRUCTION)
+        fld dword ptr [ecx + 0ch]
+        fld dword ptr [ecx + 8]
+        fstp dword ptr [eax + 8]
+        fstp dword ptr [eax + 0ch]
+    ConstructionDone:
+#else
         mov edx, dword ptr [ecx + 8]
         mov dword ptr [eax + 8], edx
         mov edx, dword ptr [ecx + 0ch]
         mov dword ptr [eax + 0ch], edx
+#endif
     }
 }
 
 __declspec(noinline) void Candidate(FHermiteKnot* dst, const FHermiteKnot* src)
 {
+#if defined(TEST_HERMITE_CONSTRUCTION)
+    ThornCurveDetail::ConstructHermiteRecord(dst, src);
+#else
     ThornCurveDetail::AssignHermiteRecord(dst, src);
+#endif
 }
 
 int main()
@@ -57,8 +73,16 @@ int main()
                 std::memcpy(b, a, sizeof(a));
                 unsigned short before, after;
                 const unsigned mxcsr = _mm_getcsr();
+#if defined(TEST_HERMITE_CONSTRUCTION)
+                __asm { fnclex }
+#else
                 __asm { fnstsw before }
+#endif
                 Reference(reinterpret_cast<FHermiteKnot*>(a + 24 + shift), reinterpret_cast<FHermiteKnot*>(a + 24));
+#if defined(TEST_HERMITE_CONSTRUCTION)
+                __asm { fnstsw before }
+                __asm { fnclex }
+#endif
                 Candidate(reinterpret_cast<FHermiteKnot*>(b + 24 + shift), reinterpret_cast<FHermiteKnot*>(b + 24));
                 __asm { fnstsw after }
                 if (std::memcmp(a, b, sizeof(a)) || before != after || mxcsr != _mm_getcsr())
@@ -71,6 +95,12 @@ int main()
         }
     }
     __asm { fldcw original }
+#if defined(TEST_HERMITE_CONSTRUCTION)
+    Reference(nullptr, nullptr);
+    Candidate(nullptr, nullptr);
+    std::printf("PASS: %u exact construction buffer/status comparisons and null destination; all precision/rounding modes\n", cases);
+#else
     std::printf("PASS: %u exact buffer comparisons; x87/MXCSR unchanged; all precision/rounding modes\n", cases);
+#endif
     return 0;
 }
