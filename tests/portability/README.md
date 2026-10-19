@@ -370,3 +370,29 @@ The RemoteServer DLL target and both CTests build/pass with Clang Release.
 `src/RemoteServer` now contains no inline assembly; four shared codec blocks in
 `src/RemoteCommon/remote_server_channel_codecs.cpp` remain a separate task and
 are still linked into the DLL. The full game was not built, run or restaged.
+
+## Shared server-channel quantization
+
+Run `rpc_server_quantize_comm`, `rpc_server_expand_hull`, or
+`rpc_server_quantize_hull` with `scripts/test-portable-kernel.ps1`.
+MSVC/Clang Release each pass respectively 49,152, 113,664, and 12,288 exact
+packet-result/exception-flag/stack cases, all precision/rounding settings.
+Communication cases include signed zeros, NaNs/infinity, subnormals, float
+extremes, random encodings, and byte-boundary neighborhoods. Hull expansion
+covers all 256 bytes with positive/negative/zero/int-limit/random maxima. Hull
+quantization covers boundary pairs, random signed int32 inputs, zero maxima and
+FP state after the early integer-to-float store, before archetype lookup.
+
+These preserve wire results without numerical tolerance. A double-only rewrite
+would lose some PC64 intermediate bits and change truncation at integer
+boundaries. The compatibility helper uses exact integer products for comm and
+a bounded integer formula for hull expansion; hull quantization rounds a
+normalized quotient and a 64-by-8-bit product explicitly. PC24/53 use volatile
+binary64 intermediates and the existing safe integer conversion. x87 rounding
+is queried separately from SSE because callers may set only x87. Windows x86
+control queries use the existing CRT, with no new dependency or inline assembly.
+Other platforms use ordinary binary64 math and still require wire-equivalence
+validation. x87 C1/condition codes, unmasked exception timing, Debug, other
+architectures, performance and gameplay/networking checks are not covered.
+The production hull-quantization precondition is an integer-valued float from
+`PrepareHull`; callback ordering and the early float rounding are retained.
