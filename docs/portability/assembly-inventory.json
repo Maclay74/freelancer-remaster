@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 189,
+  "remaining_blocks": 188,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -678,14 +678,6 @@
       ]
     },
     {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "StoreSceneAmbientIntegers",
-      "status": "pending",
-      "asm_lines": [
-        1261
-      ]
-    },
-    {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "Cross3",
       "status": "pending",
@@ -1256,6 +1248,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "StoreSceneAmbientIntegers",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test scene_ambient_store: MSVC/Clang Release; 43,008 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlapping buffers and all precision/rounding settings; unchanged MXCSR.",
+      "notes": "Retains one-input-ahead LIGHT order or initial-Z ambient snapshot as appropriate. Uses verified truncating conversion and publishes raw low dwords. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
