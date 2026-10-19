@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 80,
+  "remaining_blocks": 79,
   "methods": [
     {
       "file": "src/Thorn/lua32/src/lobject.c",
@@ -179,18 +179,10 @@
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
-      "method": "BuildLookAtFromTangent",
-      "status": "pending",
-      "asm_lines": [
-        546
-      ]
-    },
-    {
-      "file": "src/Thorn/SplinePath.cpp",
       "method": "QuatAdd",
       "status": "pending",
       "asm_lines": [
-        611
+        525
       ]
     },
     {
@@ -198,7 +190,7 @@
       "method": "QuatScale",
       "status": "pending",
       "asm_lines": [
-        642
+        556
       ]
     },
     {
@@ -206,7 +198,7 @@
       "method": "QuatLogRetail",
       "status": "pending",
       "asm_lines": [
-        721
+        635
       ]
     },
     {
@@ -214,8 +206,8 @@
       "method": "QuatFirstControlExp",
       "status": "pending",
       "asm_lines": [
-        803,
-        839
+        717,
+        753
       ]
     },
     {
@@ -223,7 +215,7 @@
       "method": "QuatExpRetail",
       "status": "pending",
       "asm_lines": [
-        861
+        775
       ]
     },
     {
@@ -231,7 +223,7 @@
       "method": "SubtractGhostVector",
       "status": "pending",
       "asm_lines": [
-        1884
+        1798
       ]
     },
     {
@@ -239,7 +231,7 @@
       "method": "ApplyCtorGhosts",
       "status": "pending",
       "asm_lines": [
-        1926
+        1840
       ]
     },
     {
@@ -494,6 +486,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "BuildLookAtFromTangent",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scene_geometry: 135,168 cases across nine methods per MSVC/clang-cl x86 Release compiler; all 12 precision/rounding modes. Float-array partial overlaps, vector aliases, zero/subnormal/infinite/NaN/extreme inputs, threshold neighbors and full look-at frame checked. Thorn DLL and targeted CTest build/pass.",
+      "notes": "Portable double expressions retain algorithms, sum/sign conventions and supported store/load order. Float results use scaled tolerance 2e-6 (absolute for normalization/frame); NaNs by classification. Dot decisions and untouched storage match exactly in sampled cases. No zero-length fallback. Exact x87 flags, NaN payloads, signed-zero bits, unmasked trap timing and every extended boundary are not contracts. Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
