@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 117,
+  "remaining_blocks": 115,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -80,15 +80,6 @@
       "status": "pending",
       "asm_lines": [
         168
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
-      "method": "RpcServerQuantizeHull",
-      "status": "pending",
-      "asm_lines": [
-        64,
-        72
       ]
     },
     {
@@ -741,6 +732,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerQuantizeHull",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "rpc_server_quantize_hull: MSVC/Clang Release, 12,288 exact packet-result/exception-flag/stack comparisons per compiler; all precision/rounding settings, int/float limits and boundary inputs; unchanged control/MXCSR. Hull quantizer also compares pre-archetype-lookup FP state; hull expansion covers all 256 bytes.",
+      "notes": "Portable C++ with domain-specific integer arithmetic for legacy PC64 intermediate precision; PC24/53 use ordinary binary64 expressions and the existing safe truncation helper. Windows x86 uses CRT control queries only, with no inline assembly. No numerical tolerance. C1/condition codes, unmasked trap timing, Debug, other architectures and end-to-end gameplay/networking are untested. Other targets default to binary64 arithmetic; cross-platform wire equivalence still needs validation."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
