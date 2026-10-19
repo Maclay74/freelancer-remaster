@@ -54,6 +54,18 @@ round-to-nearest. See the test README for domains and tolerances. The Common DLL
 and compiler/resource contract also build and pass their targeted checks; no
 gameplay run, staging, Debug pass, or non-x86 validation was performed.
 
+Texture playback has also moved to standard C++ in
+`src/Shading/TexturePlaybackMath.h`: duration calculation and clamp/loop/ping-pong
+advancement retain the 0.001f conversion, 1e-6 duration adjustment, strict
+reflection conditions and final float-time publication. Cached frame-count
+handling and the existing elapsed/frame setter stay in TextureLibrary.cpp.
+The eight assembly blocks in Shading are gone. Isolated Release tests compare
+the original assembly with the production math on MSVC and Clang, including
+frame/direction results and playback sequences. Double/float rounding can differ
+from retained x87 arithmetic; numerical tolerances are explicit in the test
+README. This does not claim bit-identical timing at every possible boundary,
+identical exception flags, or cross-platform deterministic animation.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.

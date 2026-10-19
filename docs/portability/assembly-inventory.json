@@ -1,21 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 104,
+  "remaining_blocks": 97,
   "methods": [
-    {
-      "file": "src/Shading/TextureLibrary.cpp",
-      "method": "AdvancePlayback",
-      "status": "pending",
-      "asm_lines": [
-        515,
-        528,
-        557,
-        572,
-        616,
-        625,
-        633
-      ]
-    },
     {
       "file": "src/Thorn/lua32/src/lib/lmathlib.c",
       "method": "math_sin",
@@ -644,6 +630,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "AdvancePlayback",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "texture_playback_advance: MSVC/clang-cl x86 Release, 245,810 cases per compiler, all 12 precision/rounding combinations for finite samples; exact frame indices, direction, cached counts and setter calls; time scaled tolerance 2e-6. Endpoint neighbors, 512-step sequences and exceptional states covered. Shading DLL and both targeted CTests build/pass.",
+      "notes": "Standard C++ clamp/loop/ping-pong math preserves 0.001f, strict reflection comparisons and final float-time setter. Negation is sequenced before narrowing to prevent a Clang directed-rounding frame regression caught in the initial candidate. Sampled Clang float times match exactly; MSVC has 15 time differences with unchanged frame/direction. Numeric behavior at every x87 extended boundary is not guaranteed. Flags, NaN payloads, signed-zero bits and unmasked trap timing are not contracts. Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Shading/TextureLibrary.cpp",

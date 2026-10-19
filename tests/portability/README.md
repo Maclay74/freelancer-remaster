@@ -30,6 +30,27 @@ retained assembly oracle. Results go to `out/tests/portability/<test>/results.tx
 The verified tests also run through CTest. GitHub Actions is currently disabled;
 the saved workflow is in `.github/disabled-workflows/windows-clang.yml`.
 
+`texture_playback_duration` compares 24,576 duration calculations per Release
+compiler, including unsigned count boundaries, zero/negative rates, subnormal
+rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are
+2.22e-16 (Clang) and 1.64e-7 (MSVC). `texture_playback_advance` compares 245,810
+cases per compiler: clamp, loop, ping-pong and unknown modes; empty/single-frame
+sources, cached-count refresh, source/local rates, forward/reverse/stationary
+directions, endpoint neighbors, negative/large deltas, exceptional state, and
+512-step sequences. Both fixtures use all 12 x87 precision/rounding combinations
+for finite samples; exceptional advancement cases use 53-bit round-to-nearest.
+Frame indices, direction, setter calls and cached counts must match exactly
+(NaN direction by classification). Elapsed/published time uses scaled tolerance
+2e-6. Clang's sampled float times match exactly; MSVC differs in 15 single-step
+times while retaining the same frames/directions. Negation before narrowing is
+explicitly sequenced to prevent Clang from changing reflected frames with
+directed rounding. The renderer-free fixture reproduces the unchanged elapsed
+setter; it does not instantiate the game texture library or renderer.
+These tests validate numerical behavior, not exact exception flags, NaN payloads,
+signed-zero bits, or every extended-precision boundary. Non-x86 execution, Debug,
+unmasked traps, and gameplay are untested. The Shading DLL and the two targeted
+CTest cases build/pass; the runnable stage is not updated by that check.
+
 `standard_trig` covers the standard expressions now called directly by Common
 and IVP, against the removed wrappers in `candidates/legacy_x87_trig.h`. It makes
 245,748 comparisons per Release compiler with 24/53/64-bit x87 precision,
