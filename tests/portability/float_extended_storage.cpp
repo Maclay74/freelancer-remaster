@@ -1,4 +1,7 @@
 #include "../../src/Thorn/ExtendedFloatStorage.h"
+#if defined(TEST_FLOAT_COPY)
+#include "../../src/include/portable_float_load.h"
+#endif
 #include <windows.h>
 #include <xmmintrin.h>
 #include <cstdio>
@@ -10,12 +13,20 @@ __declspec(noinline) void Reference(unsigned char* output, const float* value)
         mov ecx, value
         fld dword ptr [ecx]
         mov ecx, output
+#if defined(TEST_FLOAT_COPY)
+        fstp dword ptr [ecx]
+#else
         fstp tbyte ptr [ecx]
+#endif
     }
 }
 __declspec(noinline) void Candidate(unsigned char* output, const float* value)
 {
+#if defined(TEST_FLOAT_COPY)
+    PortableFloatLoad::Copy(output, value);
+#else
     ThornPortableMath::StoreFloatToExtended80(output, value);
+#endif
 }
 __declspec(noinline) void ClearFlags()
 {
@@ -109,6 +120,6 @@ int main()
         }
     ClearFlags();
     __asm { fldcw original }
-    std::printf("PASS: %u exact binary80/buffer/status comparisons and %u unmasked cases\n", cases, exceptional);
+    std::printf("PASS: %u exact encoding/buffer/status comparisons and %u unmasked cases\n", cases, exceptional);
     return 0;
 }

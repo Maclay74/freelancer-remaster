@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 225,
+  "remaining_blocks": 224,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -44,14 +44,6 @@
       "status": "pending",
       "asm_lines": [
         630
-      ]
-    },
-    {
-      "file": "src/include/rpc_packet_codec.h",
-      "method": "PutFloat",
-      "status": "pending",
-      "asm_lines": [
-        148
       ]
     },
     {
@@ -1537,6 +1529,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/include/rpc_packet_codec.h",
+      "method": "PutFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test wire_put_float: MSVC/Clang Debug/Release; 720,000 exact return/cursor/error/pointer/buffer/status comparisons and 14,400 unmasked cases per configuration. float_load_copy additionally checks 2,520,000 raw-load/store encoding/state cases and 504 unmasked cases.",
+      "notes": "Production FRpcWireStream::PutFloat uses portable_float_load.h. Tests exercise the actual inline method with isolated packet lifecycle, sticky preflight errors, cursor wrap, unaligned outputs, aliasing, NaN payloads, and pointer commit order on traps. No tolerance."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
