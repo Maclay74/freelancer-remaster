@@ -41,6 +41,12 @@ replacement: normal color samples agreed, but Clang Debug at 64-bit x87 precisio
 changed extended return bits for some full-int32 inputs. Keep that distinction
 when considering `ComputeLightColor`.
 
+An opt-in software extended-arithmetic feasibility experiment is in
+`tests/experiments/softfloat/`. It checks a pinned upstream implementation
+against the hardware oracle without adding a production dependency. Numeric
+agreement there is not sufficient to switch methods that depend on exception
+timing or host floating-point state.
+
 Completion additionally requires no production assembly dependency, a functional
 Windows x86 build, and gameplay smoke tests. Passing isolated kernels alone does
 not satisfy those gates. Work remains active until all entries and integration
