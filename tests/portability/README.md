@@ -324,3 +324,18 @@ operand aliases, in-place transpose, control settings and stack balance. Origina
 in-place overwrite behavior is intentionally replaced by mathematical in-place
 results. Flags, NaN payload/sign and signed-zero bits are not required to match;
 Debug, arbitrary shifted overlap, other architectures and gameplay are untested.
+
+## Quaternion/matrix conversions
+
+`quat_conversion` checks both production conversion templates against retained
+assembly, plus matrix/quaternion/matrix round trips. MSVC and Clang Release each
+pass 6,144 pairs across all precision/rounding settings, all trace/diagonal
+branches, identity, half-turns about each axis, diagonal ties, random non-unit
+quaternions and magnitude scales 1e-12 to 1e12. Absolute component and round-trip
+tolerances are 2e-6. Observed maxima: ToMatrix 2.98023224e-7, FromMatrix
+1.1920929e-7, round-trip 8.34465027e-7. Zero quaternion input still produces NaNs,
+with no invented identity fallback. Control settings and stack balance match;
+NaN payload/sign, flags, signed-zero bits, Debug, malformed/nonfinite matrices,
+cross-type overlapping storage, other architectures and gameplay are untested.
+The quaternion-to-matrix factor remains 2 / squared norm; it does not assume
+unit input. Trace/largest-diagonal selection and W/X/Y/Z convention are retained.
