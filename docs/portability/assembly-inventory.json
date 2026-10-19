@@ -1,0 +1,1588 @@
+{
+  "scope": "All inline assembly under src/, including inactive branches; test references excluded",
+  "remaining_blocks": 231,
+  "methods": [
+    {
+      "file": "src/alchemy/alchemy_common.cpp",
+      "method": "ComputeSinCosFpu",
+      "status": "pending",
+      "asm_lines": [
+        1496
+      ]
+    },
+    {
+      "file": "src/flmaterials/MaterialImpl.cpp",
+      "method": "FlmWireColorByte",
+      "status": "pending",
+      "asm_lines": [
+        139
+      ]
+    },
+    {
+      "file": "src/freelancer/Client/menu_sound_arch.cpp",
+      "method": "Update",
+      "status": "pending",
+      "asm_lines": [
+        345
+      ]
+    },
+    {
+      "file": "src/freelancer/Client/menu_sound_arch.cpp",
+      "method": "FSoundSource::ComputeMixerScore",
+      "status": "pending",
+      "asm_lines": [
+        1328,
+        1368,
+        1399,
+        1427,
+        1456
+      ]
+    },
+    {
+      "file": "src/freelancer/Client/room_camera.cpp",
+      "method": "RoomCameraSetZNearValue",
+      "status": "pending",
+      "asm_lines": [
+        630
+      ]
+    },
+    {
+      "file": "src/include/rpc_packet_codec.h",
+      "method": "PutFloat",
+      "status": "pending",
+      "asm_lines": [
+        148
+      ]
+    },
+    {
+      "file": "src/include/rpc_server_channel_codec.h",
+      "method": "RpcServerX87CopyFloat",
+      "status": "pending",
+      "asm_lines": [
+        30
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Sin",
+      "status": "pending",
+      "asm_lines": [
+        45
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87SinF",
+      "status": "pending",
+      "asm_lines": [
+        58
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Cos",
+      "status": "pending",
+      "asm_lines": [
+        71
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87CosF",
+      "status": "pending",
+      "asm_lines": [
+        84
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Tan",
+      "status": "pending",
+      "asm_lines": [
+        97
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87TanF",
+      "status": "pending",
+      "asm_lines": [
+        111
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan",
+      "status": "pending",
+      "asm_lines": [
+        125
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87AtanF",
+      "status": "pending",
+      "asm_lines": [
+        139
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan2",
+      "status": "pending",
+      "asm_lines": [
+        154
+      ]
+    },
+    {
+      "file": "src/include/x87_trig.h",
+      "method": "X87Atan2F",
+      "status": "pending",
+      "asm_lines": [
+        168
+      ]
+    },
+    {
+      "file": "src/luaprofile/lua32/src/lparser.c",
+      "method": "real_constant",
+      "status": "pending",
+      "asm_lines": [
+        280
+      ]
+    },
+    {
+      "file": "src/luaprofile/lua32/src/lparser.c",
+      "method": "code_number",
+      "status": "pending",
+      "asm_lines": [
+        309,
+        342,
+        350
+      ]
+    },
+    {
+      "file": "src/RemoteClient/ClientImpl.cpp",
+      "method": "CClientImpl::SendCommonPlayerTradeAddTradeEquip",
+      "status": "pending",
+      "asm_lines": [
+        312
+      ]
+    },
+    {
+      "file": "src/RemoteClient/RemoteClient_main.cpp",
+      "method": "DispatchClientPacket",
+      "status": "pending",
+      "asm_lines": [
+        46
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcUpdateQuantize",
+      "status": "pending",
+      "asm_lines": [
+        1351
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcUpdateExpand",
+      "status": "pending",
+      "asm_lines": [
+        1375
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFirePickTier",
+      "status": "pending",
+      "asm_lines": [
+        1389,
+        1411
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFireQuantize",
+      "status": "pending",
+      "asm_lines": [
+        1437
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcFireGetComponent",
+      "status": "pending",
+      "asm_lines": [
+        1495
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerQuantize127",
+      "status": "pending",
+      "asm_lines": [
+        24
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerExpand127",
+      "status": "pending",
+      "asm_lines": [
+        41
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerQuantize255",
+      "status": "pending",
+      "asm_lines": [
+        67
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerExpand255",
+      "status": "pending",
+      "asm_lines": [
+        86
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerQuantizeHull",
+      "status": "pending",
+      "asm_lines": [
+        100,
+        108
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerExpandHull",
+      "status": "pending",
+      "asm_lines": [
+        131
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerCreateObjectRead",
+      "status": "pending",
+      "asm_lines": [
+        637
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "FRpcServerCharSelectVerifiedPacket::Encode",
+      "status": "pending",
+      "asm_lines": [
+        1130
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerSendCommQuantize",
+      "status": "pending",
+      "asm_lines": [
+        3316
+      ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerSendCommExpand",
+      "status": "pending",
+      "asm_lines": [
+        3334
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqHullStatus",
+      "status": "pending",
+      "asm_lines": [
+        333
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqAddItem",
+      "status": "pending",
+      "asm_lines": [
+        438
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqModifyItem",
+      "status": "pending",
+      "asm_lines": [
+        476
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::SPObjUpdate",
+      "status": "pending",
+      "asm_lines": [
+        687
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::AddTradeEquip",
+      "status": "pending",
+      "asm_lines": [
+        1021
+      ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqDifficultyScale",
+      "status": "pending",
+      "asm_lines": [
+        1069
+      ]
+    },
+    {
+      "file": "src/RemoteServer/RemoteServer_main.cpp",
+      "method": "HandlePacket",
+      "status": "pending",
+      "asm_lines": [
+        286
+      ]
+    },
+    {
+      "file": "src/rpclocal/rpc_wire_fields.cpp",
+      "method": "RpcEncodeServerCharSelectVerified",
+      "status": "pending",
+      "asm_lines": [
+        1135
+      ]
+    },
+    {
+      "file": "src/Shading/Material.cpp",
+      "method": "ReadSinglePassWord",
+      "status": "pending",
+      "asm_lines": [
+        1244
+      ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "PlaybackDuration",
+      "status": "pending",
+      "asm_lines": [
+        453
+      ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "TruncatePlaybackFrame",
+      "status": "pending",
+      "asm_lines": [
+        502
+      ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "AdvancePlayback",
+      "status": "pending",
+      "asm_lines": [
+        538,
+        551,
+        580,
+        595,
+        639,
+        648,
+        656
+      ]
+    },
+    {
+      "file": "src/Shading/TextureLibrary.cpp",
+      "method": "FTextureLibrary::LoadLegacyTextureRecord",
+      "status": "pending",
+      "asm_lines": [
+        996
+      ]
+    },
+    {
+      "file": "src/SoundManager/SoundManager.cpp",
+      "method": "SoftwareAttenuation",
+      "status": "pending",
+      "asm_lines": [
+        735
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_sin",
+      "status": "pending",
+      "asm_lines": [
+        48
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_cos",
+      "status": "pending",
+      "asm_lines": [
+        64
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_tan",
+      "status": "pending",
+      "asm_lines": [
+        81
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_atan",
+      "status": "pending",
+      "asm_lines": [
+        114
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_atan2",
+      "status": "pending",
+      "asm_lines": [
+        134
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_sqrt",
+      "status": "pending",
+      "asm_lines": [
+        165
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_log",
+      "status": "pending",
+      "asm_lines": [
+        184
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_log10",
+      "status": "pending",
+      "asm_lines": [
+        199
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_exp",
+      "status": "pending",
+      "asm_lines": [
+        214
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lobject.c",
+      "method": "LuaParseSignedNumberObject",
+      "status": "pending",
+      "asm_lines": [
+        159
+      ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lvm.c",
+      "method": "luaV_execute",
+      "status": "pending",
+      "asm_lines": [
+        512,
+        546
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "StoreParamFloat",
+      "status": "pending",
+      "asm_lines": [
+        60
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ParamStrictLess",
+      "status": "pending",
+      "asm_lines": [
+        75
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "CatmullRom1D",
+      "status": "pending",
+      "asm_lines": [
+        192
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ParamLerp",
+      "status": "pending",
+      "asm_lines": [
+        250
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ConstructHermiteRecord",
+      "status": "pending",
+      "asm_lines": [
+        294
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "AssignHermiteRecord",
+      "status": "pending",
+      "asm_lines": [
+        316
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "Hermite1D",
+      "status": "pending",
+      "asm_lines": [
+        334
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "HermiteEvaluate",
+      "status": "pending",
+      "asm_lines": [
+        437
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "ApplyHermiteTangents",
+      "status": "pending",
+      "asm_lines": [
+        563,
+        584,
+        591,
+        602,
+        613,
+        639
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "Evaluate",
+      "status": "pending",
+      "asm_lines": [
+        801
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "WrapEvaluateToExtended",
+      "status": "pending",
+      "asm_lines": [
+        818
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "Slot4Replace",
+      "status": "pending",
+      "asm_lines": [
+        847
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "AddKey",
+      "status": "pending",
+      "asm_lines": [
+        932
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "Slot12WrapEvaluate",
+      "status": "pending",
+      "asm_lines": [
+        1059
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "InsertDerivedRecord",
+      "status": "pending",
+      "asm_lines": [
+        1137
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "EvaluateExtended",
+      "status": "pending",
+      "asm_lines": [
+        1267,
+        1284
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "EvaluateLerp",
+      "status": "pending",
+      "asm_lines": [
+        1316
+      ]
+    },
+    {
+      "file": "src/Thorn/ParamCurve.cpp",
+      "method": "EvaluateCatmull",
+      "status": "pending",
+      "asm_lines": [
+        1350
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Scale",
+      "status": "pending",
+      "asm_lines": [
+        15
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Add",
+      "status": "pending",
+      "asm_lines": [
+        33
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "SubtractVector",
+      "status": "pending",
+      "asm_lines": [
+        52
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "DoubleStored",
+      "status": "pending",
+      "asm_lines": [
+        71
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Subtract",
+      "status": "pending",
+      "asm_lines": [
+        90
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "AddStored",
+      "status": "pending",
+      "asm_lines": [
+        109
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Negate",
+      "status": "pending",
+      "asm_lines": [
+        128
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "ScaleStored",
+      "status": "pending",
+      "asm_lines": [
+        146
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "NegateStored",
+      "status": "pending",
+      "asm_lines": [
+        164
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "CatmullRom3D",
+      "status": "pending",
+      "asm_lines": [
+        185,
+        218
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "SampleParameter",
+      "status": "pending",
+      "asm_lines": [
+        246
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "Lerp3D",
+      "status": "pending",
+      "asm_lines": [
+        263
+      ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "CatmullRomTangent3D",
+      "status": "pending",
+      "asm_lines": [
+        315,
+        339,
+        360
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatInverseScaleRetail",
+      "status": "pending",
+      "asm_lines": [
+        102
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "SquadBlendRetail",
+      "status": "pending",
+      "asm_lines": [
+        128
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "BuildSlot5MatrixRetail",
+      "status": "pending",
+      "asm_lines": [
+        150
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "AccumulateSegmentSampleRetail",
+      "status": "pending",
+      "asm_lines": [
+        417
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "NormalizeSegmentSamplesRetail",
+      "status": "pending",
+      "asm_lines": [
+        469
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "NormalizeLookAtVector",
+      "status": "pending",
+      "asm_lines": [
+        509
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "CrossLookAtVector",
+      "status": "pending",
+      "asm_lines": [
+        545
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "BuildLookAtFromTangent",
+      "status": "pending",
+      "asm_lines": [
+        636
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatAdd",
+      "status": "pending",
+      "asm_lines": [
+        701
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatScale",
+      "status": "pending",
+      "asm_lines": [
+        732
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatLogRetail",
+      "status": "pending",
+      "asm_lines": [
+        811
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatFirstControlExp",
+      "status": "pending",
+      "asm_lines": [
+        893,
+        929
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "QuatExpRetail",
+      "status": "pending",
+      "asm_lines": [
+        951
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "SubtractGhostVector",
+      "status": "pending",
+      "asm_lines": [
+        1974
+      ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "ApplyCtorGhosts",
+      "status": "pending",
+      "asm_lines": [
+        2016
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "LuaMillisecondsToRetailInt",
+      "status": "pending",
+      "asm_lines": [
+        102
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "LuaNumberToRetailInt",
+      "status": "pending",
+      "asm_lines": [
+        133
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "StoreLightColorIntegers",
+      "status": "pending",
+      "asm_lines": [
+        160
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ReadFogByte",
+      "status": "pending",
+      "asm_lines": [
+        682
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "GetLightDoubleProbe",
+      "status": "pending",
+      "asm_lines": [
+        776
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "GetLightFloatProbe",
+      "status": "pending",
+      "asm_lines": [
+        803
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ReadVec3Complete",
+      "status": "pending",
+      "asm_lines": [
+        827
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ApplyLightEventPost",
+      "status": "pending",
+      "asm_lines": [
+        1122,
+        1168
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "IsIkLuaNumberNonzero",
+      "status": "pending",
+      "asm_lines": [
+        1229
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ReadSceneStartMilliseconds",
+      "status": "pending",
+      "asm_lines": [
+        1342
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "StoreSceneAmbientIntegers",
+      "status": "pending",
+      "asm_lines": [
+        1365
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "Cross3",
+      "status": "pending",
+      "asm_lines": [
+        388
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "Normalize3",
+      "status": "pending",
+      "asm_lines": [
+        418
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "NegateVector3",
+      "status": "pending",
+      "asm_lines": [
+        452
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ReadColumn",
+      "status": "pending",
+      "asm_lines": [
+        517
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "Transpose9",
+      "status": "pending",
+      "asm_lines": [
+        535
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "NormalizeAxis3",
+      "status": "pending",
+      "asm_lines": [
+        796
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "CrossAxisSide3",
+      "status": "pending",
+      "asm_lines": [
+        835
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "CrossAxisUp3",
+      "status": "pending",
+      "asm_lines": [
+        866
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "AxisDotNotGreater",
+      "status": "pending",
+      "asm_lines": [
+        897
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "AudioLerpFloat",
+      "status": "pending",
+      "asm_lines": [
+        1070
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ComputeAudioLerpInteger",
+      "status": "pending",
+      "asm_lines": [
+        1094
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ComputeLightColor",
+      "status": "pending",
+      "asm_lines": [
+        1116
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FogLerpFloat",
+      "status": "pending",
+      "asm_lines": [
+        1135
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FogLerpInteger",
+      "status": "pending",
+      "asm_lines": [
+        1159
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ConvertCompactLightRetail",
+      "status": "pending",
+      "asm_lines": [
+        1236
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "IsLightInterpolationComplete",
+      "status": "pending",
+      "asm_lines": [
+        1435
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "InterpolateLightDirection",
+      "status": "pending",
+      "asm_lines": [
+        1455
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "LerpSpatialPosition",
+      "status": "pending",
+      "asm_lines": [
+        1631
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "AccumulateAxisDelta",
+      "status": "pending",
+      "asm_lines": [
+        1659
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ApplyAxisRotFpu",
+      "status": "pending",
+      "asm_lines": [
+        1688
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "BuildAttachLookDirection",
+      "status": "pending",
+      "asm_lines": [
+        2166
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ApplyPsysSparam",
+      "status": "pending",
+      "asm_lines": [
+        2369
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "SpatialWrapScale",
+      "status": "pending",
+      "asm_lines": [
+        2395
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FloorWrapScale",
+      "status": "pending",
+      "asm_lines": [
+        2459
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "InterpolateFloorHeight",
+      "status": "pending",
+      "asm_lines": [
+        2512
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "StoreAnimTValue",
+      "status": "pending",
+      "asm_lines": [
+        2547
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "InterpolateCameraProps",
+      "status": "pending",
+      "asm_lines": [
+        2600
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::EvaluateControlBackedCurve",
+      "status": "pending",
+      "asm_lines": [
+        4121,
+        4132,
+        4144,
+        4153,
+        4163
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::EvaluateProgress",
+      "status": "pending",
+      "asm_lines": [
+        4432,
+        4450,
+        4460
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
+      "status": "pending",
+      "asm_lines": [
+        4483,
+        4492,
+        4504
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::EvaluateProgressExtended",
+      "status": "pending",
+      "asm_lines": [
+        4520,
+        4544,
+        4556,
+        4569
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::StartAttachEntity",
+      "status": "pending",
+      "asm_lines": [
+        4763
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::TickAudioPropAnim",
+      "status": "pending",
+      "asm_lines": [
+        4984,
+        5018
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::TickPsysPropAnim",
+      "status": "pending",
+      "asm_lines": [
+        5461
+      ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ShouldSaveNonzeroFloat",
+      "status": "pending",
+      "asm_lines": [
+        8257
+      ]
+    },
+    {
+      "file": "src/Thorn/X87Return.h",
+      "method": "ThornReturnExtendedFloat",
+      "status": "pending",
+      "asm_lines": [
+        11
+      ]
+    },
+    {
+      "file": "src/Thorn/X87Return.h",
+      "method": "ThornReturnSt0Float",
+      "status": "pending",
+      "asm_lines": [
+        21
+      ]
+    },
+    {
+      "file": "src/Thorn/X87Return.h",
+      "method": "ThornReturnSt0Double",
+      "status": "pending",
+      "asm_lines": [
+        25
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "BuildInvSqrtTable",
+      "status": "pending",
+      "asm_lines": [
+        42
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MulVecByMatrix",
+      "status": "pending",
+      "asm_lines": [
+        92
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MulVecByTranspose",
+      "status": "pending",
+      "asm_lines": [
+        135
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "RecipSqrtFsqrt",
+      "status": "pending",
+      "asm_lines": [
+        204
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZZZ",
+      "status": "pending",
+      "asm_lines": [
+        287
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZZO",
+      "status": "pending",
+      "asm_lines": [
+        295
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZZG",
+      "status": "pending",
+      "asm_lines": [
+        304
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZOZ",
+      "status": "pending",
+      "asm_lines": [
+        314
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZOO",
+      "status": "pending",
+      "asm_lines": [
+        323
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZOG",
+      "status": "pending",
+      "asm_lines": [
+        333
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGZ",
+      "status": "pending",
+      "asm_lines": [
+        344
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGO",
+      "status": "pending",
+      "asm_lines": [
+        354
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGG",
+      "status": "pending",
+      "asm_lines": [
+        365
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOZZ",
+      "status": "pending",
+      "asm_lines": [
+        378
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOZO",
+      "status": "pending",
+      "asm_lines": [
+        387
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOZG",
+      "status": "pending",
+      "asm_lines": [
+        397
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOZ",
+      "status": "pending",
+      "asm_lines": [
+        408
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOO",
+      "status": "pending",
+      "asm_lines": [
+        418
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOG",
+      "status": "pending",
+      "asm_lines": [
+        429
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGZ",
+      "status": "pending",
+      "asm_lines": [
+        441
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGO",
+      "status": "pending",
+      "asm_lines": [
+        452
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGG",
+      "status": "pending",
+      "asm_lines": [
+        464
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZZ",
+      "status": "pending",
+      "asm_lines": [
+        478
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZO",
+      "status": "pending",
+      "asm_lines": [
+        488
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZG",
+      "status": "pending",
+      "asm_lines": [
+        499
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOZ",
+      "status": "pending",
+      "asm_lines": [
+        512
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOO",
+      "status": "pending",
+      "asm_lines": [
+        523
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOG",
+      "status": "pending",
+      "asm_lines": [
+        535
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGZ",
+      "status": "pending",
+      "asm_lines": [
+        549
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGO",
+      "status": "pending",
+      "asm_lines": [
+        562
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGG",
+      "status": "pending",
+      "asm_lines": [
+        576
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MulTransform",
+      "status": "pending",
+      "asm_lines": [
+        822
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MulMatrix",
+      "status": "pending",
+      "asm_lines": [
+        950
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "TransformXform",
+      "status": "pending",
+      "asm_lines": [
+        1016
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MatrixToQuaternion",
+      "status": "pending",
+      "asm_lines": [
+        1137
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "QuaternionToMatrix",
+      "status": "pending",
+      "asm_lines": [
+        1246
+      ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "QuatSlerpValue",
+      "status": "pending",
+      "asm_lines": [
+        1348
+      ]
+    }
+  ]
+}
