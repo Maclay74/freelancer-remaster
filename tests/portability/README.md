@@ -187,3 +187,10 @@ buffers and all special-value pairs. Caller control/MXCSR are unchanged.
 Explicit NaN selection preserves source-load-before-factor semantics; a volatile
 factor read prevents Clang from adding denormal flags on a source-NaN path.
 Condition codes and unmasked timing remain untested.
+
+`rpc_add_item_fields` and `rpc_modify_item_fields` check the health load, ID/
+count/mounted writes and final health store: 12,288 exact field-buffer/exception-
+flag/stack-balance cases per Release compiler and variant, all mounted bytes,
+modify-ID zero extension and special/random health encodings; control/MXCSR
+unchanged. The production mounted packet field remains written after this
+helper returns. Condition codes and unmasked timing are untested.
