@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 175,
+  "remaining_blocks": 174,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -430,21 +430,11 @@
     },
     {
       "file": "src/Thorn/SplineMath.h",
-      "method": "AddStored",
-      "status": "investigating",
-      "asm_lines": [
-        97
-      ],
-      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_add_stored -ContinueOnFailure: 1,680,000 masked and 3,024 unmasked cases per configuration. Clang Debug: 956 output mismatches (all NaN payloads), 2,390 status mismatches, 468 unmasked mismatches. Clang Release and MSVC Debug/Release pass.",
-      "notes": "Production assembly retained. Candidate in tests/portability/candidates/spline_add_stored.h. Clang Debug separately quiets both operand loads before FADDP; original FLD/FADD-memory quiets only the first before arithmetic, changing NaN choice and unmasked stack/status. No tolerance accepted."
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        134,
-        167
+        120,
+        153
       ]
     },
     {
@@ -452,7 +442,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        195
+        181
       ]
     },
     {
@@ -460,7 +450,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        212
+        198
       ]
     },
     {
@@ -468,9 +458,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        264,
-        288,
-        309
+        250,
+        274,
+        295
       ]
     },
     {
@@ -1158,6 +1148,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "AddStored",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_add_portable: MSVC/Clang Release; 86,016 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlaps with either input, all precision/rounding modes; unchanged control/MXCSR. Shared NaN helper regression: spline_scale_stored passes 43,008 cases per Release compiler.",
+      "notes": "Explicit NaN selection preserves left-load/raw-right semantics; invalid infinity sums use x87 indefinite bits. Historical naive candidate remains test-only. No numerical tolerance. Debug, condition codes and unmasked trap timing are untested for the replacement."
     },
     {
       "file": "src/luaprofile/lua32/src/lparser.c",

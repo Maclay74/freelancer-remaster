@@ -66,7 +66,7 @@ replacement uses that simpler expression. No tolerance was accepted.
 `spline_negate_stored.cpp` supplies a shared unary-kernel test harness; the
 doubling test selects its original operation with a test-only macro.
 
-## Open investigation: stored spline addition
+## Rejected candidate: stored spline addition
 
 ```powershell
 .\scripts\test-portable-kernel.ps1 -Test spline_add_stored -ContinueOnFailure
@@ -79,8 +79,9 @@ differences, no mismatches involving a non-NaN value) and 2,390 x87 status
 differences. It also has 468 mismatches in 3,024 unmasked cases. The other
 three compiler/configuration combinations pass. Clang Debug loads/quietens
 both operands before FADDP, whereas the original uses an FADD memory operand.
-Production assembly is retained; no tolerance has been accepted. The candidate
-is test-only and excluded from the normal CTest/CI pass gate.
+This historical candidate is test-only and excluded from the normal CTest gate.
+The replacement below explicitly preserves NaN selection instead; no numerical
+tolerance has been accepted.
 
 ## Strict parameter comparison
 
@@ -207,3 +208,13 @@ cases per Release compiler. Covers integer limits, fractions, zeros, infinities,
 NaNs and random doubles; control/MXCSR unchanged. NaNs retain the recovered
 negative opcode with zero argument; rejected fractions retain FE_INEXACT.
 Condition codes and unmasked timing remain untested.
+
+`spline_add_portable` and `spline_subtract_portable` compare reverse-order
+binary vector operations: 86,016 exact whole-buffer/exception-flag/stack-balance
+cases per Release compiler and operation, including overlaps with either input,
+all precision/rounding modes, special-value pairs and random encodings.
+Caller control/MXCSR are unchanged. The shared NaN helper preserves the original
+left numerical load and raw right memory operand; invalid infinity combinations
+produce the original negative quiet NaN. Scaling also passes its 43,008-case
+regression matrix after sharing that helper. Debug, condition codes and unmasked
+trap timing remain untested for these new implementations.
