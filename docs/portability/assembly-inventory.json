@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 127,
+  "remaining_blocks": 126,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -776,18 +776,10 @@
     },
     {
       "file": "src/x86math/x86math.cpp",
-      "method": "MulVecByMatrix",
-      "status": "pending",
-      "asm_lines": [
-        39
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
       "method": "MulVecByTranspose",
       "status": "pending",
       "asm_lines": [
-        82
+        45
       ]
     },
     {
@@ -795,7 +787,7 @@
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        229
+        192
       ]
     },
     {
@@ -803,7 +795,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        377
+        340
       ]
     },
     {
@@ -811,7 +803,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        495
+        458
       ]
     },
     {
@@ -819,8 +811,16 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        604
+        567
       ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "MulVecByMatrix",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "x86_core_math: MSVC/Clang Release, 6,144 cases x five operations per compiler, all precision/rounding settings, identity/zero/rotation/scale and random matrices; scaled legacy error <=1.883e-7 with limit 2e-6. Exact source/destination aliases and in-place transpose checked.",
+      "notes": "Portable double-intermediate C++ algorithm. Numerical tolerance explicit, not bit-exact x87 emulation; flags, NaN payload/sign, signed-zero bits and unmasked trap timing are not legacy contracts. Inputs read before publishing outputs for safe in-place use. Debug, non-x86 architectures and gameplay untested."
     },
     {
       "file": "src/x86math/x86math.cpp",
