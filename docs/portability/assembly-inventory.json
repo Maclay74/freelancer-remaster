@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 63,
+  "remaining_blocks": 62,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -122,18 +122,10 @@
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
-      "method": "AccumulateSegmentSampleRetail",
-      "status": "pending",
-      "asm_lines": [
-        270
-      ]
-    },
-    {
-      "file": "src/Thorn/SplinePath.cpp",
       "method": "NormalizeSegmentSamplesRetail",
       "status": "pending",
       "asm_lines": [
-        320
+        281
       ]
     },
     {
@@ -141,7 +133,7 @@
       "method": "SubtractGhostVector",
       "status": "pending",
       "asm_lines": [
-        1379
+        1340
       ]
     },
     {
@@ -149,7 +141,7 @@
       "method": "ApplyCtorGhosts",
       "status": "pending",
       "asm_lines": [
-        1421
+        1382
       ]
     },
     {
@@ -379,6 +371,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/SplinePath.cpp",
+      "method": "AccumulateSegmentSampleRetail",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "spline_sampling: 122,880 cases across five methods per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Position basis, cumulative lengths/table normalization and ghost arithmetic; scalar/vector aliases, zero/subnormal/nonfinite states and untouched-storage checks. Thorn DLL, actual spline reference contract and targeted CTests build/pass.",
+      "notes": "Portable double arithmetic keeps sum order, explicit float inverse/Z boundaries, source snapshots and publication/reread order. Scaled tolerance 3e-6; accumulation error includes input magnitudes to handle cancellation. Four initial MSVC PC24 residual mismatches were one sqrt rounding step (~3.8e-6), not frame/bounds changes. NaNs by classification; untouched storage exact. ApplyCtorGhosts tests its replaced arithmetic span plus actual spline integration; existing CatmullRom helpers unchanged. Flags, NaN payloads, signed-zero bits, unmasked timing, Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/SplinePath.cpp",
