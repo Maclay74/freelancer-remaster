@@ -1,15 +1,7 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 73,
+  "remaining_blocks": 72,
   "methods": [
-    {
-      "file": "src/Thorn/lua32/src/lobject.c",
-      "method": "LuaParseSignedNumberObject",
-      "status": "pending",
-      "asm_lines": [
-        159
-      ]
-    },
     {
       "file": "src/Thorn/ParamCurve.cpp",
       "method": "CatmullRom1D",
@@ -452,6 +444,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lobject.c",
+      "method": "LuaParseSignedNumberObject",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "lua_number_parse_contract: actual C parser versus the original waiting wrapper, 504 exact return/object-buffer cases per MSVC/clang-cl x86 Release compiler, all 12 precision/rounding modes, valid/invalid/overflow numeric strings and sign variants. Thorn DLL and targeted Clang CTest build/pass.",
+      "notes": "Removed the x87-only waiting instruction; parsing, rejection and object publication remain ordinary C. Masked numeric/object results match exactly. Portable runtime exception-delivery rules replace the original unmasked waiting boundary; no unmasked-timing equivalence is claimed. Debug, other architectures and gameplay untested."
     },
     {
       "file": "src/Thorn/lua32/src/lvm.c",
