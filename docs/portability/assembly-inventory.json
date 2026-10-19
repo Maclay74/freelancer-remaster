@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 211,
+  "remaining_blocks": 210,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -843,7 +843,7 @@
       "method": "Cross3",
       "status": "pending",
       "asm_lines": [
-        391
+        392
       ]
     },
     {
@@ -851,7 +851,7 @@
       "method": "Normalize3",
       "status": "pending",
       "asm_lines": [
-        421
+        422
       ]
     },
     {
@@ -859,7 +859,7 @@
       "method": "NormalizeAxis3",
       "status": "pending",
       "asm_lines": [
-        750
+        751
       ]
     },
     {
@@ -867,7 +867,7 @@
       "method": "CrossAxisSide3",
       "status": "pending",
       "asm_lines": [
-        789
+        790
       ]
     },
     {
@@ -875,7 +875,7 @@
       "method": "CrossAxisUp3",
       "status": "pending",
       "asm_lines": [
-        820
+        821
       ]
     },
     {
@@ -883,7 +883,7 @@
       "method": "AxisDotNotGreater",
       "status": "pending",
       "asm_lines": [
-        851
+        852
       ]
     },
     {
@@ -891,7 +891,7 @@
       "method": "AudioLerpFloat",
       "status": "pending",
       "asm_lines": [
-        1024
+        1025
       ]
     },
     {
@@ -899,7 +899,7 @@
       "method": "ComputeAudioLerpInteger",
       "status": "pending",
       "asm_lines": [
-        1048
+        1049
       ]
     },
     {
@@ -907,7 +907,7 @@
       "method": "ComputeLightColor",
       "status": "pending",
       "asm_lines": [
-        1070
+        1071
       ]
     },
     {
@@ -915,7 +915,7 @@
       "method": "FogLerpFloat",
       "status": "pending",
       "asm_lines": [
-        1089
+        1090
       ]
     },
     {
@@ -923,7 +923,7 @@
       "method": "FogLerpInteger",
       "status": "pending",
       "asm_lines": [
-        1113
+        1114
       ]
     },
     {
@@ -931,7 +931,7 @@
       "method": "ConvertCompactLightRetail",
       "status": "pending",
       "asm_lines": [
-        1190
+        1191
       ]
     },
     {
@@ -939,7 +939,7 @@
       "method": "IsLightInterpolationComplete",
       "status": "pending",
       "asm_lines": [
-        1389
+        1390
       ]
     },
     {
@@ -947,7 +947,7 @@
       "method": "InterpolateLightDirection",
       "status": "pending",
       "asm_lines": [
-        1409
+        1410
       ]
     },
     {
@@ -955,7 +955,7 @@
       "method": "LerpSpatialPosition",
       "status": "pending",
       "asm_lines": [
-        1585
+        1586
       ]
     },
     {
@@ -963,7 +963,7 @@
       "method": "AccumulateAxisDelta",
       "status": "pending",
       "asm_lines": [
-        1613
+        1614
       ]
     },
     {
@@ -971,7 +971,7 @@
       "method": "ApplyAxisRotFpu",
       "status": "pending",
       "asm_lines": [
-        1642
+        1643
       ]
     },
     {
@@ -979,7 +979,7 @@
       "method": "BuildAttachLookDirection",
       "status": "pending",
       "asm_lines": [
-        2120
+        2121
       ]
     },
     {
@@ -987,7 +987,7 @@
       "method": "ApplyPsysSparam",
       "status": "pending",
       "asm_lines": [
-        2323
+        2324
       ]
     },
     {
@@ -995,7 +995,7 @@
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        2349
+        2350
       ]
     },
     {
@@ -1003,7 +1003,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        2413
+        2414
       ]
     },
     {
@@ -1011,7 +1011,7 @@
       "method": "InterpolateFloorHeight",
       "status": "pending",
       "asm_lines": [
-        2466
+        2467
       ]
     },
     {
@@ -1019,7 +1019,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        2501
+        2502
       ]
     },
     {
@@ -1027,7 +1027,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2554
+        2555
       ]
     },
     {
@@ -1035,11 +1035,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        4075,
-        4086,
-        4098,
-        4107,
-        4117
+        4076,
+        4087,
+        4099,
+        4108,
+        4118
       ]
     },
     {
@@ -1047,9 +1047,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        4386,
-        4404,
-        4414
+        4387,
+        4405,
+        4415
       ]
     },
     {
@@ -1057,9 +1057,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        4437,
-        4446,
-        4458
+        4438,
+        4447,
+        4459
       ]
     },
     {
@@ -1067,10 +1067,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        4474,
-        4498,
-        4510,
-        4523
+        4475,
+        4499,
+        4511,
+        4524
       ]
     },
     {
@@ -1078,7 +1078,7 @@
       "method": "FThornEvent::StartAttachEntity",
       "status": "pending",
       "asm_lines": [
-        4717
+        4718
       ]
     },
     {
@@ -1086,8 +1086,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4938,
-        4972
+        4939,
+        4973
       ]
     },
     {
@@ -1095,15 +1095,7 @@
       "method": "FThornEvent::TickPsysPropAnim",
       "status": "pending",
       "asm_lines": [
-        5415
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "ShouldSaveNonzeroFloat",
-      "status": "pending",
-      "asm_lines": [
-        8211
+        5416
       ]
     },
     {
@@ -1425,6 +1417,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ShouldSaveNonzeroFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test scene_nonzero_float: MSVC and Clang Release; 24,576 exact return/exception-flag comparisons per compiler and no MXCSR changes; all precision/rounding settings and special-value samples.",
+      "notes": "Explicit NaN handling retains signaling comparison flags. No numeric tolerance. x87 condition codes and unmasked trap timing not compared."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",

@@ -7,21 +7,35 @@
 __declspec(noinline) bool Reference(const float* left, const float* right)
 {
     unsigned char less;
+#if defined(TEST_NONZERO)
+    const float zero = 0.0f;
+#endif
     __asm {
         mov ecx, left
         fld dword ptr [ecx]
+#if defined(TEST_NONZERO)
+        fcomp dword ptr zero
+        fnstsw ax
+        test ah, 44h
+        setp less
+#else
         mov ecx, right
         fcomp dword ptr [ecx]
         fnstsw ax
         test ah, 05h
         setnp less
+#endif
     }
     return less != 0;
 }
 
 __declspec(noinline) bool Candidate(const float* left, const float* right)
 {
+#if defined(TEST_NONZERO)
+    return ThornPortableComparison::Nonzero(left);
+#else
     return ThornPortableComparison::StrictLess(left, right);
+#endif
 }
 
 int main()

@@ -9,6 +9,7 @@ No game build, DATA, DirectX SDK, or MFC is needed:
 .\scripts\test-portable-kernel.ps1 -Test scene_read_column
 .\scripts\test-portable-kernel.ps1 -Test scene_transpose
 .\scripts\test-portable-kernel.ps1 -Test param_strict_less
+.\scripts\test-portable-kernel.ps1 -Test scene_nonzero_float
 .\scripts\test-portable-kernel.ps1 -Test hermite_construction
 .\scripts\test-portable-kernel.ps1 -Test lua_double_probe
 .\scripts\test-portable-kernel.ps1 -Test lua_float_probe
@@ -88,3 +89,7 @@ The production replacement promotes the left operand before inspecting NaN
 encodings and explicitly raises FE_INVALID for any NaN, including quiet NaNs.
 It passes the same matrix with zero return/exception-flag differences and no
 MXCSR changes. x87 condition codes and unmasked trap timing are not compared.
+
+`scene_nonzero_float` also passes 24,576 return/exception-flag comparisons per Release
+compiler with no MXCSR changes. Unmasked trap timing and x87 condition codes
+are not compared.
