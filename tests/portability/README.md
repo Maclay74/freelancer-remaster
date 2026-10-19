@@ -175,7 +175,9 @@ Control/MXCSR are unchanged. Environment restoration plus original-input
 reloads remove a Clang-only denormal flag from reloading a narrowed result.
 Condition codes and unmasked timing remain untested.
 
-`fast_dot_zero` and `fast_dot_x/y/z` check the zero/single-component kernels:
+`fast_dot_zero` and `fast_dot_x/y/z` are now historical, standalone checks,
+excluded from normal CTest/CI lists. Their helper lives under `candidates/`,
+with no production dependency. Their earlier evidence for zero/component kernels:
 12,288 exact binary80 return and complete x87-status comparisons per Release
 compiler and variant, all precision/rounding settings, special/random float
 encodings, unchanged control/MXCSR and fastcall stack cleanup. Zero is tested
@@ -271,3 +273,39 @@ Debug, unmasked exception timing and non-x86 builds remain untested.
 
 The public methods and direct wrappers/callers are now `QuatNlerp` and
 `QuatNlerpValue`; virtual slot order and calling conventions are unchanged.
+
+## Standard batch transforms
+
+```powershell
+.\scripts\test-portable-kernel.ps1 -Test batch_transform
+```
+
+The production `BatchTransform.h` template replaces all 27 FastDot variants and
+both bulk dispatch paths. It snapshots matrix/translation once and XYZ per
+vector, evaluates full dot products using double intermediates, then narrows at
+output stores. Positive counts support separate buffers and exact in-place use.
+Zero/negative counts do nothing, including when source/destination are null.
+Shifted partially overlapping arrays are not covered by the supported in-place
+contract; forward iteration can overwrite subsequent source elements.
+
+MSVC and Clang Release each pass 49,152 batch cases and 24,576 comparisons with
+the original out-of-place batch path. Coverage includes all 27 row coefficient
+classes, random dense matrices, identity/zero/rotation matrices, counts -1/0/1/8,
+no/zero/nonzero/output-aliased translation, separate and exact in-place buffers,
+and all precision/rounding settings. An independent row/column model uses a
+2e-6 scaled tolerance: absolute error divided by the maximum of one and the
+sum of absolute input terms plus translation. Observed maximum scaled errors:
+3.43e-7 against the model and 1.90e-7 against legacy. Untouched array regions,
+control settings and stack balance are checked.
+
+The old sparse path reread source coordinates after writing output; it differs
+from the mathematical in-place result in 2,676 sampled batches per compiler.
+The new loop intentionally corrects this. Matrix and translation values are
+fixed for the call rather than depending on destination writes.
+
+Full arithmetic intentionally evaluates zero coefficients, so zero times infinity
+or NaN can propagate NaN where a specialized kernel previously skipped a term.
+An identity/infinite-source case checks this policy. Old exception flags, NaN
+payload/sign and signed-zero bits are not preserved. Debug, shifted overlap,
+performance comparisons, other architectures and gameplay remain untested.
+The public component contract tests rotation in place and translated batches.

@@ -27,7 +27,10 @@ accepted by default.
 `removed-unverified` records assembly removed outside this verification workflow:
 the source no longer contains it, but isolated equivalence evidence is still
 missing. Such entries remain unfinished work and do not count as verified
-replacements. This status accounts for the removals in user commit `f21d00b`.
+replacements. `accepted-unverified` records an explicit user decision to skip
+that verification. The twelve removals in user commit `f21d00b` have this status
+at the user's request: they are excluded from remaining verification work and
+are not counted as tested replacements.
 
 The user requested replacing the x86math inverse-square-root approximation with
 standard math. This is a deliberate algorithm change rather than a bit-exact

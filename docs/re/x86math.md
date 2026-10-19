@@ -24,7 +24,7 @@ There are no PE exports (only `DllMain`); other modules do not link against x86m
 ## Port deviations
 
 1. No CRT `_initterm`/onexit or inverse-square-root table initialization. At the user's request, `Sqrt` now uses standard square root and `InvSqrt` uses `1.0 / sqrt(double(X))` narrowed to float (`src/x86math/ScalarMath.h`). This deliberately changes approximation/edge-case results and floating-point flags. The table algorithm described above documents retail behavior; it remains only as a test oracle, not in production.
-2. The FastDot kernels are naked thiscall members of `FFastDot` (result in ST0), because MSVC cannot express a free `__thiscall`; thresholds and layout are the same. Slots 16/17 remain `DACOM_API` stdcall.
+2. The original FastDot specialization machinery has been replaced by the portable batch loop in `BatchTransform.h`. All matrix terms are evaluated; XYZ is read before output stores, allowing exact in-place use. Matrix/translation values are snapshotted for the call. This deliberately changes legacy sparse-path in-place behavior, zero-term exceptional arithmetic, and low-order rounding. Slots 16/17 remain `DACOM_API` stdcall. The 27 kernels described above document retail behavior and remain only as a test oracle.
 3. The object is created with `::operator new(8, nothrow)` + placement new (MSVC writes the vfptr itself, retail does it manually; `sizeof == 8`).
 4. The port's `QueryInterface` and `CreateInstance` check the output pointer for NULL; retail writes without a check.
 5. The status of individual methods (some remain incompletely verified with respect to FP-stack argument preparation) is in the tracker, not here.

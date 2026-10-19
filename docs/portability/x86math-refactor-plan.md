@@ -31,9 +31,11 @@ helpers should operate on the existing data structures without knowing about
 DACOM, module loading, or singleton lifetime. These pieces remain inside the
 existing DLL; they do not need separate libraries, services, or public interfaces.
 
-The bulk-transform FastDot implementation can initially move as one private
-unit. Do not design a new public FastDot abstraction: its specialization machinery
-may disappear when the bulk path is simplified.
+Current batch implementation: `BatchTransform.h` replaces the full FastDot
+machinery with one portable loop. Original specializations survive only in the
+test oracle. Component tests now exercise public batch operations. The legacy
+zero/component helper and its four standalone tests are historical; they are no
+longer production code or part of normal regression runs.
 
 ## Dependencies
 
@@ -53,18 +55,15 @@ moving code out of line can itself change compiler rounding/inlining behavior.
 
 ## Candidates for later simplification
 
-1. **FastDot dispatch.** There are 27 coefficient combinations: each coefficient
-   is classified as zero, one, or general. Four zero/component kernels are already
-   portable; the other 23 retain assembly. A saved-operation score selects this
-   path versus direct dot products. Compare a straightforward bulk loop against
-   the existing implementation before deciding to remove classification, kernel
-   tables, special calling conventions, and layout assertions. This is a
-   candidate simplification, not an established performance improvement.
-2. **Table-based inverse square root.** The 1,024-byte table and two Newton steps
-   are candidates for replacement with standard square-root operations. Their
-   current output is approximate and differs from correctly rounded square root;
-   specify and test the numerical change before switching. Keep this decision
-   separate from quaternion normalization.
+1. **FastDot dispatch (done).** `BatchTransform.h` replaces all 27 coefficient
+   specializations and saved-operation dispatch with one matrix-vector loop.
+   Regression tests cover standard out-of-place math and corrected exact in-place
+   use, with explicit scaled tolerances and general zero-term arithmetic.
+   Performance has not been measured; this change makes no speed claim.
+2. **Table-based inverse square root (done).** `ScalarMath.h` replaces the
+   1,024-byte table and Newton steps with standard square-root operations and a
+   double reciprocal root. Numerical changes are recorded in the isolated test
+   documentation. Quaternion normalization remains separate.
 3. **Shared transform formulas.** Matrix transform and rotation already share
    one helper; transpose transform and inverse rotation share another. Refactor
    around those existing responsibilities before adding abstractions. Preserve

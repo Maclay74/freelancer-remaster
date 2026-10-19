@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 152,
+  "remaining_blocks": 129,
   "methods": [
     {
       "file": "src/include/x87_trig.h",
@@ -779,7 +779,7 @@
       "method": "MulVecByMatrix",
       "status": "pending",
       "asm_lines": [
-        38
+        37
       ]
     },
     {
@@ -787,7 +787,7 @@
       "method": "MulVecByTranspose",
       "status": "pending",
       "asm_lines": [
-        81
+        80
       ]
     },
     {
@@ -795,191 +795,7 @@
       "method": "RecipSqrtFsqrt",
       "status": "pending",
       "asm_lines": [
-        150
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZZG",
-      "status": "pending",
-      "asm_lines": [
-        241
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZOO",
-      "status": "pending",
-      "asm_lines": [
-        255
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZOG",
-      "status": "pending",
-      "asm_lines": [
-        265
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZGZ",
-      "status": "pending",
-      "asm_lines": [
-        276
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZGO",
-      "status": "pending",
-      "asm_lines": [
-        286
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotZGG",
-      "status": "pending",
-      "asm_lines": [
-        297
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOZO",
-      "status": "pending",
-      "asm_lines": [
-        314
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOZG",
-      "status": "pending",
-      "asm_lines": [
-        324
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOOZ",
-      "status": "pending",
-      "asm_lines": [
-        335
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOOO",
-      "status": "pending",
-      "asm_lines": [
-        345
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOOG",
-      "status": "pending",
-      "asm_lines": [
-        356
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOGZ",
-      "status": "pending",
-      "asm_lines": [
-        368
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOGO",
-      "status": "pending",
-      "asm_lines": [
-        379
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotOGG",
-      "status": "pending",
-      "asm_lines": [
-        391
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGZZ",
-      "status": "pending",
-      "asm_lines": [
-        405
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGZO",
-      "status": "pending",
-      "asm_lines": [
-        415
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGZG",
-      "status": "pending",
-      "asm_lines": [
-        426
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGOZ",
-      "status": "pending",
-      "asm_lines": [
-        439
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGOO",
-      "status": "pending",
-      "asm_lines": [
-        450
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGOG",
-      "status": "pending",
-      "asm_lines": [
-        462
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGGZ",
-      "status": "pending",
-      "asm_lines": [
-        476
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGGO",
-      "status": "pending",
-      "asm_lines": [
-        489
-      ]
-    },
-    {
-      "file": "src/x86math/x86math.cpp",
-      "method": "FastDotGGG",
-      "status": "pending",
-      "asm_lines": [
-        503
+        149
       ]
     },
     {
@@ -987,7 +803,7 @@
       "method": "MulTransform",
       "status": "pending",
       "asm_lines": [
-        749
+        245
       ]
     },
     {
@@ -995,7 +811,7 @@
       "method": "MulMatrix",
       "status": "pending",
       "asm_lines": [
-        877
+        373
       ]
     },
     {
@@ -1003,7 +819,7 @@
       "method": "TransformXform",
       "status": "pending",
       "asm_lines": [
-        943
+        439
       ]
     },
     {
@@ -1011,7 +827,7 @@
       "method": "MatrixToQuaternion",
       "status": "pending",
       "asm_lines": [
-        1064
+        557
       ]
     },
     {
@@ -1019,8 +835,192 @@
       "method": "QuaternionToMatrix",
       "status": "pending",
       "asm_lines": [
-        1173
+        666
       ]
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZZG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZOO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZOG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotZGG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOZO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOZG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOOG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotOGG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGZG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGOG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGZ",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGO",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
+    },
+    {
+      "file": "src/x86math/x86math.cpp",
+      "method": "FastDotGGG",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "batch_transform: MSVC/Clang Release, 49,152 batch cases per compiler, 24,576 original out-of-place batch comparisons. Covers all 27 coefficient classes, general matrices, optional/zero/aliased translation, separate and exact in-place buffers, zero/negative counts, all precision/rounding settings. Maximum scaled error against legacy below 1.90e-7; model below 3.43e-7, tolerance 2e-6. x86math builds; batch and public math contracts pass.",
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
     },
     {
       "file": "src/x86math/x86math.cpp",
@@ -1033,98 +1033,98 @@
     {
       "file": "src/alchemy/alchemy_common.cpp",
       "method": "ComputeSinCosFpu",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/freelancer/Client/menu_sound_arch.cpp",
       "method": "Update",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/freelancer/Client/menu_sound_arch.cpp",
       "method": "FSoundSource::ComputeMixerScore",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/RemoteClient/RemoteClient_main.cpp",
       "method": "DispatchClientPacket",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/SoundManager/SoundManager.cpp",
       "method": "SoftwareAttenuation",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "Scale",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "Add",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "SubtractVector",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "CatmullRom3D",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "SampleParameter",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "Lerp3D",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/Thorn/SplineMath.h",
       "method": "CatmullRomTangent3D",
-      "status": "removed-unverified",
+      "status": "accepted-unverified",
       "asm_lines": [],
       "evidence": "Source removal in user commit f21d00b; no isolated verification performed as part of scalar-table replacement.",
-      "notes": "Assembly no longer present. Numerical equivalence and gameplay effects remain unverified; not counted as a verified replacement."
+      "notes": "User explicitly requested no verification of these removals. Accepted without additional tests; excluded from remaining verification work, not counted as a tested replacement."
     },
     {
       "file": "src/x86math/x86math.cpp",
@@ -1204,7 +1204,7 @@
       "status": "replaced",
       "asm_lines": [],
       "evidence": "scripts/test-portable-kernel.ps1 -Test fast_dot_z: MSVC/Clang Release; 12,288 exact binary80-return/full-x87-status comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR and fastcall stack cleanup.",
-      "notes": "Portable zero/component helper replaces naked assembly; existing thiscall/Clang fastcall wrapper ABI retained. Zero accepts null input. Component return contains no arithmetic or intermediate narrowing. No tolerance accepted. Unmasked timing untested."
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
     },
     {
       "file": "src/x86math/x86math.cpp",
@@ -1212,7 +1212,7 @@
       "status": "replaced",
       "asm_lines": [],
       "evidence": "scripts/test-portable-kernel.ps1 -Test fast_dot_y: MSVC/Clang Release; 12,288 exact binary80-return/full-x87-status comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR and fastcall stack cleanup.",
-      "notes": "Portable zero/component helper replaces naked assembly; existing thiscall/Clang fastcall wrapper ABI retained. Zero accepts null input. Component return contains no arithmetic or intermediate narrowing. No tolerance accepted. Unmasked timing untested."
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
     },
     {
       "file": "src/x86math/x86math.cpp",
@@ -1220,7 +1220,7 @@
       "status": "replaced",
       "asm_lines": [],
       "evidence": "scripts/test-portable-kernel.ps1 -Test fast_dot_x: MSVC/Clang Release; 12,288 exact binary80-return/full-x87-status comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR and fastcall stack cleanup.",
-      "notes": "Portable zero/component helper replaces naked assembly; existing thiscall/Clang fastcall wrapper ABI retained. Zero accepts null input. Component return contains no arithmetic or intermediate narrowing. No tolerance accepted. Unmasked timing untested."
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
     },
     {
       "file": "src/x86math/x86math.cpp",
@@ -1228,7 +1228,7 @@
       "status": "replaced",
       "asm_lines": [],
       "evidence": "scripts/test-portable-kernel.ps1 -Test fast_dot_zero: MSVC/Clang Release; 12,288 exact binary80-return/full-x87-status comparisons per compiler, all precision/rounding modes; unchanged control/MXCSR and fastcall stack cleanup.",
-      "notes": "Portable zero/component helper replaces naked assembly; existing thiscall/Clang fastcall wrapper ABI retained. Zero accepts null input. Component return contains no arithmetic or intermediate narrowing. No tolerance accepted. Unmasked timing untested."
+      "notes": "All 27 specialized kernels, dispatch tables and ABI workarounds removed from production, replaced by one standard matrix-vector loop in BatchTransform.h. Original retained only as test oracle. Exact in-place transforms now snapshot XYZ, correcting old sparse-path alias errors. Matrix/translation snapshot at call start. Full dot arithmetic includes zero terms; special-value flags, NaN payloads/signs and zero sign are not legacy contracts. Tests do not establish shifted-overlap or gameplay equivalence. Prior zero/component test evidence, where present, is historical and superseded by batch-level checks."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",

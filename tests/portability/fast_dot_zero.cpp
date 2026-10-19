@@ -1,4 +1,4 @@
-#include "../../src/x86math/PortableFastDot.h"
+#include "candidates/legacy_fast_dot_helpers.h"
 #include <cstdint>
 #include <cstdio>
 #include <cstring>

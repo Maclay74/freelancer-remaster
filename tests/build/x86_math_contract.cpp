@@ -4,22 +4,17 @@
 
 int main()
 {
-    const float coefficients[] = {0.0f, 1.0f, -2.0f};
-    const FVector vector = {2.0f, -3.0f, 4.0f};
-    for (float a : coefficients) for (float b : coefficients) for (float c : coefficients) {
-        FFastDot dot;
-        BindFastDot(dot, a, b, c);
-        float plain = 0, added = 0;
-        const float offset = 0.5f;
-        StoreKernelPlain(dot, &vector, &plain);
-        StoreKernelAdd(dot, &vector, &added, &offset);
-        const float expected = a * vector.X + b * vector.Y + c * vector.Z;
-        if (plain != expected || added != expected + offset) {
-            std::fprintf(stderr, "FastDot mismatch: %g %g %g => %g %g\n", a, b, c, plain, added);
-            return 1;
-        }
-    }
     FMathEngine engine{};
+    const FMatrix rotation = {{{0, -1, 0}, {1, 0, 0}, {0, 0, 1}}};
+    FVector vectors[] = {{2, -3, 4}, {-1, 5, 6}};
+    if (engine.TransformListMatrix(vectors, rotation, vectors, 2) != GR_OK ||
+        vectors[0].X != 3 || vectors[0].Y != 2 || vectors[0].Z != 4 ||
+        vectors[1].X != -5 || vectors[1].Y != -1 || vectors[1].Z != 6) return 11;
+    const FTransform transform = {rotation, {10, 20, 30}};
+    FVector translated[2];
+    if (engine.TransformListXform(translated, transform, vectors, 2) != GR_OK ||
+        translated[0].X != 8 || translated[0].Y != 23 || translated[0].Z != 34 ||
+        translated[1].X != 11 || translated[1].Y != 15 || translated[1].Z != 36) return 12;
     float root = 0, inverseRoot = 0;
     if (engine.Sqrt(root, 4.0f) != GR_OK || root != 2.0f ||
         engine.InvSqrt(inverseRoot, 4.0f) != GR_OK || inverseRoot != 0.5f) return 8;
