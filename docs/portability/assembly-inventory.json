@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 201,
+  "remaining_blocks": 200,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -149,15 +149,7 @@
       "method": "RpcUpdateQuantize",
       "status": "pending",
       "asm_lines": [
-        1351
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
-      "method": "RpcUpdateExpand",
-      "status": "pending",
-      "asm_lines": [
-        1375
+        1352
       ]
     },
     {
@@ -165,8 +157,8 @@
       "method": "RpcFirePickTier",
       "status": "pending",
       "asm_lines": [
-        1389,
-        1411
+        1385,
+        1407
       ]
     },
     {
@@ -174,7 +166,7 @@
       "method": "RpcFireQuantize",
       "status": "pending",
       "asm_lines": [
-        1437
+        1433
       ]
     },
     {
@@ -182,7 +174,7 @@
       "method": "RpcFireGetComponent",
       "status": "pending",
       "asm_lines": [
-        1495
+        1491
       ]
     },
     {
@@ -1345,6 +1337,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_packet_codecs.cpp",
+      "method": "RpcUpdateExpand",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_expand127: MSVC and Clang Release; all 256 byte encodings, 3,072 cases per compiler across all precision/rounding settings. Exact buffers and status outside C1; MXCSR unchanged.",
+      "notes": "Clang has 746 C1-only differences, MSVC none. C1 is diagnostic after source audit found no consumer of its rounding history. No numeric tolerance; exception flags match exactly. Unmasked trap timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
