@@ -1,21 +1,13 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 96,
+  "remaining_blocks": 95,
   "methods": [
-    {
-      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
-      "method": "math_cos",
-      "status": "pending",
-      "asm_lines": [
-        53
-      ]
-    },
     {
       "file": "src/Thorn/lua32/src/lib/lmathlib.c",
       "method": "math_tan",
       "status": "pending",
       "asm_lines": [
-        68
+        57
       ]
     },
     {
@@ -23,7 +15,7 @@
       "method": "math_atan",
       "status": "pending",
       "asm_lines": [
-        101
+        90
       ]
     },
     {
@@ -31,7 +23,7 @@
       "method": "math_atan2",
       "status": "pending",
       "asm_lines": [
-        119
+        108
       ]
     },
     {
@@ -39,7 +31,7 @@
       "method": "math_sqrt",
       "status": "pending",
       "asm_lines": [
-        150
+        139
       ]
     },
     {
@@ -47,7 +39,7 @@
       "method": "math_log",
       "status": "pending",
       "asm_lines": [
-        168
+        157
       ]
     },
     {
@@ -55,7 +47,7 @@
       "method": "math_log10",
       "status": "pending",
       "asm_lines": [
-        182
+        171
       ]
     },
     {
@@ -63,7 +55,7 @@
       "method": "math_exp",
       "status": "pending",
       "asm_lines": [
-        196
+        185
       ]
     },
     {
@@ -622,6 +614,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/lua32/src/lib/lmathlib.c",
+      "method": "math_cos",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "lua_standard_math: 221,015 total comparisons across nine kernels per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Actual C Lua registration/callback contract and Thorn DLL build/pass with Clang.",
+      "notes": "Standard C math with original binary64 degree scale constants; argument-check order retained. Scaled tolerance 1e-11 except PC24 sqrt 2e-7 and exp 4e-6. Sampled trigonometry domain +/-720 degrees (tan excludes abs(cos)<0.01), sqrt/log inputs positive, exp inputs +/-30. Standard exceptional/huge-argument policy deliberately replaces x87 instructions. Exact flags, NaN payloads, unmasked trap timing, Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/lua32/src/lib/lmathlib.c",
