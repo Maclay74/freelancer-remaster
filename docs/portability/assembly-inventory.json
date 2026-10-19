@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 196,
+  "remaining_blocks": 195,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -171,19 +171,11 @@
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
-      "method": "RpcServerQuantize255",
-      "status": "pending",
-      "asm_lines": [
-        50
-      ]
-    },
-    {
-      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
       "method": "RpcServerQuantizeHull",
       "status": "pending",
       "asm_lines": [
-        78,
-        86
+        63,
+        71
       ]
     },
     {
@@ -191,7 +183,7 @@
       "method": "RpcServerExpandHull",
       "status": "pending",
       "asm_lines": [
-        109
+        94
       ]
     },
     {
@@ -199,7 +191,7 @@
       "method": "RpcServerSendCommQuantize",
       "status": "pending",
       "asm_lines": [
-        3280
+        3265
       ]
     },
     {
@@ -1305,6 +1297,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
+      "method": "RpcServerQuantize255",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test rpc_quantize255: MSVC/Clang Release; 49,152 exact int64-result and exception-flag comparisons per compiler; all precision/rounding modes, random float encodings and explicit truncation/overflow boundaries.",
+      "notes": "Float32 multiplied by exact 127/255 needs at most 32 significand bits: binary64 storage introduces no extra rounding. Legacy conversion preserves invalid/inexact and low-byte behavior. No numeric tolerance. Control/MXCSR unchanged; condition codes and unmasked timing untested."
     },
     {
       "file": "src/RemoteCommon/remote_server_channel_codecs.cpp",
