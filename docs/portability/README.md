@@ -82,6 +82,14 @@ expressions replace retained binary80 arithmetic with the documented float
 tolerances. Nine more production blocks are removed; the remaining scene/curve
 and Lua runtime work is still tracked in the inventory.
 
+`LuaPropertyMath.h` removes ThornLua.cpp's last four blocks. Millisecond
+conversion retains the exact seconds*1000 significand product before precision
+rounding and integer truncation; ordinary double multiplication can lose the
+last millisecond near a boundary. Light postprocessing preserves masks, ordered
+negative-cutoff handling and source reads/publication relevant to aliases, with
+the tested RGB tolerance documented separately. The Lua interpreter and the
+remaining scene/curve assembly are separate outstanding work.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.

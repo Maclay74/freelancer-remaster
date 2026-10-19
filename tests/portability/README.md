@@ -59,6 +59,22 @@ not contracts. Zero-length vectors retain NaNs without a fallback. This tests
 production math helpers; the actual Thorn integration builds and targeted CTest
 passes. Gameplay, Debug and non-x86 execution are untested.
 
+`lua_property_math` compares 98,304 exact millisecond results/callback sequences
+and 49,152 light-postprocessing cases per MSVC/Clang Release compiler across all
+12 x87 precision/rounding modes. Time inputs include integer boundaries and
+their nextafter neighbors, arbitrary binary64 encodings, nil and exceptional
+values. A 63-bit integer product retains seconds*1000 through precision rounding
+and truncation; the resulting low signed DWORD matches the assembly samples
+without a premature binary64 spill. Windows x86 reads its existing precision and
+rounding controls; other platforms use binary64 precision and standard rounding.
+Those other platforms have not been run. Light tests include mask aliases into
+color/type/infinite fields, negative and exceptional cutoffs and whole-property
+storage. RGB uses scaled tolerance 2e-6; all other words/masks match exactly.
+Reused ordered comparison retains NaN branch behavior. Control words stay
+unchanged in time tests. Exception flags, NaN payload effects and unmasked wait
+timing are not contracts. Thorn builds and the targeted CTest passes; the Lua VM,
+gameplay, Debug and non-x86 execution remain untested.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are
