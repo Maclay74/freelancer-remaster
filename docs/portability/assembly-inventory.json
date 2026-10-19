@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 222,
+  "remaining_blocks": 221,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -284,18 +284,10 @@
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",
-      "method": "IServerImpl::ReqHullStatus",
-      "status": "pending",
-      "asm_lines": [
-        333
-      ]
-    },
-    {
-      "file": "src/RemoteServer/IServerImpl.cpp",
       "method": "IServerImpl::ReqAddItem",
       "status": "pending",
       "asm_lines": [
-        438
+        434
       ]
     },
     {
@@ -303,7 +295,7 @@
       "method": "IServerImpl::ReqModifyItem",
       "status": "pending",
       "asm_lines": [
-        476
+        472
       ]
     },
     {
@@ -311,7 +303,7 @@
       "method": "IServerImpl::SPObjUpdate",
       "status": "pending",
       "asm_lines": [
-        687
+        683
       ]
     },
     {
@@ -319,7 +311,7 @@
       "method": "IServerImpl::AddTradeEquip",
       "status": "pending",
       "asm_lines": [
-        1021
+        1017
       ]
     },
     {
@@ -327,7 +319,7 @@
       "method": "IServerImpl::ReqDifficultyScale",
       "status": "pending",
       "asm_lines": [
-        1069
+        1065
       ]
     },
     {
@@ -1513,6 +1505,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqHullStatus",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test float_load_copy: MSVC and Clang Release; 2,520,000 exact output/buffer/status comparisons and 504 unmasked cases per compiler.",
+      "notes": "Reuses PortableFloatLoad::Copy. Original FLD HullStatus / FSTP [Destination] has the same binary32 memory-load/store semantics as the retained isolated oracle. Allocation, failure and send paths unchanged. No tolerance accepted."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
