@@ -309,3 +309,18 @@ An identity/infinite-source case checks this policy. Old exception flags, NaN
 payload/sign and signed-zero bits are not preserved. Debug, shifted overlap,
 performance comparisons, other architectures and gameplay remain untested.
 The public component contract tests rotation in place and translated batches.
+
+## Core matrix and affine math
+
+`x86_core_math` compares the portable kernels in `MatrixMath.h` and
+`TransformMath.h` with five original x87 operations: matrix/vector multiplication,
+transpose/vector multiplication, affine application, matrix multiplication and
+affine composition. MSVC/Clang Release each pass 6,144 cases per operation across
+all precision/rounding settings, deterministic identity/zero/rotation/scale cases
+and random finite matrices/vectors. A 2e-6 scaled tolerance uses the maximum of
+one and the sum of absolute input terms; observed error is below 1.883e-7.
+Additional checks validate exact in-place inputs, both composition/multiplication
+operand aliases, in-place transpose, control settings and stack balance. Original
+in-place overwrite behavior is intentionally replaced by mathematical in-place
+results. Flags, NaN payload/sign and signed-zero bits are not required to match;
+Debug, arbitrary shifted overlap, other architectures and gameplay are untested.
