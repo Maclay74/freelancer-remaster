@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 77,
+  "remaining_blocks": 75,
   "methods": [
     {
       "file": "src/Thorn/lua32/src/lobject.c",
@@ -235,15 +235,6 @@
       ]
     },
     {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "ApplyLightEventPost",
-      "status": "pending",
-      "asm_lines": [
-        1010,
-        1056
-      ]
-    },
-    {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "AudioLerpFloat",
       "status": "pending",
@@ -470,6 +461,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "ApplyLightEventPost",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "lua_property_math: MSVC/Clang x86 Release; 98,304 exact time-return/callback-order cases across both time methods and 49,152 light cases per compiler, all 12 precision/rounding modes. Includes integer/nextafter/random-binary64 boundaries, nil, whole light-property storage and mask aliases. Thorn DLL and targeted CTest build/pass.",
+      "notes": "Integer-significand scaling retains the seconds*1000 product through precision rounding and truncation without a double spill; reads Windows x86 controls without modifying them, uses binary64 precision and standard rounding elsewhere. Light RGB uses scaled tolerance 2e-6; masks/types/other storage exact. Reuses verified ordered-negative comparison. Exact exception flags/NaN payload effects and unmasked waiting boundaries are not contracts. Debug, non-x86 execution and gameplay untested."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
