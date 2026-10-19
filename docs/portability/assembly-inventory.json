@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 28,
+  "remaining_blocks": 27,
   "methods": [
     {
       "file": "src/Thorn/ThornScene.cpp",
@@ -52,18 +52,10 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "StoreAnimTValue",
-      "status": "pending",
-      "asm_lines": [
-        1979
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2032
+        2027
       ]
     },
     {
@@ -71,11 +63,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3553,
-        3564,
-        3576,
-        3585,
-        3595
+        3548,
+        3559,
+        3571,
+        3580,
+        3590
       ]
     },
     {
@@ -83,9 +75,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3864,
-        3882,
-        3892
+        3859,
+        3877,
+        3887
       ]
     },
     {
@@ -93,9 +85,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        3915,
-        3924,
-        3936
+        3910,
+        3919,
+        3931
       ]
     },
     {
@@ -103,10 +95,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        3952,
-        3976,
-        3988,
-        4001
+        3947,
+        3971,
+        3983,
+        3996
       ]
     },
     {
@@ -114,8 +106,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4404,
-        4438
+        4399,
+        4433
       ]
     },
     {
@@ -141,6 +133,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "StoreAnimTValue",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "extended_progress_codec: 147,456 exact transport conversion cases per MSVC/Clang x86 Release compiler, all precision/rounding modes. Thorn DLL, actual parameter-curve/scene source contracts and targeted CTests build/pass. Debug, non-x86 execution, complete event flows and gameplay untested.",
+      "notes": "Direct portable binary80-to-binary32 conversion or deletion of its now-unused naked return adapter. Bytes layout and output/scalar signatures retained; numeric conversions tested independently of exception flags/timing. No host long-double or instruction-set dependency."
     },
     {
       "file": "src/Thorn/ParamCurve.cpp",
