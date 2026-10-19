@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 219,
+  "remaining_blocks": 218,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -296,14 +296,6 @@
       "status": "pending",
       "asm_lines": [
         683
-      ]
-    },
-    {
-      "file": "src/RemoteServer/IServerImpl.cpp",
-      "method": "IServerImpl::AddTradeEquip",
-      "status": "pending",
-      "asm_lines": [
-        1017
       ]
     },
     {
@@ -1489,6 +1481,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::AddTradeEquip",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "Reuses float_load_copy MSVC and Clang Release results: 2,520,000 exact encoding/buffer/status comparisons and 504 unmasked cases per compiler; tests/portability/float_load_copy.cpp retains the identical FLD/FSTP memory pair.",
+      "notes": "Original source and destination pointers feed PortableFloatLoad::Copy. Allocation, surrounding field writes and send order unchanged. No tolerance accepted. No duplicate helper test run."
     },
     {
       "file": "src/RemoteClient/ClientImpl.cpp",
