@@ -98,6 +98,15 @@ checked separately from exception-delivery timing, which now follows the runtime
 The actual C parser and math callbacks are tested without building the game; a
 complete interpreter/gameplay regression check is still outstanding.
 
+SplinePath.cpp now contains no assembly. `SplineQuaternionMath.h` preserves
+quaternion-control algorithms and their distinct float scale/norm boundaries;
+`SplineSamplingMath.h` preserves the position basis, cumulative sample arithmetic,
+table normalization and ghost endpoint math. Explicit standard-math tolerances
+replace bit-exact extended-register arithmetic. Sample accumulation retains its
+length publication before the global offset is reread, including supported
+aliases. Both isolated suites and the actual spline source contract pass; the
+remaining assembly is in ParamCurve, ThornScene and the x87 return adapters.
+
 For each method:
 
 1. Isolate the original instruction sequence as a test-only reference.

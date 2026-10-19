@@ -93,6 +93,31 @@ MSVC check compiles `lobject.c` as C and links the C++ contract with `/O2 /MD
 the runtime's exception-delivery rules; unmasked delivery timing is not retained.
 Debug, non-x86 execution, complete VM execution and gameplay remain untested.
 
+`spline_quaternion` compares seven production helpers (nine variants) with the
+original kernels: 221,184 cases per MSVC/Clang Release compiler across all 12
+precision/rounding modes. It covers inverse squared norm, squad blend, quaternion
+addition/scaling, both logarithm scale modes, both exponential norm modes and
+the first-control float scale. Input/output aliases, epsilon neighbors, zero,
+subnormal and nonfinite values are included. Scaled tolerance is 5e-6; NaNs are
+compared by classification and untouched objects by exact bytes. The float norm
+and scale boundaries are retained. Standard sin/cos replace x87 instructions;
+huge finite exponential angles follow standard range reduction rather than the
+old C2 behavior and are outside the finite legacy-comparison domain.
+
+`spline_sampling` covers the position-facet matrix, sample accumulation/table
+normalization and two ghost-vector arithmetic spans: 122,880 cases per compiler
+across all 12 modes. It checks degenerate tangents, nonfinite/subnormal values,
+scalar/vector aliases, late offset rereads and untouched storage. Scaled tolerance
+is 3e-6; accumulation also uses input magnitudes because a large length/offset
+can cancel to a tiny residual. The first residual-only check found four MSVC
+PC24 differences of about 3.8e-6 from sqrt rounding; these remain documented
+numerical differences. Ghost construction's existing CatmullRom helpers are
+unchanged; only its replaced arithmetic span is compared in isolation.
+Both suites pass, Thorn builds, and `spline_reference_contract` exercises the
+actual source and position-path construction. Exact x87 flags, NaN payloads,
+signed-zero bits, unmasked exception timing and every extended boundary are not
+contracts. Gameplay, Debug and non-x86 execution remain untested.
+
 `texture_playback_duration` compares 24,576 duration calculations per Release
 compiler, including unsigned count boundaries, zero/negative rates, subnormal
 rates, infinities and NaNs. Scaled tolerance is 2e-7; observed maxima are
