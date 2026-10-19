@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 198,
+  "remaining_blocks": 197,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -698,15 +698,7 @@
       "method": "LuaMillisecondsToRetailInt",
       "status": "pending",
       "asm_lines": [
-        104
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
-      "method": "LuaNumberToRetailInt",
-      "status": "pending",
-      "asm_lines": [
-        135
+        105
       ]
     },
     {
@@ -714,7 +706,7 @@
       "method": "StoreLightColorIntegers",
       "status": "pending",
       "asm_lines": [
-        162
+        148
       ]
     },
     {
@@ -722,7 +714,7 @@
       "method": "ReadVec3Complete",
       "status": "pending",
       "asm_lines": [
-        792
+        778
       ]
     },
     {
@@ -730,8 +722,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1087,
-        1133
+        1073,
+        1119
       ]
     },
     {
@@ -739,7 +731,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1294
+        1280
       ]
     },
     {
@@ -747,7 +739,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1317
+        1303
       ]
     },
     {
@@ -1321,6 +1313,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "LuaNumberToRetailInt",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test truncate_double: MSVC/Clang Release; 49,152 exact int64-result and exception-flag comparisons per compiler, all precision/rounding modes; x87 control and MXCSR unchanged.",
+      "notes": "Bit-decomposed truncation avoids undefined casts; invalid yields integer-indefinite. Existing low-dword result and Lua call position retained. No numeric tolerance. Condition codes and unmasked trap timing untested."
     },
     {
       "file": "src/Shading/TextureLibrary.cpp",
