@@ -141,3 +141,13 @@ if(BUILD_TESTING)
   target_link_options(scene_math_contract_test PRIVATE /OPT:REF /INCREMENTAL:NO)
   add_test(NAME scene_math_contract COMMAND scene_math_contract_test)
 endif()
+
+# Only verified replacements belong in the normal regression suite. Candidates
+# with documented mismatches remain standalone investigations.
+if(BUILD_TESTING)
+  foreach(kernel hermite_assignment lua_double_probe lua_float_probe spline_negate_stored spline_double_stored float_extended_storage)
+    add_executable(portability_${kernel} tests/portability/${kernel}.cpp)
+    target_link_libraries(portability_${kernel} PRIVATE fl_build_options)
+    add_test(NAME portability_${kernel} COMMAND portability_${kernel})
+  endforeach()
+endif()

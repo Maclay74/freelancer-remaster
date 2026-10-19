@@ -82,8 +82,9 @@ def main():
         INVENTORY.write_text(json.dumps(result, indent=2) + "\n", encoding="utf-8")
     elif result != previous:
         raise SystemExit("Assembly inventory is stale. Run scripts/assembly_inventory.py --refresh and review it.")
-    print(f"{len(current)} blocks; {sum(r['status'] != 'replaced' for r in live.values())} methods pending; "
-          f"{sum(r['status'] == 'replaced' for r in live.values())} methods replaced")
+    print(f"{len(current)} blocks; {sum(r['status'] != 'replaced' for r in live.values())} methods remaining; "
+          f"{sum(r['status'] == 'replaced' for r in live.values())} replaced; "
+          f"{sum(r['status'] == 'investigating' for r in live.values())} investigating")
     for record in live.values():
         if record["method"] == "<unknown>": print(f"Review unknown scope: {record['file']}:{record['asm_lines']}")
 
