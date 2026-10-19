@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 57,
+  "remaining_blocks": 56,
   "methods": [
     {
       "file": "src/Thorn/ParamCurve.cpp",
@@ -162,18 +162,10 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "LerpSpatialPosition",
-      "status": "pending",
-      "asm_lines": [
-        1360
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "AccumulateAxisDelta",
       "status": "pending",
       "asm_lines": [
-        1387
+        1366
       ]
     },
     {
@@ -181,7 +173,7 @@
       "method": "ApplyAxisRotFpu",
       "status": "pending",
       "asm_lines": [
-        1416
+        1395
       ]
     },
     {
@@ -189,7 +181,7 @@
       "method": "BuildAttachLookDirection",
       "status": "pending",
       "asm_lines": [
-        1893
+        1872
       ]
     },
     {
@@ -197,7 +189,7 @@
       "method": "ApplyPsysSparam",
       "status": "pending",
       "asm_lines": [
-        2096
+        2075
       ]
     },
     {
@@ -205,7 +197,7 @@
       "method": "SpatialWrapScale",
       "status": "pending",
       "asm_lines": [
-        2122
+        2101
       ]
     },
     {
@@ -213,7 +205,7 @@
       "method": "FloorWrapScale",
       "status": "pending",
       "asm_lines": [
-        2186
+        2165
       ]
     },
     {
@@ -221,7 +213,7 @@
       "method": "InterpolateFloorHeight",
       "status": "pending",
       "asm_lines": [
-        2239
+        2218
       ]
     },
     {
@@ -229,7 +221,7 @@
       "method": "StoreAnimTValue",
       "status": "pending",
       "asm_lines": [
-        2274
+        2253
       ]
     },
     {
@@ -237,7 +229,7 @@
       "method": "InterpolateCameraProps",
       "status": "pending",
       "asm_lines": [
-        2327
+        2306
       ]
     },
     {
@@ -245,11 +237,11 @@
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3848,
+        3827,
+        3838,
+        3850,
         3859,
-        3871,
-        3880,
-        3890
+        3869
       ]
     },
     {
@@ -257,9 +249,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        4159,
-        4177,
-        4187
+        4138,
+        4156,
+        4166
       ]
     },
     {
@@ -267,9 +259,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        4210,
-        4219,
-        4231
+        4189,
+        4198,
+        4210
       ]
     },
     {
@@ -277,10 +269,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        4247,
-        4271,
-        4283,
-        4296
+        4226,
+        4250,
+        4262,
+        4275
       ]
     },
     {
@@ -288,7 +280,7 @@
       "method": "FThornEvent::StartAttachEntity",
       "status": "pending",
       "asm_lines": [
-        4490
+        4469
       ]
     },
     {
@@ -296,8 +288,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4711,
-        4745
+        4690,
+        4724
       ]
     },
     {
@@ -305,7 +297,7 @@
       "method": "FThornEvent::TickPsysPropAnim",
       "status": "pending",
       "asm_lines": [
-        5188
+        5167
       ]
     },
     {
@@ -331,6 +323,14 @@
       "asm_lines": [
         25
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "LerpSpatialPosition",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scene_interpolation: 270,336 cases across eleven methods/spans per MSVC/Clang x86 Release compiler, all 12 precision/rounding modes. Scalar/vector/scale aliases, late accumulator rereads, zero/subnormal/nonfinite inputs, axis IDs/cardinal angles, particle runtime-before-callback publication and compact-light raw-buffer overlaps. Thorn DLL, scene source contract and targeted CTests build/pass.",
+      "notes": "Portable double math retains explicit light-direction float boundaries, sequential component publication, axis sine/double versus cosine/float, compact layout/branch/selective writes and existing caller callback order. Float tolerance 3e-6 scaled; attach decisions/untouched bytes exact. Particle publication and Z/Y/X negation buffers exact in samples; StartAttachEntity reuses NegateStored, not snapshot NegateVector (the initial wrong helper failed overlapping cases and was corrected). Event methods compare replaced spans plus actual scene source contract, not full event/gameplay execution. NaN payloads, signed-zero bits, flags, unmasked timing, huge finite trig C2 behavior, Debug and non-x86 execution untested/not legacy contracts."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
