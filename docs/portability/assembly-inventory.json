@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 182,
+  "remaining_blocks": 181,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -474,19 +474,11 @@
     },
     {
       "file": "src/Thorn/SplineMath.h",
-      "method": "ScaleStored",
-      "status": "pending",
-      "asm_lines": [
-        121
-      ]
-    },
-    {
-      "file": "src/Thorn/SplineMath.h",
       "method": "CatmullRom3D",
       "status": "pending",
       "asm_lines": [
-        147,
-        180
+        134,
+        167
       ]
     },
     {
@@ -494,7 +486,7 @@
       "method": "SampleParameter",
       "status": "pending",
       "asm_lines": [
-        208
+        195
       ]
     },
     {
@@ -502,7 +494,7 @@
       "method": "Lerp3D",
       "status": "pending",
       "asm_lines": [
-        225
+        212
       ]
     },
     {
@@ -510,9 +502,9 @@
       "method": "CatmullRomTangent3D",
       "status": "pending",
       "asm_lines": [
-        277,
-        301,
-        322
+        264,
+        288,
+        309
       ]
     },
     {
@@ -1200,6 +1192,14 @@
       "asm_lines": [
         1330
       ]
+    },
+    {
+      "file": "src/Thorn/SplineMath.h",
+      "method": "ScaleStored",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test spline_scale_stored: MSVC/Clang Release; 43,008 exact whole-buffer/exception-flag/stack-balance comparisons per compiler, overlaps, all precision/rounding modes and explicit special-value pairs; unchanged control/MXCSR.",
+      "notes": "Preserves Z/Y/X publication. Explicit x87 NaN selection prevents operand-reordering payload changes; volatile ordinary-factor read avoids spurious denormal flags for source NaNs. Inf*zero uses x87 indefinite NaN bits. No numeric tolerance. Condition codes and unmasked timing untested."
     },
     {
       "file": "src/Thorn/SplineMath.h",

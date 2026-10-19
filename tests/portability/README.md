@@ -180,3 +180,10 @@ compiler and variant, all precision/rounding settings, special/random float
 encodings, unchanged control/MXCSR and fastcall stack cleanup. Zero is tested
 with a null vector. The other dot kernels retain unrounded arithmetic and are
 not covered by these four replacements. Unmasked timing remains untested.
+
+`spline_scale_stored` checks reverse-order vector scaling: 43,008 exact
+buffer/exception-flag/stack-balance cases per Release compiler, overlapping
+buffers and all special-value pairs. Caller control/MXCSR are unchanged.
+Explicit NaN selection preserves source-load-before-factor semantics; a volatile
+factor read prevents Clang from adding denormal flags on a source-NaN path.
+Condition codes and unmasked timing remain untested.
