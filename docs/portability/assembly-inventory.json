@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 221,
+  "remaining_blocks": 220,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -312,14 +312,6 @@
       "status": "pending",
       "asm_lines": [
         1017
-      ]
-    },
-    {
-      "file": "src/RemoteServer/IServerImpl.cpp",
-      "method": "IServerImpl::ReqDifficultyScale",
-      "status": "pending",
-      "asm_lines": [
-        1065
       ]
     },
     {
@@ -1505,6 +1497,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/RemoteServer/IServerImpl.cpp",
+      "method": "IServerImpl::ReqDifficultyScale",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test float_load_copy: MSVC and Clang Release; 2,520,000 exact output/buffer/status comparisons and 504 unmasked cases per compiler. Same helper evidence reused from ReqHullStatus.",
+      "notes": "Original FLD Scale / FSTP [Destination] matches the retained isolated binary32 memory-load/store oracle. Allocation, failure and send paths unchanged. No tolerance accepted."
     },
     {
       "file": "src/RemoteServer/IServerImpl.cpp",
