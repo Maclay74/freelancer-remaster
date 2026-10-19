@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 229,
+  "remaining_blocks": 228,
   "methods": [
     {
       "file": "src/alchemy/alchemy_common.cpp",
@@ -909,18 +909,10 @@
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
-      "method": "GetLightFloatProbe",
-      "status": "pending",
-      "asm_lines": [
-        794
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornLua.cpp",
       "method": "ReadVec3Complete",
       "status": "pending",
       "asm_lines": [
-        818
+        806
       ]
     },
     {
@@ -928,8 +920,8 @@
       "method": "ApplyLightEventPost",
       "status": "pending",
       "asm_lines": [
-        1113,
-        1159
+        1101,
+        1147
       ]
     },
     {
@@ -937,7 +929,7 @@
       "method": "IsIkLuaNumberNonzero",
       "status": "pending",
       "asm_lines": [
-        1220
+        1208
       ]
     },
     {
@@ -945,7 +937,7 @@
       "method": "ReadSceneStartMilliseconds",
       "status": "pending",
       "asm_lines": [
-        1333
+        1321
       ]
     },
     {
@@ -953,7 +945,7 @@
       "method": "StoreSceneAmbientIntegers",
       "status": "pending",
       "asm_lines": [
-        1356
+        1344
       ]
     },
     {
@@ -1567,6 +1559,14 @@
       "asm_lines": [
         1348
       ]
+    },
+    {
+      "file": "src/Thorn/ThornLua.cpp",
+      "method": "GetLightFloatProbe",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "scripts/test-portable-kernel.ps1 -Test lua_float_probe: MSVC/Clang Debug/Release; 2,400,000 exact return/index/callback and x87 status comparisons per configuration, uint32 boundaries, all precision/rounding modes, unchanged MXCSR.",
+      "notes": "Production kernel in LuaTableProbe.h. Volatile signed widening and float store retain conversion before table callbacks; volatile pointed load retains widening after pushobject. A nonvolatile candidate failed Clang Release callback-status comparison. No tolerance."
     },
     {
       "file": "src/Thorn/ThornLua.cpp",
