@@ -1,57 +1,62 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 16,
+  "remaining_blocks": 9,
   "methods": [
+    {
+      "file": "src/zlib/vendor/crc32.c",
+      "method": "crc32_z",
+      "status": "pending",
+      "asm_lines": [
+        598,
+        616,
+        617,
+        618,
+        637,
+        638,
+        639,
+        651,
+        660
+      ]
+    },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateControlBackedCurve",
-      "status": "pending",
-      "asm_lines": [
-        3320,
-        3331,
-        3343,
-        3352,
-        3362
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "event_progress: 196,608 quotient comparisons per MSVC/Clang Release across 12 modes; scene_math_contract checks actual production methods with bound/unbound curves and periods; Thorn Release builds.",
+      "notes": "Explicit binary64 quotient/float interface and encoded transport replace hidden x87 returns. Preserves unsigned elapsed, signed period argument, fixed guards and callback sequencing. Arbitrary binary80 retained precision and unmasked exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateProgress",
-      "status": "pending",
-      "asm_lines": [
-        3631,
-        3649,
-        3659
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "event_progress: 196,608 quotient comparisons per MSVC/Clang Release across 12 modes; scene_math_contract checks actual production methods with bound/unbound curves and periods; Thorn Release builds.",
+      "notes": "Explicit binary64 quotient/float interface and encoded transport replace hidden x87 returns. Preserves unsigned elapsed, signed period argument, fixed guards and callback sequencing. Arbitrary binary80 retained precision and unmasked exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
-      "status": "pending",
-      "asm_lines": [
-        3682,
-        3691,
-        3703
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "event_progress: 196,608 quotient comparisons per MSVC/Clang Release across 12 modes; scene_math_contract checks actual production methods with bound/unbound curves and periods; Thorn Release builds.",
+      "notes": "Explicit binary64 quotient/float interface and encoded transport replace hidden x87 returns. Preserves unsigned elapsed, signed period argument, fixed guards and callback sequencing. Arbitrary binary80 retained precision and unmasked exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateProgressExtended",
-      "status": "pending",
-      "asm_lines": [
-        3719,
-        3743,
-        3755,
-        3768
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "event_progress: 196,608 quotient comparisons per MSVC/Clang Release across 12 modes; scene_math_contract checks actual production methods with bound/unbound curves and periods; Thorn Release builds.",
+      "notes": "Explicit binary64 quotient/float interface and encoded transport replace hidden x87 returns. Preserves unsigned elapsed, signed period argument, fixed guards and callback sequencing. Arbitrary binary80 retained precision and unmasked exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/X87Return.h",
       "method": "ThornReturnSt0Float",
-      "status": "pending",
-      "asm_lines": [
-        10
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "event_progress: 196,608 quotient comparisons per MSVC/Clang Release across 12 modes; scene_math_contract checks actual production methods with bound/unbound curves and periods; Thorn Release builds.",
+      "notes": "Explicit binary64 quotient/float interface and encoded transport replace hidden x87 returns. Preserves unsigned elapsed, signed period argument, fixed guards and callback sequencing. Arbitrary binary80 retained precision and unmasked exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
