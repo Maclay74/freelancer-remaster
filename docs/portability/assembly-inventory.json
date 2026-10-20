@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 25,
+  "remaining_blocks": 23,
   "methods": [
     {
       "file": "src/Thorn/ThornScene.cpp",
@@ -36,30 +36,14 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "SpatialWrapScale",
-      "status": "pending",
-      "asm_lines": [
-        1842
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "FloorWrapScale",
-      "status": "pending",
-      "asm_lines": [
-        1906
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3498,
-        3509,
-        3521,
-        3530,
-        3540
+        3386,
+        3397,
+        3409,
+        3418,
+        3428
       ]
     },
     {
@@ -67,9 +51,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3809,
-        3827,
-        3837
+        3697,
+        3715,
+        3725
       ]
     },
     {
@@ -77,9 +61,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        3860,
-        3869,
-        3881
+        3748,
+        3757,
+        3769
       ]
     },
     {
@@ -87,10 +71,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        3897,
-        3921,
-        3933,
-        3946
+        3785,
+        3809,
+        3821,
+        3834
       ]
     },
     {
@@ -98,8 +82,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4349,
-        4383
+        4237,
+        4271
       ]
     },
     {
@@ -117,6 +101,22 @@
       "asm_lines": [
         14
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "SpatialWrapScale",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "tests/portability/scene_wrap.cpp: 540,672 comparisons per MSVC/Clang Release, 12 precision/rounding modes, aliases, endpoints, NaN/infinities.",
+      "notes": "Explicit double arithmetic with 24-bit intermediate rounding, distinct wide/rounded threshold tests and ordered stores. Scaled float tolerance 5e-6; arbitrary non-binary64 transport precision and exception timing not claimed equivalent."
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FloorWrapScale",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "tests/portability/scene_wrap.cpp: 540,672 comparisons per MSVC/Clang Release, 12 precision/rounding modes, aliases, endpoints, NaN/infinities.",
+      "notes": "Explicit double arithmetic with 24-bit intermediate rounding, distinct wide/rounded threshold tests and ordered stores. Scaled float tolerance 5e-6; arbitrary non-binary64 transport precision and exception timing not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
