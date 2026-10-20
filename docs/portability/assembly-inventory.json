@@ -1,22 +1,14 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 9,
+  "remaining_blocks": 0,
   "methods": [
     {
       "file": "src/zlib/vendor/crc32.c",
       "method": "crc32_z",
-      "status": "pending",
-      "asm_lines": [
-        598,
-        616,
-        617,
-        618,
-        637,
-        638,
-        639,
-        651,
-        660
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "zlib_crc: 1,600 exact cases per MSVC/Clang Release, independent bitwise CRC oracle, canonical vector, seeded/unaligned/streaming/combine cases.",
+      "notes": "Removed optional ARM instruction specialization; all platforms use existing portable braided C implementation. ARM CRC instruction acceleration is intentionally lost; no ARM hardware execution claimed."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",

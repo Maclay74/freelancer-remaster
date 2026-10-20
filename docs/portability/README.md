@@ -137,10 +137,10 @@ each method. Build affected targets only when integration changes justify it;
 reserve full builds and gameplay checks for integration milestones. Broader
 floating-point or dependency experiments require a concrete failure to resolve.
 
-The light-color experiment in `tests/experiments/` is evidence, not a production
-replacement: normal color samples agreed, but Clang Debug at 64-bit x87 precision
-changed extended return bits for some full-int32 inputs. Keep that distinction
-when considering `ComputeLightColor`.
+The original light-color experiment in `tests/experiments/` is historical.
+Production color/fog interpolation now uses integer fixed-point arithmetic,
+verified against the assembly through the final integer conversion by
+`scene_integer`; it no longer depends on extended register returns.
 
 An opt-in software extended-arithmetic feasibility experiment is in
 `tests/experiments/softfloat/`. It checks a pinned upstream implementation
@@ -158,3 +158,27 @@ source audit found FNSTSW consumers test AH masks 01/05/41/44 (or equivalent
 AX masks), not C1; the two _clearfp calls discard their return values. Outputs,
 exception flags and all other tested status bits still require exact equality.
 This excludes an unused machine condition bit, not numerical differences.
+
+## Final source audit (2026-10-20)
+
+The refreshed inventory contains zero production assembly statements, including
+inactive GNU-style branches. The final audit discovered nine ARM CRC statements
+in vendored zlib that the original MSVC-only scanner missed. Those now use
+zlib's existing portable braided C implementation; ARM instruction acceleration
+is intentionally removed. This library stays C to preserve its upstream build.
+Test-only assembly remains as the independent Windows x86 oracle.
+
+Thorn now uses explicit float/double arguments and typed 10-byte transport
+encoding, without naked return adapters or host `long double` assumptions.
+Curve, scene, audio and event replacements preserve documented float storage
+boundaries, alias-sensitive write order and callback order. Binary64 arithmetic
+replaces retained binary80 intermediates; float tolerances and exact integer
+checks are recorded per method in the inventory. Arbitrary binary80 precision,
+unmasked exception timing, and bit-for-bit floating-point identity are not
+promised. Twelve user-removed methods remain accepted without re-verification.
+
+Verification is Release-only on Windows x86 with MSVC and clang-cl. Build only
+affected libraries and focused contract/test targets. Per the user's workflow,
+no full game build, staging update, or gameplay run is performed for this final
+assembly cleanup. This proves source assembly removal and the recorded tested
+behaviors, not that the game can already run on another operating system.

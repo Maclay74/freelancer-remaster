@@ -544,3 +544,17 @@ Integration: RemoteClient and RemoteServer DLL targets both build successfully,
 and all three shared-quantization CTests pass in Clang Release. Production
 `src/RemoteCommon` now has no inline assembly. The full game and staged runtime
 were not rebuilt/replaced, and no gameplay or multiplayer session was run.
+
+## Final Thorn and CRC cleanup
+
+Release MSVC/clang-cl comparisons: `curve_polynomial` (98,304 cases),
+`extended_progress_codec` (147,456 exact conversions), `param_curve_control`
+(24,578 cases), `camera_interpolation` (98,304 cases), `scene_wrap` (540,672
+cases), `scene_integer` (196,608 exact integer cases), `audio_interpolation`
+(294,912 cases), `event_progress` (196,608 quotient cases), and `zlib_crc`
+(1,600 exact CRC cases). Counts are per compiler. Numeric precision/rounding,
+float tolerance, alias and input-domain limits are recorded in the inventory;
+these checks do not establish exact arbitrary binary80 arithmetic or exception
+timing. `scene_math_contract` and `parameter_curve_contract` compile actual
+production implementations and check integration. Gameplay and non-x86 execution
+were not run during this cleanup.

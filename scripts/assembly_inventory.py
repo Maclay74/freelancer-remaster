@@ -17,10 +17,10 @@ TOKEN = re.compile(r'//[^\n]*|/\*[\s\S]*?\*/|"(?:\\.|[^"\\])*"|\'(?:\\.|[^\'\\])
 def scan():
     records = []
     for path in sorted((ROOT / "src").rglob("*")):
-        if path.suffix.lower() not in {".cpp", ".c", ".h", ".inl"}:
+        if path.suffix.lower() not in {".cpp", ".c", ".h", ".hpp", ".cc", ".cxx", ".inl", ".inc"}:
             continue
         source = path.read_text(encoding="utf-8-sig", errors="replace")
-        if not re.search(r'\b(?:__asm__|__asm|_asm)\b', source): continue
+        if not re.search(r'\b(?:__asm__|__asm|_asm|asm)\b', source): continue
         newlines = [m.start() for m in re.finditer("\n", source)]
         tokens = [(m.group(), bisect_right(newlines, m.start()) + 1)
                   for m in TOKEN.finditer(source) if not m.group().startswith(("//", "/*", '"', "'"))]
@@ -48,7 +48,7 @@ def scan():
                             k -= 3
                 scopes.append((name, line))
             elif token == "}" and scopes: scopes.pop()
-            if token not in {"__asm__", "__asm", "_asm"}: continue
+            if token not in {"__asm__", "__asm", "_asm", "asm"}: continue
             owner = next(((name, start) for name, start in reversed(scopes) if name), ("<unknown>", line))
             relative = path.relative_to(ROOT).as_posix()
             records.append(dict(file=relative, method=owner[0], method_line=owner[1], asm_line=line))
