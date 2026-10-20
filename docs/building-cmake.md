@@ -23,7 +23,7 @@ From PowerShell in the repository root:
 
 The wrapper discovers VS 2022 with vswhere, imports its x86 target environment, locates bundled CMake/Ninja, and invokes the committed presets. It never requires permanently editing PATH. Missing components produce errors; the wrapper does not install software automatically.
 
-`-ConfigureOnly` validates prerequisites and generates the build. `-Clean` rebuilds all targets. `-SkipInstall` builds and tests without staging. Tests run automatically before staging.
+`-ConfigureOnly` validates prerequisites and generates the build. `-Clean` rebuilds all targets. `-SkipInstall` builds without staging.
 
 In an already prepared x86 developer environment, with LLVM/CMake/Ninja on PATH, the equivalent commands are:
 
@@ -58,14 +58,8 @@ The Windows workflow builds Debug and Release on windows-2022, without DATA. Con
 The runner must have the same VS 2022 C++/MFC/Windows SDK/CMake components as a local developer. LLVM is installed if the runner lacks it. Full gameplay testing is local and separate from CI compilation.
 
 
-## Verification
+## Runtime verification
 
-The wrapper runs CTest before staging. Tests require no game DATA and cover x87 precision control, explicit SSE instructions, Unicode resources, all 27 FastDot kernels, quaternion-to-matrix conversion, quaternion interpolation/aliasing, spline reference operands, and loading a position spline (including endpoint ghost vectors).
-
-The Clang port uses explicit pointer variables for C++ references passed into inline assembly. MSVC and Clang interpret bare reference operands differently; without the pointers, startup can dereference a quaternion/vector component as an address. The quaternion initialization failure can surface as an apparent Content.dll loading error even though the DLL exists.
-
-Animation regression tests also cover all parameter-curve factories, scalar and extended results, event timing with and without repeating curves, light-color interpolation, audio interpolation, and x87 stack balance. Ordinary C++ functions must explicitly return assembly-produced floating-point results under Clang; leaving a value in ST(0) alone can return garbage and disrupt animation or lighting. The Clang-only return helpers preserve that register's value. Hermite segment selection uses a fixed operand block so its assembly cannot overwrite the compiler's frame-address register.
-
-The shared x87 trigonometry helpers, reciprocal square root, and spline blend also have numeric regression coverage. An audit of Clang's parsed assembly-bearing functions in the active Windows x86 configuration found no further missing floating-point returns after the Thorn fixes. Naked assembly entry points deliberately return registers directly and are handled separately; this audit does not establish full gameplay correctness or cover inactive platform/configuration branches.
-
-Debug staging includes development binaries; it requires the development runtimes installed by Visual Studio Build Tools. Staged runtime directories are not standalone release installers. CI compilation and these tests do not replace gameplay testing with a local installation.
+Launch the staged game with your local DATA installation to check gameplay.
+Debug staging requires the development runtimes installed by Visual Studio Build
+Tools. Staged runtime directories are not standalone release installers.

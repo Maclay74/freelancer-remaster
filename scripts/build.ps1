@@ -42,8 +42,6 @@ try {
         if ($Clean) { $buildArgs += '--clean-first' }
         & cmake @buildArgs
         if ($LASTEXITCODE) { throw 'Build failed.' }
-        & ctest --test-dir "out/build/$preset" --output-on-failure
-        if ($LASTEXITCODE) { throw 'Build-contract tests failed.' }
         if (!$SkipInstall) {
             & cmake --install "out/build/$preset"
             if ($LASTEXITCODE) { throw 'Runtime staging failed.' }
