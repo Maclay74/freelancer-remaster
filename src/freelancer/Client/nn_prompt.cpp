@@ -20,6 +20,8 @@
 #include "win3d_renderables.h"  // Win3DFlushBeforeOverlayDraw (FUN_0045a9f0)
 #include "win_factory.h"
 #include "wire_controls.h"
+#include "hud_widescreen.h"
+#include <cstdio>
 
 #include <wchar.h>
 #include <windows.h>
@@ -410,6 +412,14 @@ namespace
     // client state's slot 14 with the same time as a float, GiveServerRunPermission.
     bool PumpWhilePromptUp(bool bUpdateServer)
     {
+#ifdef FREELANCER_WIDESCREEN_SUPPORT
+        // Modal prompts are centered, even when opened from
+        // a HUD element using a shifted widescreen camera.
+        FWidescreenHudShiftScope const CenteredModalScope(
+            0.0f, false
+        );
+#endif
+        
         int ExitCode = 0; // local_2c
         if (Win3DFindByClassName("NN_Prompt") == nullptr)
             return true;

@@ -21,6 +21,7 @@
 #include "space_letterbox.h"
 #include "win3d.h"              // Win3DGetMouseRay / Win3DScreenToNearPlane / Win3DTransformByMatrix
 #include "win3d_engine_submit.h"
+#include "hud_widescreen.h"
 
 #include "common_csys.h"        // Acquire3DMathEngine (FUN_005b73e0)
 #include "x86math.h"            // I3DMathEngine, FVector, FMatrix
@@ -148,6 +149,16 @@ void NnToolTipControl::RepositionAfterCaption(FToolTipHoverInfo const* Info)
     // +0xac..+0xb8 viewport).
     FSpaceCamera* const Cam = GetWin3DSceneCamera();
 
+    // Capture the source control's ray before leaving its HUD camera scope.
+    float Ray[3];
+    Win3DGetMouseRay(Ray);
+#ifdef FREELANCER_WIDESCREEN_SUPPORT
+    float const SourceShift = WidescreenHudCurrentShift();
+    // The singleton is drawn outside the source control's shifted camera. Compute its
+    // viewport bounds in that same unshifted space, then transfer the anchor below.
+    FWidescreenHudShiftScope const UnshiftedScope(0.0f, false);
+#endif
+
     // 0x004bda70..0x004bda98: the viewport's top-left corner on the near plane (FUN_004bdd40,
     // with FILD'd left/top rounded to float).
     FVector TopLeftLocal;
@@ -176,8 +187,7 @@ void NnToolTipControl::RepositionAfterCaption(FToolTipHoverInfo const* Info)
     Win3DTransformByMatrix(BottomRight, Orientation, BottomRightLocal);
 
     // 0x004bdb55: the mouse ray cached by the Win3D input handler (FUN_0059da70).
-    float Ray[3];
-    Win3DGetMouseRay(Ray);
+    // Ray was captured above while the source control's camera shift was still active.
 
     // 0x004bdb5f..0x004bdba6: the ray scaled onto z = -1. The reciprocal stays unrounded on the
     // FPU for all three products.
@@ -206,6 +216,12 @@ void NnToolTipControl::RepositionAfterCaption(FToolTipHoverInfo const* Info)
         PosX = static_cast<float>(static_cast<double>(PosX) + 0.004f);
         PosY = static_cast<float>(static_cast<double>(PosY) - 0.03f);
     }
+
+#ifdef FREELANCER_WIDESCREEN_SUPPORT
+    // PosZ is -1: this offset preserves the anchor's on-screen position when the
+    // tooltip is projected without the source control's horizontal camera shift.
+    PosX = static_cast<float>(static_cast<double>(PosX) + SourceShift / Cam->XScale);
+#endif
 
     // 0x004bdc6c..0x004bdc86: the caption's font scale at the CURRENT depth (+0x68), then its
     // extent.
@@ -273,6 +289,43 @@ void NnToolTipControl::Draw()
     Height = static_cast<float>(static_cast<unsigned>(Extent[1]));
 
     FProjectedPoint const Screen = ProjectUiPoint(Position);
+    
+    static int LastX = -1;
+    static int LastY = -1;
+
+    int const X = static_cast<int>(Screen.X);
+    int const Y = static_cast<int>(Screen.Y);
+
+    if (X != LastX || Y != LastY)
+    {
+        LastX = X;
+        LastY = Y;
+
+        int CursorX = 0;
+        int CursorY = 0;
+        int CursorZ = 0;
+        GetClientSoftwareCursor(&CursorX, &CursorY, &CursorZ);
+
+        char Buffer[256];
+        sprintf_s(
+            Buffer,
+            "[Tooltip] Cursor=(%d,%d) "
+            "World=(%.4f,%.4f,%.4f) "
+            "Screen=(%.1f,%.1f) "
+            "Camera=(%.1f,%.1f) "
+            "Scale=(%.1f,%.1f)\n",
+            CursorX, CursorY,
+            Position[0], Position[1], Position[2],
+            Screen.X, Screen.Y,
+            GetWin3DSceneCamera()->ScreenCenterX,
+            GetWin3DSceneCamera()->ScreenCenterY,
+            GetWin3DSceneCamera()->XScale,
+            GetWin3DSceneCamera()->YScale
+        );
+
+        OutputDebugStringA(Buffer);
+    }
+    
     if (FlagE1 != 0)
     {
         float const PadW = Width + 3.0f;
