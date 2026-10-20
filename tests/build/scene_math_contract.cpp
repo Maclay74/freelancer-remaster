@@ -24,15 +24,10 @@ int main()
             std::fprintf(stderr, "Light at %g: got %g, expected %g\n", progress, actual, expected);
             ++failures;
         }
-        // The audio caller keeps progress below the kernel's result on x87.
-        __asm { fld progress }
-        // Materialize the typed result before explicitly popping the owned
-        // progress; the compiler cannot see that extra stack entry.
-        volatile double audio = ComputeAudioLerpInteger(20, 220);
-        __asm { fstp st(0) }
+        const int audio = ComputeAudioLerpInteger(20, 220, progress);
         if (audio != expected)
         {
-            std::fprintf(stderr, "Audio at %g: got %g, expected %g\n", progress, audio, expected);
+            std::fprintf(stderr, "Audio at %g: got %g, expected %g\n", progress, static_cast<double>(audio), expected);
             ++failures;
         }
         if (ComputeLightColor(220, 20, &progress) != 220 - 200 * progress)

@@ -1,33 +1,17 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 21,
+  "remaining_blocks": 16,
   "methods": [
-    {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "AudioLerpFloat",
-      "status": "pending",
-      "asm_lines": [
-        873
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "ComputeAudioLerpInteger",
-      "status": "pending",
-      "asm_lines": [
-        897
-      ]
-    },
     {
       "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3349,
-        3360,
-        3372,
-        3381,
-        3391
+        3320,
+        3331,
+        3343,
+        3352,
+        3362
       ]
     },
     {
@@ -35,9 +19,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3660,
-        3678,
-        3688
+        3631,
+        3649,
+        3659
       ]
     },
     {
@@ -45,9 +29,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        3711,
-        3720,
-        3732
+        3682,
+        3691,
+        3703
       ]
     },
     {
@@ -55,19 +39,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        3748,
-        3772,
-        3784,
-        3797
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
-      "method": "FThornEvent::TickAudioPropAnim",
-      "status": "pending",
-      "asm_lines": [
-        4200,
-        4234
+        3719,
+        3743,
+        3755,
+        3768
       ]
     },
     {
@@ -79,12 +54,36 @@
       ]
     },
     {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "AudioLerpFloat",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "audio_interpolation: 294,912 Release comparisons per MSVC/Clang; scene_integer: 196,608 exact comparisons per compiler; scene_math_contract compiles actual scene source.",
+      "notes": "Explicit decoded binary64 progress replaces hidden x87 stack ownership. Target snapshot, post-curve primary/mask reads, duplicate float writes and callback order preserved. Unused double-return adapter removed. Float tolerance 5e-6 scaled; exception timing and arbitrary binary80 precision not claimed equivalent."
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "ComputeAudioLerpInteger",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "audio_interpolation: 294,912 Release comparisons per MSVC/Clang; scene_integer: 196,608 exact comparisons per compiler; scene_math_contract compiles actual scene source.",
+      "notes": "Explicit decoded binary64 progress replaces hidden x87 stack ownership. Target snapshot, post-curve primary/mask reads, duplicate float writes and callback order preserved. Unused double-return adapter removed. Float tolerance 5e-6 scaled; exception timing and arbitrary binary80 precision not claimed equivalent."
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "FThornEvent::TickAudioPropAnim",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "audio_interpolation: 294,912 Release comparisons per MSVC/Clang; scene_integer: 196,608 exact comparisons per compiler; scene_math_contract compiles actual scene source.",
+      "notes": "Explicit decoded binary64 progress replaces hidden x87 stack ownership. Target snapshot, post-curve primary/mask reads, duplicate float writes and callback order preserved. Unused double-return adapter removed. Float tolerance 5e-6 scaled; exception timing and arbitrary binary80 precision not claimed equivalent."
+    },
+    {
       "file": "src/Thorn/X87Return.h",
       "method": "ThornReturnSt0Double",
-      "status": "pending",
-      "asm_lines": [
-        14
-      ]
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "audio_interpolation: 294,912 Release comparisons per MSVC/Clang; scene_integer: 196,608 exact comparisons per compiler; scene_math_contract compiles actual scene source.",
+      "notes": "Explicit decoded binary64 progress replaces hidden x87 stack ownership. Target snapshot, post-curve primary/mask reads, duplicate float writes and callback order preserved. Unused double-return adapter removed. Float tolerance 5e-6 scaled; exception timing and arbitrary binary80 precision not claimed equivalent."
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
