@@ -1,6 +1,6 @@
 {
   "scope": "All inline assembly under src/, including inactive branches; test references excluded",
-  "remaining_blocks": 26,
+  "remaining_blocks": 25,
   "methods": [
     {
       "file": "src/Thorn/ThornScene.cpp",
@@ -52,22 +52,14 @@
     },
     {
       "file": "src/Thorn/ThornScene.cpp",
-      "method": "InterpolateCameraProps",
-      "status": "pending",
-      "asm_lines": [
-        2027
-      ]
-    },
-    {
-      "file": "src/Thorn/ThornScene.cpp",
       "method": "FThornEvent::EvaluateControlBackedCurve",
       "status": "pending",
       "asm_lines": [
-        3548,
-        3559,
-        3571,
-        3580,
-        3590
+        3498,
+        3509,
+        3521,
+        3530,
+        3540
       ]
     },
     {
@@ -75,9 +67,9 @@
       "method": "FThornEvent::EvaluateProgress",
       "status": "pending",
       "asm_lines": [
-        3859,
-        3877,
-        3887
+        3809,
+        3827,
+        3837
       ]
     },
     {
@@ -85,9 +77,9 @@
       "method": "FThornEvent::EvaluateProgressNoPeriodWrap",
       "status": "pending",
       "asm_lines": [
-        3910,
-        3919,
-        3931
+        3860,
+        3869,
+        3881
       ]
     },
     {
@@ -95,10 +87,10 @@
       "method": "FThornEvent::EvaluateProgressExtended",
       "status": "pending",
       "asm_lines": [
-        3947,
-        3971,
-        3983,
-        3996
+        3897,
+        3921,
+        3933,
+        3946
       ]
     },
     {
@@ -106,8 +98,8 @@
       "method": "FThornEvent::TickAudioPropAnim",
       "status": "pending",
       "asm_lines": [
-        4399,
-        4433
+        4349,
+        4383
       ]
     },
     {
@@ -125,6 +117,14 @@
       "asm_lines": [
         14
       ]
+    },
+    {
+      "file": "src/Thorn/ThornScene.cpp",
+      "method": "InterpolateCameraProps",
+      "status": "replaced",
+      "asm_lines": [],
+      "evidence": "tests/portability/camera_interpolation.cpp: 98,304 Release comparisons per compiler (MSVC and Clang), every mask and overlapping arrays.",
+      "notes": "Explicit double progress replaces retained x87 value; float output tolerance 2e-6 scaled. Field order 0,3,1,2 and live aliased reads preserved. Exception timing and arbitrary binary80 inputs not claimed equivalent."
     },
     {
       "file": "src/Thorn/X87Return.h",
