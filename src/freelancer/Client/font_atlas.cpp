@@ -30,7 +30,7 @@ unsigned short* G_AtlasBits = nullptr; // DAT_0061665c
 BITMAPINFO* G_AtlasBmi = nullptr;  // DAT_00616660
 HDC G_AtlasDc = nullptr;           // DAT_00616664
 // DAT_00616668 / DAT_0061666c are 0 in the PE; FUN_00412670 (the scratch object's +0x14 / +0x18,
-// thiscall on DAT_00616654) is their only writer and sets both to 0x100.
+// thiscall on DAT_00616654) originally set both to 0x100; the port grows them on demand.
 unsigned G_AtlasMaxW = 0;          // DAT_00616668
 unsigned G_AtlasMaxH = 0;          // DAT_0061666c
 // DAT_00616670 -- seeded at load time by XC thunk LAB_00412650: DACOM_CRC::GetCRC32("font")
@@ -147,41 +147,80 @@ struct FAtlasFontSelection
 
 } // namespace
 
-void FontAtlasEnsureScratch()
+namespace
 {
-    // FUN_00412670 (thiscall on DAT_00616654, RET 4 with DALib::Pipeline, which it never reads).
-    // Its only caller is FUN_004180c0, which deletes the previous objects first: there is no
-    // lazy latch and no allocation check. Only the 0x28-byte header is zeroed (STOSD x 0xa at
-    // 0041269c); the pixel area is left as malloc returns it.
-    G_AtlasMaxW = 256;
-    G_AtlasMaxH = 256;
-
-    void* Block = std::malloc(0x20028u);
-    memset(Block, 0, 0x28u);
-    G_AtlasBmi = static_cast<BITMAPINFO*>(Block);
-    G_AtlasBits = reinterpret_cast<unsigned short*>(static_cast<unsigned char*>(Block) + 0x28);
-
-    BITMAPINFOHEADER& Hdr = G_AtlasBmi->bmiHeader;
+// Grow transactionally: an allocation failure leaves the previous scratch usable.
+bool ResizeAtlasScratch(unsigned Width, unsigned Height)
+{
+    size_t const PixelBytes = static_cast<size_t>(Width) * Height * sizeof(unsigned short);
+    BITMAPINFO* const Bmi = static_cast<BITMAPINFO*>(
+        std::calloc(1, sizeof(BITMAPINFOHEADER) + PixelBytes));
+    if (Bmi == nullptr)
+    {
+        return false;
+    }
+    BITMAPINFOHEADER& Hdr = Bmi->bmiHeader;
     Hdr.biSize = sizeof(BITMAPINFOHEADER);
-    Hdr.biWidth = static_cast<LONG>(G_AtlasMaxW);
-    Hdr.biHeight = -static_cast<LONG>(G_AtlasMaxH);
+    Hdr.biWidth = static_cast<LONG>(Width);
+    Hdr.biHeight = -static_cast<LONG>(Height);
     Hdr.biPlanes = 1;
     Hdr.biBitCount = 16;
     Hdr.biCompression = BI_RGB;
-    Hdr.biSizeImage = 0x20000;
+    Hdr.biSizeImage = static_cast<DWORD>(PixelBytes);
 
-    HDC Screen = GetDC(nullptr);
-    G_AtlasDc = CreateCompatibleDC(Screen);
-    G_AtlasBitmap = CreateCompatibleBitmap(Screen, static_cast<int>(G_AtlasMaxW),
-                                           static_cast<int>(G_AtlasMaxH));
-    GetDIBits(G_AtlasDc, G_AtlasBitmap, 0, 1, nullptr, G_AtlasBmi, DIB_RGB_COLORS);
+    HDC const Screen = GetDC(nullptr);
+    if (Screen == nullptr)
+    {
+        std::free(Bmi);
+        return false;
+    }
+    HDC const Dc = CreateCompatibleDC(Screen);
+    HBITMAP const Bitmap = CreateCompatibleBitmap(Screen, static_cast<int>(Width),
+                                                  static_cast<int>(Height));
     ReleaseDC(nullptr, Screen);
+    if (Dc == nullptr || Bitmap == nullptr)
+    {
+        if (Bitmap != nullptr) DeleteObject(Bitmap);
+        if (Dc != nullptr) DeleteDC(Dc);
+        std::free(Bmi);
+        return false;
+    }
+    if (GetDIBits(Dc, Bitmap, 0, 1, nullptr, Bmi, DIB_RGB_COLORS) == 0)
+    {
+        DeleteObject(Bitmap);
+        DeleteDC(Dc);
+        std::free(Bmi);
+        return false;
+    }
+    HGDIOBJ const Previous = SelectObject(Dc, Bitmap);
+    if (Previous == nullptr || Previous == HGDI_ERROR)
+    {
+        DeleteObject(Bitmap);
+        DeleteDC(Dc);
+        std::free(Bmi);
+        return false;
+    }
+    SetTextAlign(Dc, TA_LEFT | TA_TOP);
+    SetBkColor(Dc, RGB(0, 0, 0));
+    SetBkMode(Dc, TRANSPARENT);
+    SetTextColor(Dc, RGB(255, 255, 255));
 
-    G_AtlasPrevObj = SelectObject(G_AtlasDc, G_AtlasBitmap);
-    SetTextAlign(G_AtlasDc, TA_LEFT | TA_TOP);
-    SetBkColor(G_AtlasDc, RGB(0, 0, 0));
-    SetBkMode(G_AtlasDc, TRANSPARENT);
-    SetTextColor(G_AtlasDc, RGB(255, 255, 255));
+    FontAtlasReleaseScratch();
+    G_AtlasMaxW = Width;
+    G_AtlasMaxH = Height;
+    G_AtlasBmi = Bmi;
+    G_AtlasBits = reinterpret_cast<unsigned short*>(
+        reinterpret_cast<unsigned char*>(Bmi) + sizeof(BITMAPINFOHEADER));
+    G_AtlasDc = Dc;
+    G_AtlasBitmap = Bitmap;
+    G_AtlasPrevObj = Previous;
+    return true;
+}
+} // namespace
+
+void FontAtlasEnsureScratch()
+{
+    ResizeAtlasScratch(256, 256);
 }
 
 void FontDeviceReset()
@@ -206,9 +245,15 @@ void FontAtlasReleaseScratch()
     // 00418119..0041815a (FUN_004180c0) / 004174a0..004174e6 (FUN_004174a0).
     std::free(G_AtlasBmi);
     G_AtlasBmi = nullptr;
+    G_AtlasBits = nullptr;
     SelectObject(G_AtlasDc, G_AtlasPrevObj);
     DeleteObject(G_AtlasBitmap);
     DeleteDC(G_AtlasDc);
+    G_AtlasBitmap = nullptr;
+    G_AtlasDc = nullptr;
+    G_AtlasPrevObj = nullptr;
+    G_AtlasMaxW = 0;
+    G_AtlasMaxH = 0;
 }
 
 void FontAtlasReleasePagePool()
@@ -293,17 +338,30 @@ unsigned char FontAtlasRasterize(FontStringChild* This, unsigned char bSkipSizeC
     This->GetSize(Size);
     int const RawW = Size[0];
     int const RawH = Size[1];
+    if (RawW <= 0 || RawH <= 0)
+    {
+        return 0;
+    }
     unsigned CheckW = static_cast<unsigned>(RawW);
     unsigned CheckH = static_cast<unsigned>(RawH);
 
-    // 00412815..00412897: with a zero argument both extents go to a power of two and must fit
-    // the scratch (JA against DAT_00616668, JBE against DAT_0061666c); otherwise the write-only
-    // byte DAT_00616698 is set and 0 returned. A non-zero argument skips both.
+    // Numeric faces require one page for the entire character strip. At high resolutions
+    // it exceeds the retail 256-pixel scratch; grow the scratch instead of dropping it.
+    // Ordinary text keeps 256-pixel tiles even after growth, so cached grids remain valid.
+    unsigned TileMaxW = 256;
+    unsigned TileMaxH = 256;
     if (bSkipSizeCheck == 0)
     {
         CheckW = RoundUpPow2(CheckW);
         CheckH = RoundUpPow2(CheckH);
-        if (CheckW > G_AtlasMaxW || CheckH > G_AtlasMaxH)
+        TileMaxW = CheckW;
+        TileMaxH = CheckH;
+    }
+    if (G_AtlasDc == nullptr || TileMaxW > G_AtlasMaxW || TileMaxH > G_AtlasMaxH)
+    {
+        unsigned const Width = TileMaxW > G_AtlasMaxW ? TileMaxW : G_AtlasMaxW;
+        unsigned const Height = TileMaxH > G_AtlasMaxH ? TileMaxH : G_AtlasMaxH;
+        if (!ResizeAtlasScratch(Width, Height))
         {
             return 0;
         }
@@ -355,24 +413,29 @@ unsigned char FontAtlasRasterize(FontStringChild* This, unsigned char bSkipSizeC
         FFontAtlasPage* Head = nullptr;    // [ESP+0x10]
         FFontAtlasPage* RowTail = nullptr; // [ESP+0x24]
         for (int LeftH = static_cast<int>(CheckH); LeftH > 0;
-             LeftH -= static_cast<int>(G_AtlasMaxH))
+             LeftH -= static_cast<int>(TileMaxH))
         {
             unsigned TileH = static_cast<unsigned>(LeftH);
-            if (TileH >= G_AtlasMaxH)
+            if (TileH >= TileMaxH)
             {
-                TileH = G_AtlasMaxH;
+                TileH = TileMaxH;
             }
             int const SrcY = static_cast<int>(CheckH) - LeftH;
             FFontAtlasPage* Previous = nullptr;
             for (int LeftW = static_cast<int>(CheckW); LeftW > 0;
-                 LeftW -= static_cast<int>(G_AtlasMaxW))
+                 LeftW -= static_cast<int>(TileMaxW))
             {
-                unsigned TileW = G_AtlasMaxW;
+                unsigned TileW = TileMaxW;
                 if (static_cast<unsigned>(LeftW) < TileW)
                 {
                     TileW = static_cast<unsigned>(LeftW);
                 }
                 FFontAtlasPage* const Page = CreateAtlasPage(TileW, TileH);
+                if (Page == nullptr)
+                {
+                    FontAtlasFreePages(Head);
+                    return 0;
+                }
                 if (Previous != nullptr)
                 {
                     Previous->NextX = Page;
@@ -409,17 +472,17 @@ unsigned char FontAtlasRasterize(FontStringChild* This, unsigned char bSkipSizeC
 
     // 00412a44..00412c6a: the raw extents walk the grid -- row count and column count follow
     // the extents alone (no null test on the page links).
-    for (int LeftH = RawH; LeftH > 0; LeftH -= static_cast<int>(G_AtlasMaxH))
+    for (int LeftH = RawH; LeftH > 0; LeftH -= static_cast<int>(TileMaxH))
     {
         unsigned TileH = static_cast<unsigned>(LeftH); // [ESP+0x10]
-        if (TileH >= G_AtlasMaxH)
+        if (TileH >= TileMaxH)
         {
-            TileH = G_AtlasMaxH;
+            TileH = TileMaxH;
         }
         FFontAtlasPage* Page = Row; // [ESP+0x2c]
-        for (int LeftW = RawW; LeftW > 0; LeftW -= static_cast<int>(G_AtlasMaxW))
+        for (int LeftW = RawW; LeftW > 0; LeftW -= static_cast<int>(TileMaxW))
         {
-            unsigned TileW = G_AtlasMaxW; // [ESP+0x18]
+            unsigned TileW = TileMaxW; // [ESP+0x18]
             if (static_cast<unsigned>(LeftW) < TileW)
             {
                 TileW = static_cast<unsigned>(LeftW);

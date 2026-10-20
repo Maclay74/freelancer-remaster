@@ -7,7 +7,7 @@
 #pragma once
 
 // FontString GPU atlas — retail Font.cpp FUN_00412670 / FUN_00412cc0 / FUN_004127d0.
-// Shared 256×256 GDI scratch → ExtTextOutW → GetDIBits → Pipeline Lock → A1R5G5B5 pages.
+// Shared GDI scratch (initially 256×256, grows for numeric faces) → ExtTextOutW → GetDIBits → Pipeline Lock → A1R5G5B5 pages.
 // Do NOT substitute RichTextPane / DeviceTRC / per-string A8R8G8B8 scaffolds.
 
 #include <windows.h>
@@ -54,8 +54,8 @@ void FontAtlasFreePages(FFontAtlasPage*& Head);
 // FUN_004127d0 (thiscall on a FontString, RET 4) — size through the string's GetSize (vt+0x18),
 // build or reuse its page grid (+0x14), ExtTextOutW each tile into the GDI scratch and upload
 // it as A1R5G5B5. bSkipSizeCheck == 0 runs the power-of-two / scratch-size check at
-// 0041281f..0041288c (a failure sets DAT_00616698 and returns 0) and builds the grid from the
-// rounded extents; non-zero skips both. The pixel upload does not depend on it (00412a03 reuses
+// 0041281f..0041288c and builds one page from the rounded extents, growing the scratch
+// when needed in the port; non-zero uses fixed 256-pixel tiles. The pixel upload does not depend on it (00412a03 reuses
 // the slot as the success flag). The NumberString face callers pass 0 (0041385b, 0041389f,
 // 00414125, 004141ad, 00415134); FUN_004152e0 passes its own argument (004154a5).
 // Returns 1 when the grid is current or every tile was drawn, 0 otherwise.
